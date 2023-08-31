@@ -15,7 +15,7 @@
   --link-color: #3C9BAA;
   --link-hover-color: #3C9BAA;
   --background-color: #fff;
-  --overlay-background-color: #eee;
+  --overlay-background-color: #F3f4f6;
   --highlight-background-color: #ccc;
   --text-color: #000;
   --text-light-color: #fff;
@@ -192,7 +192,6 @@ main input {
   width: 100%;
   max-width: 50rem;
   display: block;
-  margin-bottom: 1rem;
   padding: 0.75rem 0.6rem;
   border-radius: 0.25rem;
   box-sizing: border-box;
@@ -264,4 +263,10 @@ main .section.highlight {
 main .section.space-between .default-content-wrapper {
   display: flex;
   justify-content: space-between;
+}
+
+main .section.horizontal-center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
