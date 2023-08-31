@@ -1,31 +1,107 @@
-.cards > ul {
+.cards .cards-card-image {
+  line-height: 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.cards .cards-link {
+  display: none;
+}
+
+.cards a {
+  text-decoration: none;
+}
+
+/* colection */
+.cards.collection > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-gap: 2rem;
+  @media (max-width: 768px){
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
 }
 
-.cards > ul > li {
-  border: 1px solid var(--highlight-background-color);
-  background-color: var(--background-color)
+.cards.collection > ul > li {
+  background-color: var(--background-color);
 }
 
-.cards .cards-card-body {
+.cards.collection .cards-card-body {
   margin: 16px;
 }
 
-.cards .cards-card-image {
-  line-height: 0;
-}
-
-.cards .cards-card-body > *:first-child {
+.cards.collection .cards-card-body > *:first-child {
   margin-top: 0;
 }
 
-.cards > ul > li img {
+.cards.collection > ul > li img {
+  width: 100%;
+  aspect-ratio: 5 / 6;
+  object-fit: cover;
+  @media (max-width: 768px){
+    aspect-ratio: 3 / 2;
+  }
+}
+.cards.collection .cards-card-body p {
+  font-weight: 400;
+  font-size: var(--body-font-size-s);
+  color: var(--faded-text-color);
+}
+
+.cards.collection .cards-card-body strong {
+  font-weight: 600;
+  font-size: var(--body-font-size-m);
+  color: var(--text-color);
+}
+
+
+/* style card flex and cover */
+
+.cards.flex > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  overflow: auto;
+  gap: 2rem;
+}
+
+.cards.cover > ul > li {
+  background-color: var(--background-color);
+  overflow: hidden;
+  position: relative;
+  min-width: 200px;
+  height: 100%;
+  
+}
+
+.cards.cover .cards-card-body {
+  margin:0;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  left: 0;
+}
+
+.cards.cover a {
+  color: var(--text-light-color);
+  font-size: var(--body-font-size-xl);
+  font-weight: 700;
+}
+
+.cards.cover > ul > li img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  height: 320px;
 }
+
+.cards > ul > li:hover img {
+  opacity: 0.8;
+}
+
