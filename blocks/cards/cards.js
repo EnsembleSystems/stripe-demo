@@ -14,7 +14,7 @@ export default function decorate(block) {
       a.append(row.firstElementChild);
     }
     [...a.children].forEach((div) => {
-      if (div.querySelector("a")) {
+      if (div.children.length === 1 && div.querySelector("a")) {
         div.className = "cards-link";
       } else if (div.children.length === 1 && div.querySelector("picture"))
         div.className = "cards-card-image";

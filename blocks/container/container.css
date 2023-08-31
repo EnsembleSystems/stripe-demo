@@ -1,0 +1,11 @@
+.container-container .container.support {
+  background: var(--background-dark-color);
+  color: var(--text-light-color);
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 8rem 10rem;
+
+  @media (max-width: 768px) {
+    padding: 8rem 2rem;
+  }
+}
