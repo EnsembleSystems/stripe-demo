@@ -270,3 +270,8 @@ main .section.horizontal-center {
   align-items: center;
   flex-direction: column;
 }
+
+main .section.my-8 {
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+}
