@@ -1,4 +1,5 @@
 import { createOptimizedPicture } from "../../scripts/lib-franklin.js";
+import createTag from "../../utils/tag.js";
 
 export default function decorate(block) {
   /* change to ul, li */
@@ -6,8 +7,7 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     const li = document.createElement("li");
     const link = row.querySelector("a");
-    const a = document.createElement("a");
-    a.href = link.href;
+    const a = createTag("a", { href: link.href });
     a.append(row.firstElementChild);
     li.append(a);
     while (row.firstElementChild) {

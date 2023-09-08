@@ -1,5 +1,6 @@
 import { readBlockConfig } from "../../scripts/lib-franklin.js";
 import { addInViewAnimationToSingleElement } from "../../utils/helpers.js";
+import createTag from "../../utils/tag.js";
 
 function createSelect(fd) {
   const select = document.createElement("select");
@@ -36,11 +37,14 @@ function constructPayload(form) {
 }
 
 function createInfo(form) {
-  const div = document.createElement("div");
-  div.className = "form-info";
   const svg =
     '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
-  div.innerHTML = `<div>${svg}<span>${form.Label}</span></div>`;
+  const div = createTag(
+    "div",
+    { class: "form-info" },
+    `<div>${svg}<span>${form.Label}</span></div>`
+  );
+
   return div;
 }
 
@@ -80,16 +84,16 @@ function createButton(fd) {
 }
 
 function createHeading(fd, el) {
-  const heading = document.createElement(el);
-  heading.textContent = fd.Label;
+  const heading = createTag(el, { textContent: fd.Label });
   return heading;
 }
 
 function createInput(fd) {
-  const input = document.createElement("input");
-  input.type = fd.Type;
-  input.id = fd.Field;
-  input.setAttribute("placeholder", fd.Placeholder);
+  const input = createTag("input", {
+    type: fd.Type,
+    id: fd.Field,
+    placeholder: fd.Placeholder,
+  });
   if (fd.Mandatory === "x") {
     input.setAttribute("required", "required");
   }
@@ -97,9 +101,10 @@ function createInput(fd) {
 }
 
 function createTextArea(fd) {
-  const input = document.createElement("textarea");
-  input.id = fd.Field;
-  input.setAttribute("placeholder", fd.Placeholder);
+  const input = createTag("textarea", {
+    id: fd.Field,
+    placeholder: fd.Placeholder,
+  });
   if (fd.Mandatory === "x") {
     input.setAttribute("required", "required");
   }
@@ -107,9 +112,7 @@ function createTextArea(fd) {
 }
 
 function createLabel(fd) {
-  const label = document.createElement("label");
-  label.setAttribute("for", fd.Field);
-  label.textContent = fd.Label;
+  const label = createTag("label", { for: fd.Field, textContent: fd.Label });
   if (fd.Mandatory === "x") {
     label.classList.add("required");
   }
@@ -155,11 +158,11 @@ async function createForm(formURL) {
   form.dataset.action = pathname.split(".json")[0];
   json.data.forEach((fd) => {
     fd.Type = fd.Type || "text";
-    const fieldWrapper = document.createElement("div");
     const style = fd.Style ? ` form-${fd.Style}` : "";
     const fieldId = `form-${fd.Type}-wrapper${style}`;
-    fieldWrapper.className = fieldId;
-    fieldWrapper.classList.add("field-wrapper");
+    const fieldWrapper = createTag("div", {
+      class: `${fieldId} field-wrapper`,
+    });
     switch (fd.Type) {
       case "select":
         fieldWrapper.append(createLabel(fd));

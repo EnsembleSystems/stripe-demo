@@ -1,4 +1,5 @@
 import { addInViewAnimationToSingleElement } from "../../utils/helpers.js";
+import createTag from "../../utils/tag.js";
 
 export default async function decorate(block) {
   addInViewAnimationToSingleElement(block, "fade-up");
@@ -14,27 +15,25 @@ async function createBlock(href) {
 }
 
 function createProductCards(data) {
-  const div = document.createElement("div");
-  div.className = "productcards";
+  const div = createTag("div", { class: "productcards" });
   [...data].forEach((product) => {
-    const productWrapper = document.createElement("a");
-    productWrapper.href = "/product-details";
-    productWrapper.className = "product-wrapper";
-    const img = document.createElement("img");
-    img.src = product.image;
-    img.alt = product.name;
+    const productWrapper = createTag("a", {
+      href: `/product-details?id=${product.id}`,
+      class: "product-wrapper",
+    });
 
-    const name = document.createElement("p");
-    name.className = "product-name";
-    name.textContent = product.name;
+    const img = createTag("img", { src: product.image, alt: product.name });
 
-    const price = document.createElement("p");
-    price.className = "product-price";
-    price.textContent = "$" + Number(product.price).toFixed(2);
+    const name = createTag("p", {
+      class: "product-name",
+      textContent: product.name,
+    });
 
-    productWrapper.appendChild(img);
-    productWrapper.appendChild(name);
-    productWrapper.appendChild(price);
+    const price = createTag("p", {
+      class: "product-price",
+      textContent: `$${Number(product.price).toFixed(2)}`,
+    });
+    productWrapper.append(img, name, price);
     div.appendChild(productWrapper);
   });
 
