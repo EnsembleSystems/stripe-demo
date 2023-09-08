@@ -118,8 +118,16 @@ export default async function decorate(block) {
     classes.forEach((c, i) => {
       const section = nav.children[i];
       if (section) section.classList.add(`nav-${c}`);
+      const header = document.querySelector("header");
       if (c === "banner" && section) {
         block.appendChild(section);
+        header.style.height = getComputedStyle(
+          document.documentElement
+        ).getPropertyValue("--extended-nav-height");
+      } else {
+        header.style.height = getComputedStyle(
+          document.documentElement
+        ).getPropertyValue("--nav-height");
       }
     });
 

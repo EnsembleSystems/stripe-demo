@@ -51,6 +51,7 @@
 
   /* nav height */
   --nav-height: 64px;
+  --extended-nav-height: 104px;
 
 }
 
@@ -128,6 +129,7 @@ code, samp {
 pre {
   overflow: scroll;
 }
+
 
 main pre {
   background-color: var(--overlay-background-color);
