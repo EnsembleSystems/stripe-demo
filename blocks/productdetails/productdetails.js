@@ -40,7 +40,7 @@ function createProductDetailsCard(currentProduct) {
   const img = createOptimizedPicture(
     currentProduct.image,
     currentProduct.name,
-    false
+    true
   );
   productImgWrapper.appendChild(img);
 

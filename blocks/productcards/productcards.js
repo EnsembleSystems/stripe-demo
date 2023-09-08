@@ -23,7 +23,7 @@ function createProductCards(data) {
       class: "product-wrapper",
     });
 
-    const img = createOptimizedPicture(product.image, product.name, false);
+    const img = createOptimizedPicture(product.image, product.name, true);
 
     const name = createTag("p", {
       class: "product-name",
