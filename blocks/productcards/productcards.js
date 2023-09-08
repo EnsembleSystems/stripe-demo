@@ -1,3 +1,4 @@
+import { createOptimizedPicture } from "../../scripts/lib-franklin.js";
 import { addInViewAnimationToSingleElement } from "../../utils/helpers.js";
 import createTag from "../../utils/tag.js";
 
@@ -22,7 +23,7 @@ function createProductCards(data) {
       class: "product-wrapper",
     });
 
-    const img = createTag("img", { src: product.image, alt: product.name });
+    const img = createOptimizedPicture(product.image, product.name, false);
 
     const name = createTag("p", {
       class: "product-name",

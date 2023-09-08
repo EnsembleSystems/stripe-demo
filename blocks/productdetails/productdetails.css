@@ -63,11 +63,12 @@
  }
 
 .product-details-card .product-info-wrapper .product-support-info {
- background: var(--overlay-background-color);
+ background: var(--light-background-color);
  width: 50%;
  border-radius: 10px;
  text-align: center;
  padding: 20px 0;
+ border: 1px solid var(--divider-color)
 }
 .product-details-card .product-info-wrapper .product-support-info p.info-content {
   color: var(--faded-text-color);

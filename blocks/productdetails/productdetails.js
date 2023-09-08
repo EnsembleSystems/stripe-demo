@@ -1,3 +1,4 @@
+import { createOptimizedPicture } from "../../scripts/lib-franklin.js";
 import { addInViewAnimationToSingleElement } from "../../utils/helpers.js";
 import createTag from "../../utils/tag.js";
 
@@ -36,10 +37,11 @@ function createProductDetailsCard(currentProduct) {
   const productImgWrapper = createTag("div", {
     class: "product-image-wrapper",
   });
-  const img = createTag("img", {
-    src: currentProduct.image,
-    alt: currentProduct.name,
-  });
+  const img = createOptimizedPicture(
+    currentProduct.image,
+    currentProduct.name,
+    false
+  );
   productImgWrapper.appendChild(img);
 
   const name = createTag("p", {
@@ -91,10 +93,7 @@ function createProductDetailsCard(currentProduct) {
     const infoDiv = createTag("div", {
       class: "product-support-info",
     });
-    const icon = createTag("img", {
-      src: info.icon,
-      alt: info.heading,
-    });
+    const icon = createOptimizedPicture(info.icon, info.heading, false);
     const heading = createTag("p", {
       class: "info-heading",
       textContent: info.heading,
