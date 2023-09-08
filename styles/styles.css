@@ -26,6 +26,7 @@
   --faded-text-color: #6B7280;
   --background-dark-color: #1F2937;
   --review-star-color: #fbbf24;
+  --banner-color: #154960;
 
   /* fonts */
   --body-font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -84,10 +85,6 @@ body {
 
 body.appear {
   display: unset;
-}
-
-header {
-  height: var(--nav-height);
 }
 
 h1, h2, h3,

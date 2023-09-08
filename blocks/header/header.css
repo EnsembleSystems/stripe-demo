@@ -1,9 +1,12 @@
 /* header and nav layout */
-header .nav-wrapper {
-  background-color: var(--background-color);
+header {
   width: 100%;
   z-index: 2;
   position: fixed;
+}
+
+header .nav-wrapper {
+  background-color: var(--background-color);
 }
 
 header nav {
@@ -305,4 +308,17 @@ header nav .nav-tools svg:hover {
   stroke: var(--text-color);
 }
 
+header .nav-banner {
+  background-color: var(--banner-color);
+  color: var(--text-light-color);
+  font-weight: 500;
+  font-size: var(--body-font-size-s);
+  text-align: center;
+  height: auto;
+}
+
+header .nav-banner p {
+  margin: 0 auto;
+  padding: 0.5rem;
+}
 
