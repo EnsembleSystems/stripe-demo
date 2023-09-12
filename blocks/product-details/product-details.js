@@ -1,3 +1,4 @@
+import { addToCard, getCart } from "../../scripts/cart.js";
 import { createOptimizedPicture } from "../../scripts/lib-franklin.js";
 import { addInViewAnimationToSingleElement } from "../../utils/helpers.js";
 import createTag from "../../utils/tag.js";
@@ -16,7 +17,7 @@ const INFO_SECTION = [
 ];
 export default async function decorate(block) {
   addInViewAnimationToSingleElement(block, "fade-up");
-  const href = block.querySelector("a").href;
+  const { href } = block.querySelector("a");
   block.replaceWith(await createBlock(href));
 }
 
@@ -26,10 +27,10 @@ async function createBlock(href) {
   const json = await resp.json();
   const { searchParams } = new URL(window.location.href);
   const id = searchParams.get("id");
-  //can be replaced with Adobe Commerce API
+  // can be replaced with Adobe Commerce API
   const currentProduct = json.data.filter((d) => d.id === id)[0];
   if (currentProduct) return createProductDetailsCard(currentProduct);
-  else return "Invalid Product";
+  return "Invalid Product";
 }
 
 function createProductDetailsCard(currentProduct) {
@@ -85,6 +86,10 @@ function createProductDetailsCard(currentProduct) {
     class: "primary add-to-cart-button",
   });
 
+  addToCartButton.addEventListener("click", () => {
+    addToCard(currentProduct.id);
+  });
+
   const infoSection = createTag("div", {
     class: "product-info-wrapper",
   });
@@ -116,7 +121,6 @@ function createProductDetailsCard(currentProduct) {
   );
 
   div.append(productHeaderWrapper, productImgWrapper, productBodyWrapper);
-
   return div;
 }
 

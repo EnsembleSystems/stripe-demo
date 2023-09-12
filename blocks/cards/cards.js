@@ -16,9 +16,9 @@ export default function decorate(block) {
     [...a.children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector("a")) {
         div.className = "cards-link";
-      } else if (div.children.length === 1 && div.querySelector("picture"))
+      } else if (div.children.length === 1 && div.querySelector("picture")) {
         div.className = "cards-card-image";
-      else div.className = "cards-card-body";
+      } else div.className = "cards-card-body";
     });
     ul.append(li);
   });

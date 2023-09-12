@@ -1,4 +1,6 @@
+import { getCart } from "../../scripts/cart.js";
 import { getMetadata, decorateIcons } from "../../scripts/lib-franklin.js";
+import createTag from "../../utils/tag.js";
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia("(min-width: 900px)");
@@ -165,7 +167,19 @@ export default async function decorate(block) {
       toggleMenu(nav, navSections, isDesktop.matches)
     );
 
-    decorateIcons(nav);
+    await decorateIcons(nav);
+
+    // add cart quantity
+    const cartIcons = nav.querySelector(".icon-cart");
+    const a = cartIcons.parentElement;
+    a.className = "cart-link";
+    const cartQuantity = createTag("span", {
+      class: "cart-quantity",
+      textContent: getCart().total,
+    });
+
+    a.appendChild(cartQuantity);
+
     const navWrapper = document.createElement("div");
     navWrapper.className = "nav-wrapper";
     navWrapper.append(nav);
