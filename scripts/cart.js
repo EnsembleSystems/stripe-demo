@@ -4,6 +4,9 @@ const EMPTY_CART = {
   total: 0,
 };
 
+/**
+ * Get the cart saved in local storage
+ */
 export function getCart() {
   const cartItems = window.localStorage.getItem(CART_KEY);
   if (cartItems) {
@@ -18,18 +21,21 @@ export function getCart() {
   return EMPTY_CART;
 }
 
-export function addToCard(productId, productQuantity = 1) {
+/**
+ * @param {string} productId The product id
+ * @param {number} productQuantity quantity, default: 1
+ * To add number of products into cart
+ */
+export function addToCart(productId, productQuantity = 1) {
   const cart = getCart();
   let updated;
-  const exist = cart.products.find(
-    (product) => product.productId === productId
-  );
+  const exist = cart.products.find((product) => product.id === productId);
   if (exist) {
     updated = {
       products: cart.products.map((product) => ({
-        productId: product.productId,
+        id: product.id,
         quantity:
-          product.productId === productId
+          product.id === productId
             ? product.quantity + productQuantity
             : product.quantity,
       })),
@@ -37,7 +43,10 @@ export function addToCard(productId, productQuantity = 1) {
     };
   } else {
     updated = {
-      products: [...cart.products, { productId, quantity: productQuantity }],
+      products: [
+        ...cart.products,
+        { id: productId, quantity: productQuantity },
+      ],
       total: cart.total + 1,
     };
   }
@@ -45,7 +54,49 @@ export function addToCard(productId, productQuantity = 1) {
   refreshCartTotal(updated.total);
 }
 
+/**
+ * @param {number} total Total products
+ * To refresh the number products in the cart
+ */
 function refreshCartTotal(total = getCart().total) {
   var cartQuantity = document.querySelector(".cart-quantity");
   cartQuantity.innerHTML = total;
+}
+
+/**
+ * @param {string} productId Product id
+ * @param {number} productId Product quantity
+ * To update the quantity of product id in cart
+ */
+export function updateQuantity(productId, quantity) {
+  const cart = getCart();
+  const exist = cart.products.find((product) => product.id === productId);
+  if (exist) {
+    const updated = {
+      products: cart.products.map((product) => ({
+        id: product.id,
+        quantity: product.id === productId ? quantity : product.quantity,
+      })),
+      total: cart.total - exist.quantity + quantity,
+    };
+    window.localStorage.setItem(CART_KEY, JSON.stringify(updated));
+    refreshCartTotal(updated.total);
+  }
+}
+
+/**
+ * @param {string} productId Product id
+ * To remove the product id from cart
+ */
+export function removeFromCart(productId) {
+  const cart = getCart();
+  const exist = cart.products.find((product) => product.id === productId);
+  if (exist) {
+    const updated = {
+      products: cart.products.filter((product) => product.id !== productId),
+      total: cart.total - exist.quantity,
+    };
+    window.localStorage.setItem(CART_KEY, JSON.stringify(updated));
+    refreshCartTotal(updated.total);
+  }
 }

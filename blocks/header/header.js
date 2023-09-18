@@ -174,7 +174,7 @@ export default async function decorate(block) {
     const a = cartIcons.parentElement;
     a.className = "cart-link";
     const cartQuantity = createTag("span", {
-      class: "cart-quantity",
+      className: "cart-quantity",
       textContent: getCart().total,
     });
 

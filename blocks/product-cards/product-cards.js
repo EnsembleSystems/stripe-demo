@@ -1,37 +1,28 @@
 import { createOptimizedPicture } from "../../scripts/lib-franklin.js";
-import { addInViewAnimationToSingleElement } from "../../utils/helpers.js";
+import { getProducts } from "../../scripts/product.js";
 import createTag from "../../utils/tag.js";
 
 export default async function decorate(block) {
-  addInViewAnimationToSingleElement(block, "fade-up");
-  const href = block.querySelector("a").href;
-  block.replaceWith(await createBlock(href));
-}
-
-async function createBlock(href) {
-  const { pathname } = new URL(href);
-  const resp = await fetch(pathname);
-  const json = await resp.json();
-  return createProductCards(json.data);
+  block.replaceWith(createProductCards(await getProducts()));
 }
 
 function createProductCards(data) {
-  const div = createTag("div", { class: "productcards" });
+  const div = createTag("div", { className: "productcards" });
   [...data].forEach((product) => {
     const productWrapper = createTag("a", {
       href: `/product-details?id=${product.id}`,
-      class: "product-wrapper",
+      className: "product-wrapper",
     });
 
     const img = createOptimizedPicture(product.image, product.name, true);
 
     const name = createTag("p", {
-      class: "product-name",
+      className: "product-name",
       textContent: product.name,
     });
 
     const price = createTag("p", {
-      class: "product-price",
+      className: "product-price",
       textContent: `$${Number(product.price).toFixed(2)}`,
     });
     productWrapper.append(img, name, price);

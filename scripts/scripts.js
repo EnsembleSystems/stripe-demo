@@ -12,6 +12,9 @@ import {
   loadCSS,
 } from "./lib-franklin.js";
 
+import { events } from "@dropins/elsie/event-bus.js";
+import { initializers } from "@dropins/elsie/initializer.js";
+
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
 /**
@@ -45,6 +48,7 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
+  loadDropins();
   document.documentElement.lang = "en";
   decorateTemplateAndTheme();
   const main = doc.querySelector("main");
@@ -85,6 +89,19 @@ async function loadLazy(doc) {
   sampleRUM("lazy");
   sampleRUM.observe(main.querySelectorAll("div[data-block-name]"));
   sampleRUM.observe(main.querySelectorAll("picture > img"));
+}
+
+/**
+ * Load/run general storefront @dropins logic
+ */
+function loadDropins() {
+  if (document.readyState === "complete") {
+    console.log("document already loaded");
+    initializers.mount();
+  } else {
+    window.addEventListener("load", initializers.mount);
+  }
+  events.enableLogger(true);
 }
 
 /**

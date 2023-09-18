@@ -16,7 +16,7 @@ export default function createTag(tag, attributes, html) {
   }
   if (attributes) {
     Object.keys(attributes).forEach((key) => {
-      if (el.hasAttribute(key) || key === "class") {
+      if (el.hasAttribute(key)) {
         el.setAttribute(key, attributes[key]);
       } else {
         el[key] = attributes[key];

@@ -56,7 +56,7 @@ export function changeTag(element, targetTag, className) {
   const innerContent = element.innerHTML;
   const newTagElement = createTag(
     targetTag,
-    { class: newElClass },
+    { className: newElClass },
     innerContent
   );
 
@@ -91,7 +91,7 @@ export function returnLinkTarget(url) {
 const requireRevealWrapper = ["slide-reveal-up", "slide-reveal-up-slow"];
 
 export function addRevealWrapperToAnimationTarget(element) {
-  const revealWrapper = createTag("div", { class: "slide-reveal-wrapper" });
+  const revealWrapper = createTag("div", { className: "slide-reveal-wrapper" });
   const parent = element.parentNode;
   // Insert the wrapper before the element
   parent.insertBefore(revealWrapper, element);

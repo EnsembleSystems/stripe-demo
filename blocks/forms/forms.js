@@ -41,7 +41,7 @@ function createInfo(form) {
     '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
   const div = createTag(
     "div",
-    { class: "form-info" },
+    { className: "form-info" },
     `<div>${svg}<span>${form.Label}</span></div>`
   );
 
@@ -161,7 +161,7 @@ async function createForm(formURL) {
     const style = fd.Style ? ` form-${fd.Style}` : "";
     const fieldId = `form-${fd.Type}-wrapper${style}`;
     const fieldWrapper = createTag("div", {
-      class: `${fieldId} field-wrapper`,
+      className: `${fieldId} field-wrapper`,
     });
     switch (fd.Type) {
       case "select":
