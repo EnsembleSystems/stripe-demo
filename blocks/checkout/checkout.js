@@ -1,50 +1,18 @@
-import * as adyenApi from "@dropins/adyen-checkout-extension/api.js";
-import AdyenExtension from "@dropins/adyen-checkout-extension/containers/PaymentMethods.js";
-import { render as adyenRenderer } from "@dropins/adyen-checkout-extension/render.js";
 import { events } from "@dropins/elsie/event-bus.js";
-import { setEndpoint, fetchGraphQl } from "@dropins/elsie/fetch-graphql.js";
 import { initializers } from "@dropins/elsie/initializer.js";
 import * as checkoutApi from "@dropins/storefront-checkout/api.js";
 import Checkout from "@dropins/storefront-checkout/containers/Checkout.js";
-import OrderSummary from "@dropins/storefront-checkout/containers/OrderSummary.js";
 import { render as checkoutRenderer } from "@dropins/storefront-checkout/render.js";
 import createTag from "../../utils/tag.js";
-const stripe = Stripe("pk_test_A7jK4iCYHL045qgjjfzAfPxu");
+const stripe = Stripe(
+  "pk_test_51Nrs0ML1DV9f5cSo8SGP5fqOt9ypRLqBSKBv4rfbRPOGezL5t5sUMV7mHGlRdd9455BXOwoBngtEWo35EEgc7UHD00Ajy9FWgK"
+);
 
 export default async function decorate(block) {
   const element = createTag("div", { id: "payment-element" });
   block.appendChild(element);
-  const appearance = {
-    /* appearance */
-  };
-  const options = {
-    /* options */
-  };
 
-  // const clientSecret =
-  //   "pi_1Gt0Aa2eZvKYlo2CyEroX3gm_secret_Axwag1hzl9M43XZVRxPtATRNF";
-  // const elements = stripe.elements({ clientSecret, appearance });
-  // const paymentElement = elements.create("payment", options);
-  // paymentElement.mount("#payment-element");
-  setEndpoint(
-    // Prod Mesh Endpoint w/ Guest Estimate
-    // "https://graph.adobe.io/api/dc55dc16-82b2-47ec-8e5a-3e9f3cf395dd/graphql?api_key=cfc0b282731a43739c83eb661ab17086"
-    // Stg Mesh Endpoint w/ Guest Estimate & Adyen Extension
-    "https://graph.adobe.io/api/a2975be6-bfb1-4be5-bb9b-b330fd46a6d8/graphql?api_key=a28717f2dc814395a2b536d527ef9ad5"
-    // Stg Backend ^ but without Mesh - wont work until CORS resolved for local dev.
-    // "https://checkout-stg-phpgo3q-ktefqhpptmkrc.eu-4.magentosite.cloud/graphql"
-  );
   initializers.register(checkoutApi.initialize);
-  initializers.register(adyenApi.initialize, {
-    // from franklin.maidenform.com/checkout (test key)
-    // cannot use unless franklin.maidenform's Commerce backend has guestEstimate module installed.
-    // clientKey: 'test_R43YHCZCIBGKVO4UOIENTWOQEIDMPVJM',
-    // locale: 'en_US',
-    // from checkout-stg backend (test key)
-    clientKey: "test_TBG272DDJZH4ZAAXSBAKQZ44ZQC6LWOU",
-    locale: "en-US",
-    environment: "test",
-  });
 
   // TODO: locale (maidenform has only en_US, and locale/store switcher will come from Franklin)
   checkoutRenderer.render(Checkout, {
@@ -52,13 +20,59 @@ export default async function decorate(block) {
     // storeCode,
     // locale,
     slots: {
-      PaymentMethods: async (element) => {
-        await adyenRenderer.render(AdyenExtension)(element);
-      },
-      OrderSummary: async (element) => {
-        await checkoutRenderer.render(OrderSummary)(element);
-        // example of adding a content after some default container
-        // const fragment = await loadFragment("/fragments/drafts/demo-include");
+      PaymentMethods: (_, context) => {
+        context.addPaymentMethodHandler("checkmo", {
+          render: (element, context) => {
+            console.log("handler context", context);
+            if (element) {
+              element.innerHTML = `<div>Custom Check / Money order handler</div>`;
+            }
+          },
+        });
+        context.addPaymentMethodHandler("braintree", {
+          render: (element, context) => {
+            const $content = document.createElement("div");
+
+            $content.innerHTML = `<div id="dropin-container">test</div>`;
+
+            if (element) {
+              element.innerHTML = $content.innerHTML;
+
+              // braintree.dropin.create({
+              //   authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
+              //   container: "#dropin-container",
+              // });
+            }
+          },
+        });
+        // context.addPaymentMethodHandler("adyen_cc", {
+        //   render: (element, context) => {
+        //     if (element) {
+        //       element.innerHTML = "test";
+        //       adyenRenderer.render(AdyenExtension, context)(element);
+        //     }
+        //   },
+        // });
+
+        context.addPaymentMethodHandler("stripe", {
+          render: async (element, context) => {
+            if (element) {
+              element.id = "payment-element";
+              const appearance = {
+                /* appearance */
+              };
+              const options = {
+                /* options */
+              };
+              const clientSecret =
+                "pi_3NsZkUL1DV9f5cSo0t4biUBY_secret_hbaemymPGMHsuf8oxqMYthy2p";
+              const elements = stripe.elements({ clientSecret, appearance });
+              const paymentElement = elements.create("payment", options);
+              paymentElement.mount("#payment-element");
+              // element.innerHTML = "stripetest";
+            }
+          },
+        });
       },
     },
   })(block);

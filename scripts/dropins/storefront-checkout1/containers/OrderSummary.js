@@ -7,7 +7,9 @@ export const id = 166;
 export const ids = [166];
 export const modules = {
   1988: (e, r, n) => {
-    n.d(r, { t: () => O });
+    n.d(r, {
+      t: () => O,
+    });
     var t = n(5587),
       o = n(1892),
       a = n.n(o),
@@ -49,7 +51,7 @@ export const modules = {
         g(e)
       );
     }
-    var k = [
+    var x = [
       "amount",
       "currency",
       "locale",
@@ -59,7 +61,7 @@ export const modules = {
       "sale",
       "formatOptions",
     ];
-    function x(e, r) {
+    function k(e, r) {
       var n = Object.keys(e);
       if (Object.getOwnPropertySymbols) {
         var t = Object.getOwnPropertySymbols(e);
@@ -75,12 +77,12 @@ export const modules = {
       for (var r = 1; r < arguments.length; r++) {
         var n = null != arguments[r] ? arguments[r] : {};
         r % 2
-          ? x(Object(n), !0).forEach(function (r) {
+          ? k(Object(n), !0).forEach(function (r) {
               w(e, r, n[r]);
             })
           : Object.getOwnPropertyDescriptors
           ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n))
-          : x(Object(n)).forEach(function (r) {
+          : k(Object(n)).forEach(function (r) {
               Object.defineProperty(
                 e,
                 r,
@@ -121,16 +123,17 @@ export const modules = {
       var r = e.amount,
         n = void 0 === r ? 0 : r,
         o = e.currency,
-        a = e.locale,
-        i = void 0 === a ? void 0 : a,
-        s = e.variant,
-        l = void 0 === s ? "default" : s,
-        c = e.className,
-        u = (e.children, e.sale),
-        d = void 0 !== u && u,
-        m = e.formatOptions,
-        p = void 0 === m ? {} : m,
-        y = (function (e, r) {
+        a = void 0 === o ? "USD" : o,
+        i = e.locale,
+        s = void 0 === i ? void 0 : i,
+        l = e.variant,
+        c = void 0 === l ? "default" : l,
+        u = e.className,
+        d = (e.children, e.sale),
+        m = void 0 !== d && d,
+        p = e.formatOptions,
+        y = void 0 === p ? {} : p,
+        f = (function (e, r) {
           if (null == e) return {};
           var n,
             t,
@@ -153,39 +156,41 @@ export const modules = {
                     (o[n] = e[n]));
           }
           return o;
-        })(e, k),
-        f = new Intl.NumberFormat(
-          i,
+        })(e, x),
+        h = new Intl.NumberFormat(
+          s,
           j(
             {
               style: "currency",
-              currency: o || "USD",
+              currency: a,
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
             },
-            p
+            y
           )
         );
       return (0, b.jsx)(
         "span",
         j(
-          j({}, y),
+          j({}, f),
           {},
           {
             className: (0, t.S)([
               "elsie-price",
-              c,
-              "elsie-price--".concat(l),
-              ["elsie-price--sale", d],
+              u,
+              "elsie-price--".concat(c),
+              ["elsie-price--sale", m],
             ]),
-            children: f.format(n),
+            children: h.format(n),
           }
         )
       );
     };
   },
   3483: (e, r, n) => {
-    n.d(r, { X: () => b });
+    n.d(r, {
+      X: () => b,
+    });
     var t = n(1892),
       o = n.n(t),
       a = n(5760),
@@ -214,11 +219,16 @@ export const modules = {
           t = e.level,
           o = void 0 === t ? 2 : t,
           a = o >= 1 && o <= 6 ? "h".concat(o) : "h2";
-        return (0, v.jsx)(a, { className: r, children: n });
+        return (0, v.jsx)(a, {
+          className: r,
+          children: n,
+        });
       };
   },
   7354: (e, r, n) => {
-    n.d(r, { a: () => g });
+    n.d(r, {
+      a: () => g,
+    });
     var t = n(5587),
       o = n(1892),
       a = n.n(o),
@@ -259,7 +269,10 @@ export const modules = {
       };
   },
   9799: (e, r, n) => {
-    n.d(r, { O: () => p, d: () => m });
+    n.d(r, {
+      O: () => p,
+      d: () => m,
+    });
     var t = n(5587),
       o = (n(1442), n(7188));
     function a(e) {
@@ -404,9 +417,21 @@ export const modules = {
                     "checkout-skeleton-row--multiline",
                     ["checkout-skeleton-row--full", n],
                   ]),
-                  children: Array.from({ length: s }).map(function (e, r) {
-                    return (0,
-                    o.jsx)("div", { class: (0, t.S)(["checkout-skeleton-row", ["checkout-skeleton-row--full", n]].concat(f)) }, r);
+                  children: Array.from({
+                    length: s,
+                  }).map(function (e, r) {
+                    return (0, o.jsx)(
+                      "div",
+                      {
+                        class: (0, t.S)(
+                          [
+                            "checkout-skeleton-row",
+                            ["checkout-skeleton-row--full", n],
+                          ].concat(f)
+                        ),
+                      },
+                      r
+                    );
                   }),
                 }
               )
@@ -421,13 +446,19 @@ export const modules = {
           c(
             c({}, a),
             {},
-            { className: (0, t.S)(["checkout-skeleton", r]), children: n }
+            {
+              className: (0, t.S)(["checkout-skeleton", r]),
+              children: n,
+            }
           )
         );
       };
   },
   7357: (e, r, n) => {
-    n.d(r, { H: () => R, Y: () => F });
+    n.d(r, {
+      H: () => R,
+      Y: () => F,
+    });
     var t = n(3177),
       o = n(5587),
       a = n(1892),
@@ -452,8 +483,8 @@ export const modules = {
       i()(v.Z, b),
       v.Z && v.Z.locals && v.Z.locals;
     var g = n(3483),
-      k = n(7354),
-      x = n(9724),
+      x = n(7354),
+      k = n(9724),
       j = n(1988),
       w = n(7188);
     function O(e) {
@@ -585,12 +616,12 @@ export const modules = {
                 (0, w.jsx)(g.X, {
                   level: 2,
                   className: "checkout-order-summary__title",
-                  children: (0, w.jsx)(x.xv, {
+                  children: (0, w.jsx)(k.xv, {
                     id: "Checkout.OrderSummary.title",
                   }),
                 }),
                 c &&
-                  (0, w.jsx)(k.a, {
+                  (0, w.jsx)(x.a, {
                     className: "checkout-order-summary__loader",
                   }),
                 (0, w.jsxs)("div", {
@@ -604,7 +635,7 @@ export const modules = {
                             "checkout-order-summary__row checkout-order-summary__row-subtotal",
                           children: [
                             (0, w.jsx)("p", {
-                              children: (0, w.jsx)(x.xv, {
+                              children: (0, w.jsx)(k.xv, {
                                 id: "Checkout.OrderSummary.subtotal",
                               }),
                             }),
@@ -624,7 +655,7 @@ export const modules = {
                               "checkout-order-summary__row checkout-order-summary__row-shipping",
                             children: [
                               (0, w.jsx)("p", {
-                                children: (0, w.jsx)(x.xv, {
+                                children: (0, w.jsx)(k.xv, {
                                   id: "Checkout.OrderSummary.shipping",
                                 }),
                               }),
@@ -632,7 +663,7 @@ export const modules = {
                                 ? (0, w.jsx)("p", {
                                     className:
                                       "checkout-order-summary__row-price",
-                                    children: (0, w.jsx)(x.xv, {
+                                    children: (0, w.jsx)(k.xv, {
                                       id: "Checkout.OrderSummary.freeShipping",
                                     }),
                                   })
@@ -652,7 +683,7 @@ export const modules = {
                               "checkout-order-summary__row checkout-order-summary__row-tax",
                             children: [
                               (0, w.jsx)("p", {
-                                children: (0, w.jsx)(x.xv, {
+                                children: (0, w.jsx)(k.xv, {
                                   id: "Checkout.OrderSummary.tax",
                                 }),
                               }),
@@ -675,7 +706,7 @@ export const modules = {
                           "checkout-order-summary__row checkout-order-summary__row-total",
                         children: [
                           (0, w.jsx)("p", {
-                            children: (0, w.jsx)(x.xv, {
+                            children: (0, w.jsx)(k.xv, {
                               id: "Checkout.OrderSummary.total",
                             }),
                           }),
@@ -702,9 +733,19 @@ export const modules = {
         return (0, w.jsxs)(Z.O, {
           className: "order-summary__skeleton",
           children: [
-            (0, w.jsx)(Z.d, { variant: "heading", size: "medium" }),
-            (0, w.jsx)(Z.d, { variant: "empty", size: "medium" }),
-            (0, w.jsx)(Z.d, { size: "large", isFull: !0, lines: 3 }),
+            (0, w.jsx)(Z.d, {
+              variant: "heading",
+              size: "medium",
+            }),
+            (0, w.jsx)(Z.d, {
+              variant: "empty",
+              size: "medium",
+            }),
+            (0, w.jsx)(Z.d, {
+              size: "large",
+              isFull: !0,
+              lines: 3,
+            }),
           ],
         });
       },
@@ -814,10 +855,16 @@ export const modules = {
         d = !!u,
         m = (null == s ? void 0 : s.applied_taxes) || [],
         p = !!m.length,
-        y = { isLoading: !1 };
+        y = {
+          isLoading: !1,
+        };
       if (!o || !c) return y;
       if (
-        ((y.summary = { total: l.value, subtotal: C, currency: l.currency }),
+        ((y.summary = {
+          total: l.value,
+          subtotal: C,
+          currency: l.currency,
+        }),
         d && (y.summary.subtotal = u.value),
         p &&
           (y.summary.tax = m.reduce(function (e, r) {
@@ -875,11 +922,17 @@ export const modules = {
     };
   },
   1970: (e, r, n) => {
-    n.d(r, { He: () => t.H, Yj: () => t.Y, ZP: () => t.H });
+    n.d(r, {
+      He: () => t.H,
+      Yj: () => t.Y,
+      ZP: () => t.H,
+    });
     var t = n(7357);
   },
   3177: (e, r, n) => {
-    n.d(r, { t: () => i });
+    n.d(r, {
+      t: () => i,
+    });
     var t = n(6765),
       o = n(5437);
     function a(e, r) {
@@ -967,7 +1020,9 @@ export const modules = {
             function (e) {
               e && s(e);
             },
-            { eager: !0 }
+            {
+              eager: !0,
+            }
           );
           return function () {
             null == e || e.off();
@@ -978,7 +1033,9 @@ export const modules = {
     }
   },
   6948: (e, r, n) => {
-    n.d(r, { Z: () => s });
+    n.d(r, {
+      Z: () => s,
+    });
     var t = n(4933),
       o = n.n(t),
       a = n(3476),
@@ -991,7 +1048,9 @@ export const modules = {
     const s = i;
   },
   8695: (e, r, n) => {
-    n.d(r, { Z: () => s });
+    n.d(r, {
+      Z: () => s,
+    });
     var t = n(4933),
       o = n.n(t),
       a = n(3476),
@@ -1004,7 +1063,9 @@ export const modules = {
     const s = i;
   },
   9794: (e, r, n) => {
-    n.d(r, { Z: () => s });
+    n.d(r, {
+      Z: () => s,
+    });
     var t = n(4933),
       o = n.n(t),
       a = n(3476),
@@ -1017,20 +1078,24 @@ export const modules = {
     const s = i;
   },
   5509: (e, r, n) => {
-    n.d(r, { Z: () => s });
+    n.d(r, {
+      Z: () => s,
+    });
     var t = n(4933),
       o = n.n(t),
       a = n(3476),
       i = n.n(a)()(o());
     i.push([
       e.id,
-      ".checkout-order-summary {\n    border-radius: var(--shape-border-radius-2);\n    background: var(--color-neutral-200);\n    position: relative;\n    display: grid;\n    padding: var(--spacing-medium);\n}\n\n.checkout-order-summary__title {\n    color: var(--color-neutral-800);\n    font: var(--type-headline-2-default-font);\n    letter-spacing: var(--type-headline-2-default-letter-spacing);\n    margin: 0;\n    padding-bottom: var(--spacing-xsmall);\n    border-bottom: var(--shape-border-width-2) solid var(--color-neutral-400);\n}\n\n.checkout-order-summary__row {\n    color: var(--color-neutral-800);\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: var(--spacing-medium);\n}\n\n.checkout-order-summary__row > * {\n    margin: 0;\n}\n\n.checkout-order-summary__row .checkout-order-summary__row-price {\n    justify-self: end;\n}\n\n.checkout-order-summary__breakdown {\n    display: grid;\n    gap: var(--spacing-xsmall);\n    margin: var(--spacing-xbig) 0;\n}\n\n.checkout-order-summary__breakdown .checkout-order-summary__row > * {\n    font: var(--type-body-1-default-font);\n    letter-spacing: var(--type-body-1-default-letter-spacing);\n}\n\n.checkout-order-summary__total .checkout-order-summary__row > * {\n    font: var(--type-body-1-emphasized-font);\n    letter-spacing: var(--type-body-1-emphasized-letter-spacing);\n}\n\n/* Loading */\n.checkout-order-summary--loading {\n    opacity: 0.3;\n    pointer-events: none;\n}\n\n.checkout-order-summary__loader {\n    margin: 0 auto;\n    position: absolute;\n    z-index: 999;\n    left: 0;\n    right: 0;\n    top: 50%;\n    bottom: 0;\n}\n\n.order-summary__skeleton {\n    margin-top: var(--spacing-medium);\n}\n\n@media only screen and (min-width:320px) and (max-width: 768px) {\n    .checkout-order-summary {\n        border-top: var(--shape-border-width-2) solid var(--color-neutral-400);\n        border-bottom: var(--shape-border-width-2) solid var(--color-neutral-400);\n        border-radius: 0;\n    }\n\n    .checkout-order-summary__title {\n        display: none;\n    }\n\n    .checkout-order-summary__breakdown {\n        margin-top: 0;\n    }\n}\n/* Medium (portrait tablets and large phones, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large (landscape tablets, 1024px and up) */\n/* @media only screen and (min-width: 1024px) { } */\n\n/* XLarge (laptops/desktops, 1366px and up) */\n/* @media only screen and (min-width: 1366px) { } */\n\n/* XXlarge (large laptops and desktops, 1920px and up) */\n/* @media only screen and (min-width: 1920px) { } */\n",
+      ".checkout-order-summary {\n    border-radius: var(--shape-border-radius-2);\n    background: var(--color-neutral-200);\n    position: relative;\n    display: grid;\n    padding: var(--spacing-medium);\n}\n\n.checkout-order-summary__title {\n    color: var(--color-neutral-800);\n    font: var(--type-headline-2-default-font);\n    letter-spacing: var(--type-headline-2-default-letter-spacing);\n    margin: 0;\n    padding-bottom: var(--spacing-xsmall);\n    border-bottom: var(--shape-border-width-2) solid var(--color-neutral-400);\n}\n\n.checkout-order-summary__row {\n    color: var(--color-neutral-800);\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: var(--spacing-medium);\n}\n\n.checkout-order-summary__row > * {\n    margin: 0;\n}\n\n.checkout-order-summary__row .checkout-order-summary__row-price {\n    justify-self: end;\n}\n\n.checkout-order-summary__breakdown {\n    display: grid;\n    gap: var(--spacing-xsmall);\n    margin: var(--spacing-xbig) 0;\n}\n\n.checkout-order-summary__breakdown .checkout-order-summary__row > * {\n    font: var(--type-body-1-default-font);\n    letter-spacing: var(--type-body-1-default-letter-spacing);\n}\n\n.checkout-order-summary__total .checkout-order-summary__row > * {\n    font: var(--type-body-1-emphasized-font);\n    letter-spacing: var(--type-body-1-emphasized-letter-spacing);\n}\n\n/* Loading */\n.checkout-order-summary--loading {\n    opacity: 0.3;\n    pointer-events: none;\n}\n\n.checkout-order-summary__loader {\n    margin: 0 auto;\n    position: absolute;\n    z-index: 999;\n    left: 0;\n    right: 0;\n    top: 50%;\n    bottom: 0;\n}\n\n@media only screen and (min-width:320px) and (max-width: 768px) {\n    .checkout-order-summary {\n        border-top: var(--shape-border-width-2) solid var(--color-neutral-400);\n        border-bottom: var(--shape-border-width-2) solid var(--color-neutral-400);\n        border-radius: 0;\n    }\n\n    .checkout-order-summary__title {\n        display: none;\n    }\n\n    .checkout-order-summary__breakdown {\n        margin-top: 0;\n    }\n}\n/* Medium (portrait tablets and large phones, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large (landscape tablets, 1024px and up) */\n/* @media only screen and (min-width: 1024px) { } */\n\n/* XLarge (laptops/desktops, 1366px and up) */\n/* @media only screen and (min-width: 1366px) { } */\n\n/* XXlarge (large laptops and desktops, 1920px and up) */\n/* @media only screen and (min-width: 1920px) { } */\n",
       "",
     ]);
     const s = i;
   },
   6374: (e, r, n) => {
-    n.d(r, { Z: () => s });
+    n.d(r, {
+      Z: () => s,
+    });
     var t = n(4933),
       o = n.n(t),
       a = n(3476),
@@ -1067,16 +1132,20 @@ export const modules = {
   },
   6765: (r, n, t) => {
     var o, a;
-    r.exports = ((o = { events: () => e.events }), (a = {}), t.d(a, o), a);
+    r.exports =
+      ((o = {
+        events: () => e.events,
+      }),
+      (a = {}),
+      t.d(a, o),
+      a);
   },
   4853: (e, n, t) => {
     var o, a;
     e.exports =
       ((o = {
-        createElement: () => r.createElement,
         useCallback: () => r.useCallback,
         useEffect: () => r.useEffect,
-        useMemo: () => r.useMemo,
         useRef: () => r.useRef,
         useState: () => r.useState,
       }),
@@ -1128,7 +1197,6 @@ export const modules = {
         createRef: () => o.createRef,
         h: () => o.h,
         hydrate: () => o.hydrate,
-        isValidElement: () => o.isValidElement,
         options: () => o.options,
         render: () => o.render,
         toChildArray: () => o.toChildArray,

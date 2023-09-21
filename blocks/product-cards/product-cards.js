@@ -1,4 +1,3 @@
-import { createOptimizedPicture } from "../../scripts/lib-franklin.js";
 import { getProducts } from "../../scripts/product.js";
 import createTag from "../../utils/tag.js";
 
@@ -10,11 +9,14 @@ function createProductCards(data) {
   const div = createTag("div", { className: "productcards" });
   [...data].forEach((product) => {
     const productWrapper = createTag("a", {
-      href: `/product-details?id=${product.id}`,
+      href: `/product-details?sku=${product.sku}`,
       className: "product-wrapper",
     });
 
-    const img = createOptimizedPicture(product.image, product.name, true);
+    const img = createTag("img", {
+      src: product.small_image.url,
+      alt: product.small_image.label,
+    });
 
     const name = createTag("p", {
       className: "product-name",
@@ -23,7 +25,11 @@ function createProductCards(data) {
 
     const price = createTag("p", {
       className: "product-price",
-      textContent: `$${Number(product.price).toFixed(2)}`,
+      textContent: `${
+        product.price_range.minimum_price.regular_price.currency
+      } ${Number(product.price_range.minimum_price.regular_price.value).toFixed(
+        2
+      )}`,
     });
     productWrapper.append(img, name, price);
     div.appendChild(productWrapper);

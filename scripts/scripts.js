@@ -14,6 +14,7 @@ import {
 
 import { events } from "@dropins/elsie/event-bus.js";
 import { initializers } from "@dropins/elsie/initializer.js";
+import { setEndpoint } from "@dropins/elsie/fetch-graphql.js";
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -101,6 +102,7 @@ function loadDropins() {
   } else {
     window.addEventListener("load", initializers.mount);
   }
+  setEndpoint("http://localhost/graphql");
   events.enableLogger(true);
 }
 

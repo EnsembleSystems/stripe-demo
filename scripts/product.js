@@ -1,21 +1,25 @@
-const PRODUCTS_URL =
-  "https://main--stripe-demo--ensemblesystems.hlx.page/products.json";
-
+import { fetchGraphQl } from "@dropins/elsie/fetch-graphql.js";
+import { GET_PRODUCTS, GET_PRODUCT_DETAILS } from "./graphql.js";
 /**
  * Return list of products
  */
 export async function getProducts() {
-  const { pathname } = new URL(PRODUCTS_URL);
-  const resp = await fetch(pathname);
-  const json = await resp.json();
-  return json.data;
+  const { data, errors } = await fetchGraphQl(GET_PRODUCTS);
+  if (errors) console.error(errors);
+
+  return data.products.items;
 }
 
 /**
- * @param {string} id The product id
- * Return the product based on productId
+ * @param {string} sku The product sku
+ * Return the product based on sku
  */
-export async function getProductById(id) {
-  const products = await getProducts();
-  return products.find((product) => product.id === id);
+export async function getProductBySku(sku) {
+  const { data, errors } = await fetchGraphQl(GET_PRODUCT_DETAILS, {
+    variables: {
+      sku,
+    },
+  });
+  if (errors) console.error(errors);
+  return data.products.items[0];
 }

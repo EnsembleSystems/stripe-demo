@@ -1,0 +1,34 @@
+{
+  "_from": "@dropins/storefront-checkout@0.1.0-alpha4",
+  "_id": "@dropins/storefront-checkout@0.1.0-alpha4",
+  "_inBundle": false,
+  "_integrity": "sha512-4Njjl9qSQIxnYVE6Zf719e8aCjg0tw+TGlMHGRb2KNQ3W1JWxSWyAnVh6wC/otvenF33tnhPlu1NgM49garM2A==",
+  "_location": "/@dropins/storefront-checkout",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@dropins/storefront-checkout@0.1.0-alpha4",
+    "name": "@dropins/storefront-checkout",
+    "escapedName": "@dropins%2fstorefront-checkout",
+    "scope": "@dropins",
+    "rawSpec": "0.1.0-alpha4",
+    "saveSpec": null,
+    "fetchSpec": "0.1.0-alpha4"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@dropins/storefront-checkout/-/storefront-checkout-0.1.0-alpha4.tgz",
+  "_shasum": "0a79e74b4eade9e781d0a22975081ffc9bc13468",
+  "_spec": "@dropins/storefront-checkout@0.1.0-alpha4",
+  "_where": "/Users/amyn/Documents/aem-project/aem-franklin",
+  "bundleDependencies": false,
+  "dependencies": {
+    "@dropins/elsie": "~0.6.0"
+  },
+  "deprecated": false,
+  "name": "@dropins/storefront-checkout",
+  "version": "0.1.0-alpha4"
+}

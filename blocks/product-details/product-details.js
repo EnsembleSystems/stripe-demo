@@ -1,6 +1,6 @@
 import { addToCart } from "../../scripts/cart.js";
 import { createOptimizedPicture } from "../../scripts/lib-franklin.js";
-import { getProductById } from "../../scripts/product.js";
+import { getProductBySku } from "../../scripts/product.js";
 import createTag from "../../utils/tag.js";
 
 const INFO_SECTION = [
@@ -21,9 +21,9 @@ export default async function decorate(block) {
 
 async function createBlock() {
   const { searchParams } = new URL(window.location.href);
-  const id = searchParams.get("id");
+  const sku = searchParams.get("sku");
   // can be replaced with Adobe Commerce API
-  const currentProduct = await getProductById(id);
+  const currentProduct = await getProductBySku(sku);
   if (currentProduct) return createProductDetailsCard(currentProduct);
   return "Invalid Product";
 }
@@ -33,11 +33,11 @@ function createProductDetailsCard(currentProduct) {
   const productImgWrapper = createTag("div", {
     className: "product-image-wrapper",
   });
-  const img = createOptimizedPicture(
-    currentProduct.image,
-    currentProduct.name,
-    true
-  );
+  const img = createTag("img", {
+    src: currentProduct.image.url,
+    alt: currentProduct.image.label,
+  });
+
   productImgWrapper.appendChild(img);
 
   const name = createTag("p", {
@@ -46,7 +46,11 @@ function createProductDetailsCard(currentProduct) {
   });
   const price = createTag("p", {
     className: "product-details-price",
-    textContent: `$${Number(currentProduct.price).toFixed(2)}`,
+    textContent: `${
+      currentProduct.price_range.minimum_price.regular_price.currency
+    } ${Number(
+      currentProduct.price_range.minimum_price.regular_price.value
+    ).toFixed(2)}`,
   });
 
   const productNamePriceDiv = createTag("div", {
@@ -59,9 +63,12 @@ function createProductDetailsCard(currentProduct) {
   });
 
   const review = createTag("p", {
-    textContent: currentProduct.reviews,
+    textContent: currentProduct.reviews ?? 4.6,
   });
-  reviewDiv.append(review, createStarReviews(Number(currentProduct.reviews)));
+  reviewDiv.append(
+    review,
+    createStarReviews(Number(currentProduct.review ?? 4.6))
+  );
 
   const productHeaderWrapper = createTag("div", {
     className: "product-header-wrapper",
@@ -72,17 +79,20 @@ function createProductDetailsCard(currentProduct) {
     textContent: "Description",
     className: "description-header",
   });
-  const description = createTag("p", {
-    className: "product-details-description",
-    textContent: currentProduct.description,
-  });
+  const description = createTag(
+    "p",
+    {
+      className: "product-details-description",
+    },
+    currentProduct.short_description.html
+  );
   const addToCartButton = createTag("button", {
     textContent: "Add To Cart",
     className: "primary add-to-cart-button",
   });
 
-  addToCartButton.addEventListener("click", () => {
-    addToCart(currentProduct.id);
+  addToCartButton.addEventListener("click", async () => {
+    await addToCart(currentProduct.sku);
     window.location.href = "/cart";
   });
 

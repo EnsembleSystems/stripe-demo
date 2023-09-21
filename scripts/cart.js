@@ -1,57 +1,53 @@
-const CART_KEY = "FURNI_CART";
-const EMPTY_CART = {
-  products: [],
-  total: 0,
-};
+import { fetchGraphQl } from "@dropins/elsie/fetch-graphql.js";
+import {
+  ADD_TO_CART,
+  CREATE_EMPTY_CART,
+  GET_CART,
+  REMOVE_FROM_CART,
+  UPDATE_CART_ITEMS,
+} from "./graphql.js";
+
+const CART_KEY = "FURNI_CART_ID";
+/**
+ * Get the cart id saved in local storage
+ */
+export async function getCartId() {
+  const cartId = window.localStorage.getItem(CART_KEY);
+  if (cartId) return cartId;
+  else {
+    const { data, errors } = await fetchGraphQl(CREATE_EMPTY_CART);
+    if (errors) console.error(errors);
+    window.localStorage.setItem(CART_KEY, data.createEmptyCart);
+    return data.createEmptyCart;
+  }
+}
 
 /**
  * Get the cart saved in local storage
  */
-export function getCart() {
-  const cartItems = window.localStorage.getItem(CART_KEY);
-  if (cartItems) {
-    try {
-      return JSON.parse(window.localStorage.getItem(CART_KEY));
-    } catch (err) {
-      console.error("Failed to parse: " + err);
-      window.localStorage.removeItem(CART_KEY);
-      return EMPTY_CART;
-    }
-  }
-  return EMPTY_CART;
+export async function getCart() {
+  const cartId = await getCartId();
+  const { data, errors } = await fetchGraphQl(GET_CART, {
+    variables: {
+      cartId,
+    },
+  });
+  if (errors) console.error(errors);
+  return data.cart;
 }
 
 /**
- * @param {string} productId The product id
+ * @param {string} sku sku
  * @param {number} productQuantity quantity, default: 1
  * To add number of products into cart
  */
-export function addToCart(productId, productQuantity = 1) {
-  const cart = getCart();
-  let updated;
-  const exist = cart.products.find((product) => product.id === productId);
-  if (exist) {
-    updated = {
-      products: cart.products.map((product) => ({
-        id: product.id,
-        quantity:
-          product.id === productId
-            ? product.quantity + productQuantity
-            : product.quantity,
-      })),
-      total: cart.total + productQuantity,
-    };
-  } else {
-    updated = {
-      products: [
-        ...cart.products,
-        { id: productId, quantity: productQuantity },
-      ],
-      total: cart.total + 1,
-    };
-  }
-  window.localStorage.setItem(CART_KEY, JSON.stringify(updated));
-  refreshCartTotal(updated.total);
+export async function addToCart(sku, productQuantity = 1) {
+  const cartId = await getCartId();
+  const { data, errors } = await fetchGraphQl(ADD_TO_CART, {
+    variables: { cartId, productQuantity, sku },
+  });
+  if (errors) console.error(errors);
+  refreshCartTotal(data.addSimpleProductsToCart.cart.total_quantity);
 }
 
 /**
@@ -64,39 +60,31 @@ function refreshCartTotal(total = getCart().total) {
 }
 
 /**
- * @param {string} productId Product id
- * @param {number} productId Product quantity
+ * @param {string} cart_item_id Product id
+ * @param {number} quantity Product quantity
  * To update the quantity of product id in cart
  */
-export function updateQuantity(productId, quantity) {
-  const cart = getCart();
-  const exist = cart.products.find((product) => product.id === productId);
-  if (exist) {
-    const updated = {
-      products: cart.products.map((product) => ({
-        id: product.id,
-        quantity: product.id === productId ? quantity : product.quantity,
-      })),
-      total: cart.total - exist.quantity + quantity,
-    };
-    window.localStorage.setItem(CART_KEY, JSON.stringify(updated));
-    refreshCartTotal(updated.total);
-  }
+export async function updateCartItems(cart_item_id, quantity = 1) {
+  const cartId = await getCartId();
+  const { data, errors } = await fetchGraphQl(UPDATE_CART_ITEMS, {
+    variables: { cartId, cart_item_id, quantity },
+  });
+  if (errors) console.error(errors);
+  refreshCartTotal(data.updateCartItems.cart.total_quantity);
 }
 
 /**
- * @param {string} productId Product id
+ * @param {string} cart_item_id Cart item id
  * To remove the product id from cart
  */
-export function removeFromCart(productId) {
-  const cart = getCart();
-  const exist = cart.products.find((product) => product.id === productId);
-  if (exist) {
-    const updated = {
-      products: cart.products.filter((product) => product.id !== productId),
-      total: cart.total - exist.quantity,
-    };
-    window.localStorage.setItem(CART_KEY, JSON.stringify(updated));
-    refreshCartTotal(updated.total);
-  }
+export async function removeFromCart(cart_item_id) {
+  const cartId = await getCartId();
+  const { data, errors } = await fetchGraphQl(REMOVE_FROM_CART, {
+    variables: { cartId, cart_item_id },
+  });
+
+  if (errors) console.error(errors);
+  const totalQuantity = data.removeItemFromCart.cart.total_quantity;
+  refreshCartTotal(totalQuantity);
+  return totalQuantity;
 }
