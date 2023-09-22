@@ -14,11 +14,7 @@ export default async function decorate(block) {
 
   initializers.register(checkoutApi.initialize);
 
-  // TODO: locale (maidenform has only en_US, and locale/store switcher will come from Franklin)
   checkoutRenderer.render(Checkout, {
-    // cartId,
-    // storeCode,
-    // locale,
     slots: {
       PaymentMethods: (_, context) => {
         context.addPaymentMethodHandler("checkmo", {
@@ -29,35 +25,10 @@ export default async function decorate(block) {
             }
           },
         });
-        context.addPaymentMethodHandler("braintree", {
-          render: (element, context) => {
-            const $content = document.createElement("div");
 
-            $content.innerHTML = `<div id="dropin-container">test</div>`;
-
-            if (element) {
-              element.innerHTML = $content.innerHTML;
-
-              // braintree.dropin.create({
-              //   authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
-              //   container: "#dropin-container",
-              // });
-            }
-          },
-        });
-        // context.addPaymentMethodHandler("adyen_cc", {
-        //   render: (element, context) => {
-        //     if (element) {
-        //       element.innerHTML = "test";
-        //       adyenRenderer.render(AdyenExtension, context)(element);
-        //     }
-        //   },
-        // });
-
-        context.addPaymentMethodHandler("stripe", {
+        context.addPaymentMethodHandler("stripe_payments", {
           render: async (element, context) => {
             if (element) {
-              element.id = "payment-element";
               const appearance = {
                 /* appearance */
               };
@@ -68,8 +39,7 @@ export default async function decorate(block) {
                 "pi_3NsZkUL1DV9f5cSo0t4biUBY_secret_hbaemymPGMHsuf8oxqMYthy2p";
               const elements = stripe.elements({ clientSecret, appearance });
               const paymentElement = elements.create("payment", options);
-              paymentElement.mount("#payment-element");
-              // element.innerHTML = "stripetest";
+              paymentElement.mount(element);
             }
           },
         });
