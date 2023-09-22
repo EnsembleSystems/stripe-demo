@@ -220,3 +220,14 @@ export const REMOVE_FROM_CART = `mutation REMOVE_FROM_CART($cartId: String!, $ca
     }
   }
 }`;
+
+export const GET_CATEGORY_LIST_BY_URL_KEYS = `query GET_CATEGORY_LIST_BY_URL_KEYS($urlKeys: [String!]) {
+  categoryList(filters: { url_key: { in: $urlKeys } }) {
+    id
+    name
+    path
+    url_path
+    url_key
+    image
+  }
+}`;
