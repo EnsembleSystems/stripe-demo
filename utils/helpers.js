@@ -1,4 +1,4 @@
-import createTag from "./tag.js";
+import createTag from './tag.js';
 
 /**
  * * @param {HTMLElement} element the element with the parent undesired wrapper, like <p></p>
@@ -28,12 +28,12 @@ export function removeOuterElementLayer(element, targetSelector) {
  * *         </div>
  */
 export function combineChildrenToSingleDiv(element) {
-  const targetChildren = element.querySelectorAll(":scope > div");
+  const targetChildren = element.querySelectorAll(':scope > div');
   if (targetChildren.length === 0) {
     return;
   }
 
-  const singleDiv = document.createElement("div");
+  const singleDiv = document.createElement('div');
   targetChildren.forEach((targetChild) => {
     const children = Array.from(targetChild.childNodes);
     children.forEach((childElement) => {
@@ -52,13 +52,9 @@ export function combineChildrenToSingleDiv(element) {
  * result: return the new element with inner content of the element, desired tag and css class
  */
 export function changeTag(element, targetTag, className) {
-  const newElClass = className || "";
+  const newElClass = className || '';
   const innerContent = element.innerHTML;
-  const newTagElement = createTag(
-    targetTag,
-    { className: newElClass },
-    innerContent
-  );
+  const newTagElement = createTag(targetTag, { className: newElClass }, innerContent);
 
   return newTagElement;
 }
@@ -73,25 +69,23 @@ export function returnLinkTarget(url) {
   const isSameHost = urlObject.host === currentHost;
 
   // take in pathname that should be opened in new tab, in redirects excel
-  const redirectExternalPaths = ["/history", "/chat"];
-  const redirectToExternalPath = redirectExternalPaths.includes(
-    urlObject.pathname
-  );
+  const redirectExternalPaths = ['/history', '/chat'];
+  const redirectToExternalPath = redirectExternalPaths.includes(urlObject.pathname);
 
   if (!isSameHost || redirectToExternalPath) {
-    return "_blank";
+    return '_blank';
   }
-  return "_self";
+  return '_self';
 }
 
 // as the blocks are loaded in aysnchronously, we don't have a specific timing
 // that the all blocks are loaded -> cannot use a single observer to
 // observe all blocks, so use functions here in blocks instead
 // eslint-disable-next-line max-len
-const requireRevealWrapper = ["slide-reveal-up", "slide-reveal-up-slow"];
+const requireRevealWrapper = ['slide-reveal-up', 'slide-reveal-up-slow'];
 
 export function addRevealWrapperToAnimationTarget(element) {
-  const revealWrapper = createTag("div", { className: "slide-reveal-wrapper" });
+  const revealWrapper = createTag('div', { className: 'slide-reveal-wrapper' });
   const parent = element.parentNode;
   // Insert the wrapper before the element
   parent.insertBefore(revealWrapper, element);
@@ -103,7 +97,7 @@ export function addAnimatedClassToElement(
   targetSelector,
   animatedClass,
   delayTime,
-  targetSelectorWrapper
+  targetSelectorWrapper,
 ) {
   const target = targetSelectorWrapper.querySelector(targetSelector);
   if (target) {
@@ -121,15 +115,14 @@ export function addAnimatedClassToMultipleElements(
   animatedClass,
   delayTime,
   targetSelectorWrapper,
-  staggerTime
+  staggerTime,
 ) {
   const targets = targetSelectorWrapper.querySelectorAll(targetSelector);
   if (targets) {
     targets.forEach((target, i) => {
       target.classList.add(animatedClass);
       if (delayTime) target.style.transitionDelay = `${delayTime * (i + 1)}s`;
-      if (staggerTime)
-        target.style.transitionDelay = `${delayTime + staggerTime * (i + 1)}s`;
+      if (staggerTime) target.style.transitionDelay = `${delayTime + staggerTime * (i + 1)}s`;
       if (requireRevealWrapper.indexOf(animatedClass) !== -1) {
         addRevealWrapperToAnimationTarget(target);
       }
@@ -144,7 +137,7 @@ export function addInviewObserverToTriggerElement(triggerElement) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("in-view");
+        entry.target.classList.add('in-view');
         observer.unobserve(entry.target);
       }
     });
@@ -157,7 +150,7 @@ export function addInViewAnimationToSingleElement(
   targetElement,
   animatedClass,
   triggerElement,
-  delayTime
+  delayTime,
 ) {
   // if it's HTML element
   if (targetElement.nodeType === 1) {
@@ -168,46 +161,38 @@ export function addInViewAnimationToSingleElement(
   }
   // if it's string only, which should be a selector
   if (targetElement.nodeType === 3) {
-    addAnimatedClassToElement(
-      targetElement,
-      animatedClass,
-      triggerElement,
-      delayTime
-    );
+    addAnimatedClassToElement(targetElement, animatedClass, triggerElement, delayTime);
   }
   const trigger = triggerElement || targetElement;
   addInviewObserverToTriggerElement(trigger);
 }
 
-export function addInViewAnimationToMultipleElements(
-  animatedItems,
-  triggerElement,
-  staggerTime
-) {
+export function addInViewAnimationToMultipleElements(animatedItems, triggerElement, staggerTime) {
   // set up animation class
   animatedItems.forEach((el, i) => {
     const delayTime = staggerTime ? i * staggerTime : null;
-    if (Object.prototype.hasOwnProperty.call(el, "selector")) {
-      addAnimatedClassToElement(
-        el.selector,
-        el.animatedClass,
-        delayTime,
-        triggerElement
-      );
+    if (Object.prototype.hasOwnProperty.call(el, 'selector')) {
+      addAnimatedClassToElement(el.selector, el.animatedClass, delayTime, triggerElement);
     }
-    if (Object.prototype.hasOwnProperty.call(el, "selectors")) {
+    if (Object.prototype.hasOwnProperty.call(el, 'selectors')) {
       // eslint-disable-next-line max-len
       addAnimatedClassToMultipleElements(
         el.selectors,
         el.animatedClass,
         el.staggerTime,
-        triggerElement
+        triggerElement,
       );
     }
   });
 
   // add `.in-view` to triggerElement, so the elements inside will start animating
   addInviewObserverToTriggerElement(triggerElement);
+}
+
+export function getUriKeysFromBlock(block) {
+  return [...block.children].map((uri) => {
+    return uri.textContent.trim();
+  });
 }
 
 export default {
@@ -217,4 +202,5 @@ export default {
   addInViewAnimationToSingleElement,
   addInViewAnimationToMultipleElements,
   addInviewObserverToTriggerElement,
+  getUriKeysFromBlock,
 };
