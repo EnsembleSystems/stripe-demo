@@ -229,5 +229,6 @@ export const GET_CATEGORY_LIST_BY_URL_KEYS = `query GET_CATEGORY_LIST_BY_URL_KEY
     url_path
     url_key
     image
+    description
   }
 }`;

@@ -1,13 +1,12 @@
 .category-cards {
   display: flex;
   gap: 2rem;
-  min-width: 768px;
   overflow: auto;
 }
 
 .category-cards .category {
   position: relative;
-  min-width: 214px;
+  min-width: 200px;
 }
 
 .category-cards img {
