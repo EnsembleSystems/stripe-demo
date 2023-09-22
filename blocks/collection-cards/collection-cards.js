@@ -1,16 +1,10 @@
 import { getCategoryListByUrlKeys } from '../../scripts/category.js';
+import { getUriKeysFromBlock } from '../../utils/helpers.js';
 import createTag from '../../utils/tag.js';
 
 export default async function decorate(block) {
-  block.replaceWith(
-    createCollectionCards(
-      await getCategoryListByUrlKeys([
-        'light-filled-living-rooms-collection',
-        'organized-desk-collection',
-        'cozy-bedrooms-collection',
-      ]),
-    ),
-  );
+  const uriKeys = getUriKeysFromBlock(block);
+  block.replaceWith(createCollectionCards(await getCategoryListByUrlKeys(uriKeys)));
 }
 
 function createCollectionCards(data) {
