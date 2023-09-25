@@ -13,6 +13,10 @@
   width: 100%;
 }
 
+.collection-cards .collection:hover img {
+  opacity: 0.8;
+}
+
 .collection-cards a {
   text-decoration: none;
 }
@@ -25,10 +29,6 @@
   @media (max-width: 768px) {
     aspect-ratio: 3 / 2;
   }
-}
-
-.collection-cards img:hover {
-  opacity: 0.8;
 }
 
 .collection-name-title {
