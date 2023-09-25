@@ -96,13 +96,13 @@ async function loadLazy(doc) {
  * Load/run general storefront @dropins logic
  */
 function loadDropins() {
+  setEndpoint("http://localhost/graphql");
   if (document.readyState === "complete") {
     console.log("document already loaded");
     initializers.mount();
   } else {
     window.addEventListener("load", initializers.mount);
   }
-  setEndpoint("http://localhost/graphql");
   events.enableLogger(true);
 }
 
