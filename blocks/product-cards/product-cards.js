@@ -1,11 +1,7 @@
+import { getCategoryListByUrlKeys } from '../../scripts/category.js';
 import { getProducts } from '../../scripts/product.js';
+import { getUriKeysFromBlock } from '../../utils/helpers.js';
 import createTag from '../../utils/tag.js';
-
-export default async function decorate(block) {
-  const { searchParams } = new URL(window.location.href);
-  const categoryId = searchParams.get('category_id');
-  block.replaceWith(createProductCards(await getProducts(categoryId)));
-}
 
 function createProductCards(data) {
   const div = createTag('div', { className: 'productcards' });
@@ -36,4 +32,15 @@ function createProductCards(data) {
   });
 
   return div;
+}
+
+export default async function decorate(block) {
+  const { searchParams } = new URL(window.location.href);
+  let categoryId = searchParams.get('category_id');
+  if (!categoryId) {
+    const uriKeys = getUriKeysFromBlock(block);
+    const categories = await getCategoryListByUrlKeys(uriKeys);
+    categoryId = categories.map((category) => category.id);
+  }
+  block.replaceWith(createProductCards(await getProducts(categoryId)));
 }
