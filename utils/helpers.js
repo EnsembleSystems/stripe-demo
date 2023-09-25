@@ -190,9 +190,7 @@ export function addInViewAnimationToMultipleElements(animatedItems, triggerEleme
 }
 
 export function getUriKeysFromBlock(block) {
-  return [...block.children].map((uri) => {
-    return uri.textContent.trim();
-  });
+  return [...block.children].map((uri) => uri.textContent.trim());
 }
 
 export default {

@@ -2,16 +2,11 @@ import { getCategoryListByUrlKeys } from '../../scripts/category.js';
 import { getUriKeysFromBlock } from '../../utils/helpers.js';
 import createTag from '../../utils/tag.js';
 
-export default async function decorate(block) {
-  const uriKeys = getUriKeysFromBlock(block);
-  block.replaceWith(createCollectionCards(await getCategoryListByUrlKeys(uriKeys)));
-}
-
 function createCollectionCards(data) {
   const div = createTag('div', { className: 'collection-cards' });
   [...data].forEach((collection) => {
     const productWrapper = createTag('a', {
-      href: `/products`,
+      href: `/products?category_id=${collection.id}`,
       className: 'collection',
     });
 
@@ -34,4 +29,9 @@ function createCollectionCards(data) {
     div.appendChild(productWrapper);
   });
   return div;
+}
+
+export default async function decorate(block) {
+  const uriKeys = getUriKeysFromBlock(block);
+  block.replaceWith(createCollectionCards(await getCategoryListByUrlKeys(uriKeys)));
 }
