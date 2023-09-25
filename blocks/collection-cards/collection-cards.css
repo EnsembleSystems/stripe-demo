@@ -33,17 +33,12 @@
   opacity: 0.8;
 }
 
-.collection-cards .collection p {
-  margin: 1rem 0;
-}
-
 .collection-cards a {
   text-decoration: none;
 }
 
 .collection-name-title {
   text-align: left;
-  margin-left: 1rem;
   font-size: var(--body-font-size-m);
   color: black;
   pointer-events: none;
