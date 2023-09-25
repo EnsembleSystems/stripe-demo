@@ -11,7 +11,7 @@ function createCollectionCards(data) {
   const div = createTag('div', { className: 'collection-cards' });
   [...data].forEach((collection) => {
     const productWrapper = createTag('a', {
-      href: `/products`,
+      href: `/products?category_id=${collection.id}`,
       className: 'collection',
     });
 

@@ -11,7 +11,7 @@ function createCategoryCards(data) {
   const div = createTag('div', { className: 'category-cards' });
   [...data].forEach((category) => {
     const productWrapper = createTag('a', {
-      href: `/products`,
+      href: `/products?category_id=${category.id}`,
       className: 'category',
     });
 
