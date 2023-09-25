@@ -1,5 +1,5 @@
-export const GET_PRODUCTS = `query GET_PRODUCTS {
-  products(filter: { category_id: { eq: "41" } }, pageSize: 10 ) {
+export const GET_PRODUCTS = `query GET_PRODUCTS($categoryId: String!) {
+  products(filter: { category_id: { eq: $categoryId } }, pageSize: 10 ) {
     total_count
     items {
       name
