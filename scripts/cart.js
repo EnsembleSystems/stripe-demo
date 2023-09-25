@@ -18,6 +18,7 @@ export async function getCartId() {
     const { data, errors } = await fetchGraphQl(CREATE_EMPTY_CART);
     if (errors) console.error(errors);
     window.localStorage.setItem(CART_KEY, data.createEmptyCart);
+
     return data.createEmptyCart;
   }
 }

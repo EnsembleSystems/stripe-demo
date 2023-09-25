@@ -6,6 +6,8 @@ import {
 import { OrderSummary } from "@dropins/storefront-checkout/containers/OrderSummary.js";
 import createTag from "../../utils/tag.js";
 import { render as checkoutRenderer } from "@dropins/storefront-checkout/render.js";
+import { initializers } from "@dropins/elsie/initializer.js";
+import * as checkoutApi from "@dropins/storefront-checkout/api.js";
 
 const DEFAULT_QTY = 8;
 const EMPTY_HTML =
@@ -25,22 +27,9 @@ export default async function decorate(block) {
   }
 
   const orderSummary = createTag("div", { className: "order-summary-wrapper" });
-
+  initializers.register(checkoutApi.initialize);
   // TODO: locale (maidenform has only en_US, and locale/store switcher will come from Franklin)
-  checkoutRenderer.render(OrderSummary, {
-    // cartId,
-    // storeCode,
-    // locale
-    slots: {
-      OrderSummary: async (element) => {
-        // const button = createTag("button", { textContent: "Checkout" });
-        // element.appendChild(button);
-        // await checkoutRenderer.render(OrderSummary)(element);
-        // example of adding a content after some default container
-        // const fragment = await loadFragment("/fragments/drafts/demo-include");
-      },
-    },
-  })(orderSummary);
+  checkoutRenderer.render(OrderSummary)(orderSummary);
   const checkoutButton = createTag("a", {
     textContent: "Checkout",
     className: "checkout-button button primary",
@@ -105,13 +94,16 @@ async function createOrderLine(item) {
       const orderList = document.querySelector(".order-list-wrapper");
       orderList.innerHTML = EMPTY_HTML;
     }
+    initializers.register(checkoutApi.initialize);
   });
 
   const select = productInfoWrapper.querySelector("select");
   select.value = quantity;
-  select.onchange = function () {
+  select.onchange = async function () {
     const newValue = select.value;
-    updateCartItems(id, newValue);
+    await updateCartItems(id, newValue);
+    // reinitialize for order summary
+    initializers.register(checkoutApi.initialize);
   };
 
   div.append(productImgWrapper, productInfoWrapper);

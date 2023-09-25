@@ -140,3 +140,7 @@
 .shopping-cart .order-line-wrapper .stock-info img {
   width: 1.25rem;
 }
+
+.shopping-cart .checkout-order-summary {
+  background-color: transparent;
+}

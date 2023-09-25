@@ -1,9 +1,14 @@
+#browse-by-collection {
+  line-height: 1.75;
+}
+
 .collection-cards {
   margin: 0;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-gap: 2rem;
+
   @media (max-width: 768px) {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
@@ -15,6 +20,9 @@
 
 .collection-cards .collection:hover img {
   opacity: 0.8;
+
+.collection-cards .collection p {
+  margin: 1rem 0;
 }
 
 .collection-cards a {
@@ -26,6 +34,7 @@
   border-radius: 0.5rem;
   aspect-ratio: 5 / 6;
   object-fit: cover;
+
   @media (max-width: 768px) {
     aspect-ratio: 3 / 2;
   }
@@ -41,7 +50,6 @@
 
 .collection-name-description {
   text-align: left;
-  margin-left: 1rem;
   font-size: var(--body-font-size-s);
   pointer-events: none;
   color: gray;
