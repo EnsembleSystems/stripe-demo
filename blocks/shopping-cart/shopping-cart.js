@@ -60,7 +60,6 @@ async function createOrderLine(item) {
   });
 
   productImgWrapper.appendChild(img);
-
   const productInfoHtml = `<div class='product-info'><div>
     <p class='product-name'>${product.name}</p>
     <p class='product-price'>${
@@ -75,8 +74,14 @@ async function createOrderLine(item) {
     )}
     </select>
     <button class='close-button'><img class='close-icon' src='../../icons/close.svg' alt='Remove'/></button></div>
-    <div class='stock-info'><img src='../../icons/check.svg' alt='Remove'/>
-    <span>In Stock</span></div>`;
+    ${
+      product.stock_status === "IN_STOCK"
+        ? `<div class='stock-info'><img src='../../icons/check.svg' alt='In Stock'/>
+    <span>In Stock</span></div>`
+        : `<div class='stock-info'>
+    <span>Out of Stock</span></div>`
+    }
+    `;
 
   const productInfoWrapper = createTag(
     "div",

@@ -24,7 +24,59 @@ async function createBlock() {
   const sku = searchParams.get("sku");
   // can be replaced with Adobe Commerce API
   const currentProduct = await getProductBySku(sku);
-  if (currentProduct) return createProductDetailsCard(currentProduct);
+  if (currentProduct) {
+    const div = createTag("div", { className: "product-wrapper" });
+    const reviewDiv = createTag(
+      "div",
+      { className: "product-recent-reviews" },
+      `<p class="review-header">Recent Reviews</p>
+      ${
+        currentProduct.reviews.items.length === 0
+          ? "<p>No reviews.</p>"
+          : '<div class="reviews" />'
+      }`
+    );
+    const reviews = reviewDiv.querySelector(".reviews");
+
+    currentProduct.reviews.items.forEach((review) => {
+      const reviewDetails = createTag("div", { className: "review-details" });
+      const reviewAuthorWrapper = createTag("div", {
+        className: "reviewAuthorWrapper",
+      });
+
+      const reviewAuthor = createTag("div", {
+        className: "review-author",
+        textContent: review.nickname,
+      });
+
+      const reviewDate = createTag("div", {
+        className: "review-date",
+        textContent: new Date(review.created_at).toLocaleDateString("en-us", {
+          year: "numeric",
+          month: "short",
+          day: "2-digit",
+        }),
+      });
+      reviewAuthorWrapper.append(reviewAuthor, reviewDate);
+      const reviewInfoWrapper = createTag("div", {
+        className: "review-info-wrapper",
+      });
+      const reviewHeader = createTag("p", {
+        textContent: review.summary,
+        className: "review-info-header",
+      });
+      const reviewText = createTag("p", {
+        textContent: review.text,
+        className: "review-text",
+      });
+      reviewInfoWrapper.append(createStarReviews(4), reviewHeader, reviewText);
+      reviewDetails.append(reviewAuthorWrapper, reviewInfoWrapper);
+      reviews.appendChild(reviewDetails);
+      console.log(review);
+    });
+    div.append(createProductDetailsCard(currentProduct), reviewDiv);
+    return div;
+  }
   return "Invalid Product";
 }
 
@@ -58,16 +110,8 @@ function createProductDetailsCard(currentProduct) {
   });
   productNamePriceDiv.append(name, price);
 
-  const reviewDiv = createTag("div", {
-    className: "product-review-wrapper",
-  });
-
-  const review = createTag("p", {
-    textContent: currentProduct.reviews ?? 4.6,
-  });
-  reviewDiv.append(
-    review,
-    createStarReviews(Number(currentProduct.review ?? 4.6))
+  const reviewDiv = createStarReviews(
+    Number(currentProduct.rating_summary / 20)
   );
 
   const productHeaderWrapper = createTag("div", {
@@ -131,6 +175,14 @@ function createProductDetailsCard(currentProduct) {
 }
 
 function createStarReviews(review) {
+  const reviewDiv = createTag("div", {
+    className: "product-review-wrapper",
+  });
+
+  const reviewSummary = createTag("p", {
+    textContent: review,
+  });
+
   const starReviewDiv = createTag("div", {
     className: "star-review-container",
   });
@@ -154,5 +206,6 @@ function createStarReviews(review) {
     div.append(backgroundStar, star);
     starReviewDiv.appendChild(div);
   }
-  return starReviewDiv;
+  reviewDiv.append(reviewSummary, starReviewDiv);
+  return reviewDiv;
 }

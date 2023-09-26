@@ -45,6 +45,21 @@ export const GET_PRODUCT_DETAILS = `query GET_PRODUCT_DETAILS($sku: String!) {
       short_description {
         html
       }
+      review_count
+      rating_summary
+      reviews {
+        items {
+          average_rating
+          summary
+          text
+          created_at
+          nickname
+          ratings_breakdown {
+            name
+            value
+          }
+       }
+      }
     }
   }
 }`;
@@ -126,6 +141,7 @@ export const GET_CART = `query GET_CART($cartId: String!) {
             }
           }
         }
+        stock_status
         small_image {
           url
           label
