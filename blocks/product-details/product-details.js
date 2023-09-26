@@ -69,10 +69,13 @@ async function createBlock() {
         textContent: review.text,
         className: "review-text",
       });
-      reviewInfoWrapper.append(createStarReviews(4), reviewHeader, reviewText);
+      reviewInfoWrapper.append(
+        createStarReviews(review.average_rating / 20),
+        reviewHeader,
+        reviewText
+      );
       reviewDetails.append(reviewAuthorWrapper, reviewInfoWrapper);
       reviews.appendChild(reviewDetails);
-      console.log(review);
     });
     div.append(createProductDetailsCard(currentProduct), reviewDiv);
     return div;
