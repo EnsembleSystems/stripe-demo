@@ -189,8 +189,8 @@ export function addInViewAnimationToMultipleElements(animatedItems, triggerEleme
   addInviewObserverToTriggerElement(triggerElement);
 }
 
-export function getUriKeysFromBlock(block) {
-  return [...block.children].map((uri) => uri.textContent.trim());
+export function getBlockColumnValues(block, column, content = 'innerHTML') {
+  return [...block.children].map((uri) => [...uri.children]?.[column]?.[content]);
 }
 
 export default {
@@ -200,5 +200,5 @@ export default {
   addInViewAnimationToSingleElement,
   addInViewAnimationToMultipleElements,
   addInviewObserverToTriggerElement,
-  getUriKeysFromBlock,
+  getBlockColumnValues,
 };
