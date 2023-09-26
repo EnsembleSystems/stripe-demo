@@ -1,4 +1,4 @@
-import { getCategoryListByUrlKeys } from '../../scripts/category.js';
+import { getCategoriesByUrlKeys } from '../../scripts/category.js';
 import { getUriKeysFromBlock } from '../../utils/helpers.js';
 import createTag from '../../utils/tag.js';
 
@@ -28,5 +28,5 @@ function createCategoryCards(data) {
 
 export default async function decorate(block) {
   const uriKeys = getUriKeysFromBlock(block);
-  block.replaceWith(createCategoryCards(await getCategoryListByUrlKeys(uriKeys)));
+  block.replaceWith(createCategoryCards(await getCategoriesByUrlKeys(uriKeys)));
 }
