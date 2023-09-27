@@ -14,10 +14,8 @@ const stripe = Stripe(
 );
 
 export default async function decorate(block) {
-  const element = createTag("div", { id: "payment-element" });
-  block.appendChild(element);
-
   initializers.register(checkoutApi.initialize);
+
   checkoutRenderer.render(Checkout, {
     slots: {
       PaymentMethods: (_, context) => {
@@ -61,7 +59,13 @@ export default async function decorate(block) {
                         );
                         await placeOrder(context.cartId);
                         clearCartId();
-                        window.location.href = "/";
+                        block.replaceWith(
+                          createTag(
+                            "div",
+                            { className: "checkout-complete" },
+                            `<p>Order Complete!</p><a href='/' class='primary button'>Continue Shopping</a>`
+                          )
+                        );
                       }
                     });
                 });

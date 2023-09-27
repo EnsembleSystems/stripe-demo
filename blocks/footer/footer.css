@@ -15,6 +15,7 @@ footer .content {
   padding: 5rem 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     row-gap: 1rem;
@@ -34,9 +35,11 @@ footer p {
   color: var(--faded-text-color)
 }
 
-footer .content, footer .copyright {
+footer .content,
+footer .copyright {
   border-top: 1px solid var(--divider-color);
 }
+
 footer .copyright {
   padding: 2.5rem 0;
   color: var(--faded-text-color)
