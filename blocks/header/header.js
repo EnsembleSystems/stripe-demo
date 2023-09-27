@@ -1,4 +1,4 @@
-import { getCart } from "../../scripts/cart.js";
+import { getCart, getCartId } from "../../scripts/cart.js";
 import { getMetadata, decorateIcons } from "../../scripts/lib-franklin.js";
 import createTag from "../../utils/tag.js";
 
@@ -173,9 +173,10 @@ export default async function decorate(block) {
     const cartIcons = nav.querySelector(".icon-cart");
     const a = cartIcons.parentElement;
     a.className = "cart-link";
+    const cartId = getCartId();
     const cartQuantity = createTag("span", {
       className: "cart-quantity",
-      textContent: (await getCart()).total_quantity,
+      textContent: cartId ? (await getCart()).total_quantity : 0,
     });
 
     a.appendChild(cartQuantity);

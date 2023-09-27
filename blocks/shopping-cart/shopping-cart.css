@@ -144,3 +144,8 @@
 .shopping-cart .checkout-order-summary {
   background-color: transparent;
 }
+
+a.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}

@@ -3,38 +3,60 @@ import {
   ADD_TO_CART,
   CREATE_EMPTY_CART,
   GET_CART,
+  PLACE_ORDER,
   REMOVE_FROM_CART,
+  SET_GUEST_EMAIL_ON_CART,
+  SET_PAYMENT_METHOD_ON_CART,
   UPDATE_CART_ITEMS,
 } from "./graphql.js";
 
 const CART_KEY = "FURNI_CART_ID";
+
+export const clearCartId = () => {
+  window.localStorage.removeItem(CART_KEY);
+};
 /**
  * Get the cart id saved in local storage
  */
-export async function getCartId() {
+export function getCartId() {
   const cartId = window.localStorage.getItem(CART_KEY);
-  if (cartId) return cartId;
-  else {
-    const { data, errors } = await fetchGraphQl(CREATE_EMPTY_CART);
-    if (errors) console.error(errors);
-    window.localStorage.setItem(CART_KEY, data.createEmptyCart);
-
-    return data.createEmptyCart;
-  }
+  return cartId;
 }
+
+const createEmptyCart = async () => {
+  const { data, errors } = await fetchGraphQl(CREATE_EMPTY_CART);
+  if (errors) console.error(errors);
+  window.localStorage.setItem(CART_KEY, data.createEmptyCart);
+  const storeData = JSON.parse(
+    window.localStorage.getItem("commerce:checkout")
+  );
+  window.localStorage.setItem(
+    "commerce:checkout",
+    JSON.stringify({
+      ...storeData,
+      cartId: data.createEmptyCart,
+    })
+  );
+  await setGuestEmailOnCart(data.createEmptyCart, "test@gmail.com");
+  return data.createEmptyCart;
+};
 
 /**
  * Get the cart saved in local storage
  */
 export async function getCart() {
-  const cartId = await getCartId();
-  const { data, errors } = await fetchGraphQl(GET_CART, {
-    variables: {
-      cartId,
-    },
-  });
-  if (errors) console.error(errors);
-  return data.cart;
+  let cartId = getCartId();
+  if (cartId) {
+    const { data, errors } = await fetchGraphQl(GET_CART, {
+      variables: {
+        cartId,
+      },
+    });
+    if (errors) console.error(errors);
+    return data.cart;
+  } else {
+    console.log("Missing cart id");
+  }
 }
 
 /**
@@ -43,7 +65,10 @@ export async function getCart() {
  * To add number of products into cart
  */
 export async function addToCart(sku, productQuantity = 1) {
-  const cartId = await getCartId();
+  let cartId = getCartId();
+  if (!cartId) {
+    cartId = await createEmptyCart();
+  }
   const { data, errors } = await fetchGraphQl(ADD_TO_CART, {
     variables: { cartId, productQuantity, sku },
   });
@@ -66,12 +91,16 @@ function refreshCartTotal(total = getCart().total) {
  * To update the quantity of product id in cart
  */
 export async function updateCartItems(cart_item_id, quantity = 1) {
-  const cartId = await getCartId();
-  const { data, errors } = await fetchGraphQl(UPDATE_CART_ITEMS, {
-    variables: { cartId, cart_item_id, quantity },
-  });
-  if (errors) console.error(errors);
-  refreshCartTotal(data.updateCartItems.cart.total_quantity);
+  const cartId = getCartId();
+  if (cartId) {
+    const { data, errors } = await fetchGraphQl(UPDATE_CART_ITEMS, {
+      variables: { cartId, cart_item_id, quantity },
+    });
+    if (errors) console.error(errors);
+    refreshCartTotal(data.updateCartItems.cart.total_quantity);
+  } else {
+    console.error("Missing cart id");
+  }
 }
 
 /**
@@ -79,13 +108,70 @@ export async function updateCartItems(cart_item_id, quantity = 1) {
  * To remove the product id from cart
  */
 export async function removeFromCart(cart_item_id) {
-  const cartId = await getCartId();
-  const { data, errors } = await fetchGraphQl(REMOVE_FROM_CART, {
-    variables: { cartId, cart_item_id },
-  });
+  const cartId = getCartId();
+  if (cartId) {
+    const { data, errors } = await fetchGraphQl(REMOVE_FROM_CART, {
+      variables: { cartId, cart_item_id },
+    });
 
-  if (errors) console.error(errors);
-  const totalQuantity = data.removeItemFromCart.cart.total_quantity;
-  refreshCartTotal(totalQuantity);
-  return totalQuantity;
+    if (errors) console.error(errors);
+    const totalQuantity = data.removeItemFromCart.cart.total_quantity;
+    refreshCartTotal(totalQuantity);
+    return totalQuantity;
+  } else {
+    console.error("Missing cart id");
+  }
+}
+
+/**
+ * Set payment method on cart
+ */
+export async function setPaymentMethodOnCart(
+  payment_method_id,
+  cartId = getCartId()
+) {
+  if (cartId) {
+    const { data, errors } = await fetchGraphQl(SET_PAYMENT_METHOD_ON_CART, {
+      variables: {
+        cartId: cartId,
+        payment_method_id,
+      },
+    });
+    if (errors) console.error(errors);
+    return data.setPaymentMethodOnCart.cart.selected_payment_method;
+  } else {
+    console.error("Missing cart id");
+  }
+}
+
+/**
+ * Place Order
+ */
+export async function placeOrder(cartId = getCartId()) {
+  if (cartId) {
+    const { data, errors } = await fetchGraphQl(PLACE_ORDER, {
+      variables: {
+        cartId: cartId ?? getCartId(),
+      },
+    });
+    if (errors) console.error(errors);
+    return data.placeOrder.order;
+  } else {
+    console.error("Missing cart id");
+  }
+}
+
+export async function setGuestEmailOnCart(cartId = getCartId(), email) {
+  if (cartId) {
+    const { data, errors } = await fetchGraphQl(SET_GUEST_EMAIL_ON_CART, {
+      variables: {
+        cartId,
+        email,
+      },
+    });
+    if (errors) console.error(errors);
+    return data.setGuestEmailOnCart.cart.email;
+  } else {
+    console.error("Missing cart id");
+  }
 }

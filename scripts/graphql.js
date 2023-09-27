@@ -250,3 +250,45 @@ export const GET_CATEGORIES_BY_URL_KEYS = `query GET_CATEGORIES_BY_URL_KEYS($url
     }
   }
 }`;
+
+export const SET_PAYMENT_METHOD_ON_CART = `mutation SET_PAYMENT_METHOD_ON_CART ($cartId: String!, $payment_method_id: String!){
+  setPaymentMethodOnCart(input: {
+      cart_id: $cartId
+      payment_method: {
+        code: "stripe_payments"
+        stripe_payments: {
+          payment_element: true
+          payment_method: $payment_method_id
+          save_payment_method: true
+        }
+      }
+  }) {
+    cart {
+      selected_payment_method {
+        code
+      }
+    }
+  }
+}`;
+
+export const PLACE_ORDER = `mutation PLACE_ORDER($cartId: String!) {
+  placeOrder(input: {cart_id: $cartId}) {
+    order {
+      order_number
+      client_secret
+    }
+  }
+}`;
+
+export const SET_GUEST_EMAIL_ON_CART = `mutation SET_GUEST_EMAIL_ON_CART ($cartId: String!, $email: String!) {
+  setGuestEmailOnCart(
+    input: {
+      cart_id: $cartId
+      email: $email
+    }
+  ) {
+    cart {
+      email
+    }
+  }
+}`;

@@ -1,5 +1,6 @@
 import {
   getCart,
+  getCartId,
   removeFromCart,
   updateCartItems,
 } from "../../scripts/cart.js";
@@ -17,8 +18,10 @@ export default async function decorate(block) {
   const orderList = createTag("div", {
     className: "order-list-wrapper",
   });
-  const cart = await getCart();
-  if (cart.items.length === 0) {
+  const cartId = getCartId();
+  const cart = cartId ? await getCart() : undefined;
+  const isCartEmpty = !cartId || cart.items.length === 0;
+  if (isCartEmpty) {
     orderList.innerHTML = EMPTY_HTML;
   } else {
     cart.items.forEach(async (item) => {
@@ -27,17 +30,21 @@ export default async function decorate(block) {
   }
 
   const orderSummary = createTag("div", { className: "order-summary-wrapper" });
-  initializers.register(checkoutApi.initialize);
-  // TODO: locale (maidenform has only en_US, and locale/store switcher will come from Franklin)
-  checkoutRenderer.render(OrderSummary)(orderSummary);
+  if (cartId) {
+    initializers.register(checkoutApi.initialize);
+    // TODO: locale (maidenform has only en_US, and locale/store switcher will come from Franklin)
+    checkoutRenderer.render(OrderSummary)(orderSummary);
+  }
   const checkoutButton = createTag("a", {
     textContent: "Checkout",
-    className: "checkout-button button primary",
+    className: `checkout-button button primary ${
+      isCartEmpty ? "disabled" : ""
+    }`,
     href: "/checkout",
   });
 
   const continueButton = createTag("a", {
-    textContent: "Continue Shopping",
+    textContent: isCartEmpty ? "Start Shopping" : "Continue Shopping",
     className: "continue-button button secondary",
     width: "100%",
     href: "/products",
@@ -97,7 +104,11 @@ async function createOrderLine(item) {
     div.remove();
     if (totalQuantity === 0) {
       const orderList = document.querySelector(".order-list-wrapper");
+      const checkoutButton = document.querySelector(".checkout-button");
+      const continueButton = document.querySelector(".continue-button");
       orderList.innerHTML = EMPTY_HTML;
+      checkoutButton.classList.add("disabled");
+      continueButton.textContent = "Start Shopping";
     }
     initializers.register(checkoutApi.initialize);
   });
