@@ -1,19 +1,19 @@
 /* eslint-disable operator-linebreak */
 // eslint-disable-next-line import/named
 import { getCategoriesByUrlKeys } from '../../scripts/category.js';
-import { getBlockColumnValues } from '../../utils/helpers.js';
+import { getBlockColumnValues, mapKeysProperties } from '../../utils/helpers.js';
 import createTag from '../../utils/tag.js';
 
 function createCategoryCards(data, titles, images) {
   const div = createTag('div', { className: 'category-cards' });
-  [...data].forEach((category, i) => {
+  [...data].forEach((category) => {
     const productWrapper = createTag('a', {
       href: `/products?category_id=${category.id}`,
       className: 'category',
     });
 
     const img =
-      images?.[i] ??
+      images.get(category.url_key) ??
       createTag('img', {
         src: category.image,
         alt: category.name,
@@ -21,7 +21,7 @@ function createCategoryCards(data, titles, images) {
 
     const name = createTag('p', {
       className: 'category-name',
-      textContent: titles?.[i] ?? category.name,
+      textContent: titles.get(category.url_key) ?? category.name,
     });
 
     productWrapper.append(img, name);
@@ -32,7 +32,14 @@ function createCategoryCards(data, titles, images) {
 
 export default async function decorate(block) {
   const uriKeys = getBlockColumnValues(block, 0);
+
   const titles = getBlockColumnValues(block, 1);
+  const titlesMap = mapKeysProperties(uriKeys, titles);
+
   const images = getBlockColumnValues(block, 2, 'firstElementChild');
-  block.replaceWith(createCategoryCards(await getCategoriesByUrlKeys(uriKeys), titles, images));
+  const imagesMap = mapKeysProperties(uriKeys, images);
+
+  block.replaceWith(
+    createCategoryCards(await getCategoriesByUrlKeys(uriKeys), titlesMap, imagesMap),
+  );
 }

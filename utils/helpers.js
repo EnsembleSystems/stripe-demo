@@ -193,6 +193,26 @@ export function getBlockColumnValues(block, column, content = 'innerHTML') {
   return [...block.children].map((uri) => [...uri.children]?.[column]?.[content]);
 }
 
+/**
+ * Maps URI keys to their corresponding properties.
+ *
+ * This function takes an array of URI keys and an array of properties, and
+ * creates a map where each URI key is associated with its corresponding property.
+ *
+ * @param {string[]} uriKeys - An array of URI keys.
+ * @param {any[]} properties - An array of properties.
+ * @returns {Map<string, any>} - A map where URI keys are mapped
+ * to their corresponding properties.
+ */
+export function mapKeysProperties(uriKeys, properties) {
+  const titlesMap = new Map();
+  uriKeys.forEach((key, i) => {
+    titlesMap.set(key, properties[i]);
+  });
+
+  return titlesMap;
+}
+
 export default {
   removeOuterElementLayer,
   changeTag,
@@ -201,4 +221,5 @@ export default {
   addInViewAnimationToMultipleElements,
   addInviewObserverToTriggerElement,
   getBlockColumnValues,
+  mapKeysProperties,
 };
