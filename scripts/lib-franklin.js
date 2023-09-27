@@ -10,6 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
+import createTag from "../utils/tag.js";
+
 /**
  * log RUM if part of the sample.
  * @param {string} checkpoint identifies the checkpoint in funnel
@@ -741,6 +743,21 @@ export function loadFooter(footer) {
   footer.append(footerBlock);
   decorateBlock(footerBlock);
   return loadBlock(footerBlock);
+}
+
+export function addLoading() {
+  const loading = createTag("div", {
+    className: "loading",
+  });
+  const body = document.querySelector("body");
+  body.appendChild(loading);
+  body.classList.add("no-scroll");
+}
+
+export function removeLoading() {
+  const body = document.querySelector("body");
+  const loading = body.querySelector(".loading");
+  loading.remove();
 }
 
 /**

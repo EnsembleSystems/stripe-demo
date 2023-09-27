@@ -6,16 +6,24 @@ import { render as checkoutRenderer } from "@dropins/storefront-checkout/render.
 import createTag from "../../utils/tag.js";
 import {
   clearCartId,
+  getCartId,
   placeOrder,
   setPaymentMethodOnCart,
 } from "../../scripts/cart.js";
+import { addLoading, removeLoading } from "../../scripts/lib-franklin.js";
+
 const stripe = Stripe(
   "pk_test_51Nrs0ML1DV9f5cSo8SGP5fqOt9ypRLqBSKBv4rfbRPOGezL5t5sUMV7mHGlRdd9455BXOwoBngtEWo35EEgc7UHD00Ajy9FWgK"
 );
 
 export default async function decorate(block) {
-  initializers.register(checkoutApi.initialize);
+  const cartId = getCartId();
 
+  if (!cartId) {
+    window.location.href = "/cart";
+    return;
+  }
+  initializers.register(checkoutApi.initialize);
   checkoutRenderer.render(Checkout, {
     slots: {
       PaymentMethods: (_, context) => {
@@ -47,6 +55,7 @@ export default async function decorate(block) {
 
               context.onPlaceOrder(() => {
                 elements.submit().then(async function () {
+                  addLoading();
                   stripe
                     .createPaymentMethod({
                       elements: elements,
@@ -57,13 +66,14 @@ export default async function decorate(block) {
                           result.paymentMethod.id,
                           context.cartId
                         );
-                        await placeOrder(context.cartId);
+                        const order = await placeOrder(context.cartId);
+                        removeLoading();
                         clearCartId();
                         block.replaceWith(
                           createTag(
                             "div",
                             { className: "checkout-complete" },
-                            `<p>Order Complete!</p><a href='/' class='primary button'>Continue Shopping</a>`
+                            `<p class='thank-you'>Thank you for shopping!</p><p class='order-number'>Your order <b>#${order.order_number}</b> has been placed.</p><a href='/' class='primary button'>Continue Shopping</a>`
                           )
                         );
                       }

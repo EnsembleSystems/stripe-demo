@@ -12,8 +12,18 @@ import {
 
 const CART_KEY = "FURNI_CART_ID";
 
+/**
+ * @param {number} total Total products
+ * To refresh the number products in the cart
+ */
+function refreshCartTotal(total = getCart().total) {
+  var cartQuantity = document.querySelector(".cart-quantity");
+  cartQuantity.innerHTML = total;
+}
+
 export const clearCartId = () => {
   window.localStorage.removeItem(CART_KEY);
+  refreshCartTotal(0);
 };
 /**
  * Get the cart id saved in local storage
@@ -74,15 +84,6 @@ export async function addToCart(sku, productQuantity = 1) {
   });
   if (errors) console.error(errors);
   refreshCartTotal(data.addSimpleProductsToCart.cart.total_quantity);
-}
-
-/**
- * @param {number} total Total products
- * To refresh the number products in the cart
- */
-function refreshCartTotal(total = getCart().total) {
-  var cartQuantity = document.querySelector(".cart-quantity");
-  cartQuantity.innerHTML = total;
 }
 
 /**
