@@ -11,7 +11,6 @@ import {
   setPaymentMethodOnCart,
 } from "../../scripts/cart.js";
 import { loadLoading } from "../../scripts/lib-franklin.js";
-
 const stripe = Stripe(
   "pk_test_51Nrs0ML1DV9f5cSo8SGP5fqOt9ypRLqBSKBv4rfbRPOGezL5t5sUMV7mHGlRdd9455BXOwoBngtEWo35EEgc7UHD00Ajy9FWgK"
 );

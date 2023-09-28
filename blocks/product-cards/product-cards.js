@@ -1,4 +1,5 @@
 import { getCategoriesByUrlKeys } from "../../scripts/category.js";
+import { createOptimizedPicture } from "../../scripts/lib-franklin.js";
 import { getProducts } from "../../scripts/product.js";
 import { getBlockColumnValues } from "../../utils/helpers.js";
 import createTag from "../../utils/tag.js";
@@ -12,9 +13,10 @@ function createProductCards(data) {
       className: "product-wrapper",
     });
 
-    const img = createTag("img", {
+    const img = createOptimizedPicture({
       src: product.small_image.url,
       alt: product.small_image.label,
+      useSrc: true,
     });
 
     const name = createTag("p", {

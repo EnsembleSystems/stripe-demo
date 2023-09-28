@@ -10,6 +10,7 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  loadScript,
 } from "./lib-franklin.js";
 
 import { events } from "@dropins/elsie/event-bus.js";
@@ -74,6 +75,10 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
+  const { pathname } = new URL(window.location.href);
+  if (pathname === "/checkout") {
+    loadScript("https://js.stripe.com/v3/");
+  }
   const main = doc.querySelector("main");
   await loadBlocks(main);
 

@@ -151,7 +151,10 @@ function createProductDetailsCard(currentProduct) {
     const infoDiv = createTag("div", {
       className: "product-support-info",
     });
-    const icon = createOptimizedPicture(info.icon, info.heading, false);
+    const icon = createOptimizedPicture({
+      src: info.icon,
+      alt: info.heading,
+    });
     const heading = createTag("p", {
       className: "info-heading",
       textContent: info.heading,

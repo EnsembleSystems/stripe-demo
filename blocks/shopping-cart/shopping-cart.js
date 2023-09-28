@@ -10,6 +10,7 @@ import { render as checkoutRenderer } from "@dropins/storefront-checkout/render.
 import { initializers } from "@dropins/elsie/initializer.js";
 import * as checkoutApi from "@dropins/storefront-checkout/api.js";
 import { events } from "@dropins/elsie/event-bus.js";
+import { createOptimizedPicture } from "../../scripts/lib-franklin.js";
 
 const DEFAULT_QTY = 8;
 const EMPTY_HTML =
@@ -62,10 +63,11 @@ async function createOrderLine(item) {
   const productImgWrapper = createTag("div", {
     className: "product-image",
   });
-  // const img = createOptimizedPicture(product.image, product.name, true);
-  const img = createTag("img", {
-    src: product.small_image.url,
-    alt: product.small_image.label,
+  const img = createOptimizedPicture({
+    src: product.image,
+    alt: product.name,
+    eager: true,
+    useSrc: true,
   });
 
   productImgWrapper.appendChild(img);

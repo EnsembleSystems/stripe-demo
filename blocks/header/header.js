@@ -126,6 +126,9 @@ export default async function decorate(block) {
         header.style.height = getComputedStyle(
           document.documentElement
         ).getPropertyValue("--extended-nav-height");
+      } else if (c === "brand" && section) {
+        const logoLink = section.querySelector("a");
+        logoLink.setAttribute("aria-label", "Home");
       } else {
         header.style.height = getComputedStyle(
           document.documentElement
