@@ -104,6 +104,7 @@ function loadDropins() {
     window.addEventListener("load", initializers.mount);
   }
   events.enableLogger(true);
+  window.events = events;
 }
 
 /**

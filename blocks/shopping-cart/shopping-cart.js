@@ -9,6 +9,7 @@ import createTag from "../../utils/tag.js";
 import { render as checkoutRenderer } from "@dropins/storefront-checkout/render.js";
 import { initializers } from "@dropins/elsie/initializer.js";
 import * as checkoutApi from "@dropins/storefront-checkout/api.js";
+import { events } from "@dropins/elsie/event-bus.js";
 
 const DEFAULT_QTY = 8;
 const EMPTY_HTML =
@@ -19,6 +20,7 @@ export default async function decorate(block) {
     className: "order-list-wrapper",
   });
   const cartId = getCartId();
+
   const cart = cartId ? await getCart() : undefined;
   const isCartEmpty = !cartId || cart.items.length === 0;
   if (isCartEmpty) {
@@ -32,8 +34,8 @@ export default async function decorate(block) {
   const orderSummary = createTag("div", { className: "order-summary-wrapper" });
   if (cartId) {
     initializers.register(checkoutApi.initialize);
-    // TODO: locale (maidenform has only en_US, and locale/store switcher will come from Franklin)
     checkoutRenderer.render(OrderSummary)(orderSummary);
+    events.emit("cart/data", { id: cartId });
   }
   const checkoutButton = createTag("a", {
     textContent: "Checkout",

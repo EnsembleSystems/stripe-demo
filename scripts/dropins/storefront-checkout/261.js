@@ -1344,7 +1344,8 @@ export const modules = {
                 return function (e) {
                   return t.apply(this, arguments);
                 };
-              })()
+              })(),
+              { eager: true }
             ),
           ];
         },

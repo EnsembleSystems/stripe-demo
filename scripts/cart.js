@@ -1,4 +1,5 @@
 import { fetchGraphQl } from "@dropins/elsie/fetch-graphql.js";
+import { events } from "@dropins/elsie/event-bus.js";
 import {
   ADD_TO_CART,
   CREATE_EMPTY_CART,
@@ -37,16 +38,7 @@ const createEmptyCart = async () => {
   const { data, errors } = await fetchGraphQl(CREATE_EMPTY_CART);
   if (errors) console.error(errors);
   window.localStorage.setItem(CART_KEY, data.createEmptyCart);
-  const storeData = JSON.parse(
-    window.localStorage.getItem("commerce:checkout")
-  );
-  window.localStorage.setItem(
-    "commerce:checkout",
-    JSON.stringify({
-      ...storeData,
-      cartId: data.createEmptyCart,
-    })
-  );
+
   await setGuestEmailOnCart(data.createEmptyCart, "test@gmail.com");
   return data.createEmptyCart;
 };

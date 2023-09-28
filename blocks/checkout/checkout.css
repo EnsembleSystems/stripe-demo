@@ -1,3 +1,7 @@
+.checkout-container .checkout-wrapper {
+  max-width: 100% !important;
+}
+
 .checkout-container .checkout-complete {
   display: flex;
   flex-direction: column;

@@ -745,20 +745,21 @@ export function loadFooter(footer) {
   return loadBlock(footerBlock);
 }
 
-export function addLoading() {
-  const loading = createTag("div", {
-    className: "loading",
-  });
+export async function loadLoading() {
+  const loadingBlock = buildBlock("loading", "");
   const body = document.querySelector("body");
-  body.appendChild(loading);
+  body.appendChild(loadingBlock);
+  decorateBlock(loadingBlock);
   body.classList.add("no-scroll");
+  await loadBlock(loadingBlock);
+  return loadingBlock;
 }
 
-export function removeLoading() {
-  const body = document.querySelector("body");
-  const loading = body.querySelector(".loading");
-  loading.remove();
-}
+// export function removeLoading() {
+//   const body = document.querySelector("body");
+//   const loading = body.querySelector(".loading");
+//   loading.remove();
+// }
 
 /**
  * Setup block utils.

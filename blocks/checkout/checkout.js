@@ -10,7 +10,7 @@ import {
   placeOrder,
   setPaymentMethodOnCart,
 } from "../../scripts/cart.js";
-import { addLoading, removeLoading } from "../../scripts/lib-franklin.js";
+import { loadLoading } from "../../scripts/lib-franklin.js";
 
 const stripe = Stripe(
   "pk_test_51Nrs0ML1DV9f5cSo8SGP5fqOt9ypRLqBSKBv4rfbRPOGezL5t5sUMV7mHGlRdd9455BXOwoBngtEWo35EEgc7UHD00Ajy9FWgK"
@@ -18,7 +18,6 @@ const stripe = Stripe(
 
 export default async function decorate(block) {
   const cartId = getCartId();
-
   if (!cartId) {
     window.location.href = "/cart";
     return;
@@ -55,7 +54,7 @@ export default async function decorate(block) {
 
               context.onPlaceOrder(() => {
                 elements.submit().then(async function () {
-                  addLoading();
+                  const loading = await loadLoading();
                   stripe
                     .createPaymentMethod({
                       elements: elements,
@@ -67,7 +66,7 @@ export default async function decorate(block) {
                           context.cartId
                         );
                         const order = await placeOrder(context.cartId);
-                        removeLoading();
+                        loading.remove();
                         clearCartId();
                         block.replaceWith(
                           createTag(
@@ -86,6 +85,5 @@ export default async function decorate(block) {
       },
     },
   })(block);
-
-  window.events = events;
+  events.emit("cart/data", { id: cartId });
 }
