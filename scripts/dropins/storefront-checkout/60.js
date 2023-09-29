@@ -9,16 +9,16 @@ export const modules = {
     function i(e) {
       return (
         (i =
-          "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+          'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
             ? function (e) {
                 return typeof e;
               }
             : function (e) {
                 return e &&
-                  "function" == typeof Symbol &&
+                  'function' == typeof Symbol &&
                   e.constructor === Symbol &&
                   e !== Symbol.prototype
-                  ? "symbol"
+                  ? 'symbol'
                   : typeof e;
               }),
         i(e)
@@ -36,10 +36,10 @@ export const modules = {
           function (e, n, t) {
             e[n] = t.value;
           },
-        o = "function" == typeof Symbol ? Symbol : {},
-        l = o.iterator || "@@iterator",
-        c = o.asyncIterator || "@@asyncIterator",
-        u = o.toStringTag || "@@toStringTag";
+        o = 'function' == typeof Symbol ? Symbol : {},
+        l = o.iterator || '@@iterator',
+        c = o.asyncIterator || '@@asyncIterator',
+        u = o.toStringTag || '@@toStringTag';
       function s(e, n, t) {
         return (
           Object.defineProperty(e, n, {
@@ -52,7 +52,7 @@ export const modules = {
         );
       }
       try {
-        s({}, "");
+        s({}, '');
       } catch (e) {
         s = function (e, n, t) {
           return (e[n] = t);
@@ -62,13 +62,13 @@ export const modules = {
         var i = n && n.prototype instanceof y ? n : y,
           a = Object.create(i.prototype),
           l = new E(o || []);
-        return r(a, "_invoke", { value: j(e, t, l) }), a;
+        return r(a, '_invoke', { value: j(e, t, l) }), a;
       }
       function d(e, n, t) {
         try {
-          return { type: "normal", arg: e.call(n, t) };
+          return { type: 'normal', arg: e.call(n, t) };
         } catch (e) {
-          return { type: "throw", arg: e };
+          return { type: 'throw', arg: e };
         }
       }
       e.wrap = f;
@@ -85,7 +85,7 @@ export const modules = {
       g && g !== n && t.call(g, l) && (h = g);
       var _ = (v.prototype = y.prototype = Object.create(h));
       function w(e) {
-        ["next", "throw", "return"].forEach(function (n) {
+        ['next', 'throw', 'return'].forEach(function (n) {
           s(e, n, function (e) {
             return this._invoke(n, e);
           });
@@ -94,16 +94,16 @@ export const modules = {
       function O(e, n) {
         function o(r, a, l, c) {
           var u = d(e[r], e, a);
-          if ("throw" !== u.type) {
+          if ('throw' !== u.type) {
             var s = u.arg,
               f = s.value;
-            return f && "object" == i(f) && t.call(f, "__await")
+            return f && 'object' == i(f) && t.call(f, '__await')
               ? n.resolve(f.__await).then(
                   function (e) {
-                    o("next", e, l, c);
+                    o('next', e, l, c);
                   },
                   function (e) {
-                    o("throw", e, l, c);
+                    o('throw', e, l, c);
                   }
                 )
               : n.resolve(f).then(
@@ -111,14 +111,14 @@ export const modules = {
                     (s.value = e), l(s);
                   },
                   function (e) {
-                    return o("throw", e, l, c);
+                    return o('throw', e, l, c);
                   }
                 );
           }
           c(u.arg);
         }
         var a;
-        r(this, "_invoke", {
+        r(this, '_invoke', {
           value: function (e, t) {
             function r() {
               return new n(function (n, r) {
@@ -130,12 +130,12 @@ export const modules = {
         });
       }
       function j(e, n, t) {
-        var r = "suspendedStart";
+        var r = 'suspendedStart';
         return function (o, i) {
-          if ("executing" === r)
-            throw new Error("Generator is already running");
-          if ("completed" === r) {
-            if ("throw" === o) throw i;
+          if ('executing' === r)
+            throw new Error('Generator is already running');
+          if ('completed' === r) {
+            if ('throw' === o) throw i;
             return { value: void 0, done: !0 };
           }
           for (t.method = o, t.arg = i; ; ) {
@@ -147,20 +147,20 @@ export const modules = {
                 return l;
               }
             }
-            if ("next" === t.method) t.sent = t._sent = t.arg;
-            else if ("throw" === t.method) {
-              if ("suspendedStart" === r) throw ((r = "completed"), t.arg);
+            if ('next' === t.method) t.sent = t._sent = t.arg;
+            else if ('throw' === t.method) {
+              if ('suspendedStart' === r) throw ((r = 'completed'), t.arg);
               t.dispatchException(t.arg);
-            } else "return" === t.method && t.abrupt("return", t.arg);
-            r = "executing";
+            } else 'return' === t.method && t.abrupt('return', t.arg);
+            r = 'executing';
             var c = d(e, n, t);
-            if ("normal" === c.type) {
-              if (((r = t.done ? "completed" : "suspendedYield"), c.arg === p))
+            if ('normal' === c.type) {
+              if (((r = t.done ? 'completed' : 'suspendedYield'), c.arg === p))
                 continue;
               return { value: c.arg, done: t.done };
             }
-            "throw" === c.type &&
-              ((r = "completed"), (t.method = "throw"), (t.arg = c.arg));
+            'throw' === c.type &&
+              ((r = 'completed'), (t.method = 'throw'), (t.arg = c.arg));
           }
         };
       }
@@ -170,33 +170,33 @@ export const modules = {
         if (void 0 === r)
           return (
             (n.delegate = null),
-            ("throw" === t &&
+            ('throw' === t &&
               e.iterator.return &&
-              ((n.method = "return"),
+              ((n.method = 'return'),
               (n.arg = void 0),
               k(e, n),
-              "throw" === n.method)) ||
-              ("return" !== t &&
-                ((n.method = "throw"),
+              'throw' === n.method)) ||
+              ('return' !== t &&
+                ((n.method = 'throw'),
                 (n.arg = new TypeError(
                   "The iterator does not provide a '" + t + "' method"
                 )))),
             p
           );
         var o = d(r, e.iterator, n.arg);
-        if ("throw" === o.type)
-          return (n.method = "throw"), (n.arg = o.arg), (n.delegate = null), p;
+        if ('throw' === o.type)
+          return (n.method = 'throw'), (n.arg = o.arg), (n.delegate = null), p;
         var i = o.arg;
         return i
           ? i.done
             ? ((n[e.resultName] = i.value),
               (n.next = e.nextLoc),
-              "return" !== n.method && ((n.method = "next"), (n.arg = void 0)),
+              'return' !== n.method && ((n.method = 'next'), (n.arg = void 0)),
               (n.delegate = null),
               p)
             : i
-          : ((n.method = "throw"),
-            (n.arg = new TypeError("iterator result is not an object")),
+          : ((n.method = 'throw'),
+            (n.arg = new TypeError('iterator result is not an object')),
             (n.delegate = null),
             p);
       }
@@ -208,10 +208,10 @@ export const modules = {
       }
       function x(e) {
         var n = e.completion || {};
-        (n.type = "normal"), delete n.arg, (e.completion = n);
+        (n.type = 'normal'), delete n.arg, (e.completion = n);
       }
       function E(e) {
-        (this.tryEntries = [{ tryLoc: "root" }]),
+        (this.tryEntries = [{ tryLoc: 'root' }]),
           e.forEach(S, this),
           this.reset(!0);
       }
@@ -219,7 +219,7 @@ export const modules = {
         if (e) {
           var n = e[l];
           if (n) return n.call(e);
-          if ("function" == typeof e.next) return e;
+          if ('function' == typeof e.next) return e;
           if (!isNaN(e.length)) {
             var r = -1,
               o = function n() {
@@ -237,21 +237,21 @@ export const modules = {
       }
       return (
         (m.prototype = v),
-        r(_, "constructor", { value: v, configurable: !0 }),
-        r(v, "constructor", { value: m, configurable: !0 }),
-        (m.displayName = s(v, u, "GeneratorFunction")),
+        r(_, 'constructor', { value: v, configurable: !0 }),
+        r(v, 'constructor', { value: m, configurable: !0 }),
+        (m.displayName = s(v, u, 'GeneratorFunction')),
         (e.isGeneratorFunction = function (e) {
-          var n = "function" == typeof e && e.constructor;
+          var n = 'function' == typeof e && e.constructor;
           return (
             !!n &&
-            (n === m || "GeneratorFunction" === (n.displayName || n.name))
+            (n === m || 'GeneratorFunction' === (n.displayName || n.name))
           );
         }),
         (e.mark = function (e) {
           return (
             Object.setPrototypeOf
               ? Object.setPrototypeOf(e, v)
-              : ((e.__proto__ = v), s(e, u, "GeneratorFunction")),
+              : ((e.__proto__ = v), s(e, u, 'GeneratorFunction')),
             (e.prototype = Object.create(_)),
             e
           );
@@ -274,12 +274,12 @@ export const modules = {
               });
         }),
         w(_),
-        s(_, u, "Generator"),
+        s(_, u, 'Generator'),
         s(_, l, function () {
           return this;
         }),
-        s(_, "toString", function () {
-          return "[object Generator]";
+        s(_, 'toString', function () {
+          return '[object Generator]';
         }),
         (e.keys = function (e) {
           var n = Object(e),
@@ -306,13 +306,13 @@ export const modules = {
               (this.sent = this._sent = void 0),
               (this.done = !1),
               (this.delegate = null),
-              (this.method = "next"),
+              (this.method = 'next'),
               (this.arg = void 0),
               this.tryEntries.forEach(x),
               !e)
             )
               for (var n in this)
-                "t" === n.charAt(0) &&
+                't' === n.charAt(0) &&
                   t.call(this, n) &&
                   !isNaN(+n.slice(1)) &&
                   (this[n] = void 0);
@@ -320,7 +320,7 @@ export const modules = {
           stop: function () {
             this.done = !0;
             var e = this.tryEntries[0].completion;
-            if ("throw" === e.type) throw e.arg;
+            if ('throw' === e.type) throw e.arg;
             return this.rval;
           },
           dispatchException: function (e) {
@@ -328,20 +328,20 @@ export const modules = {
             var n = this;
             function r(t, r) {
               return (
-                (a.type = "throw"),
+                (a.type = 'throw'),
                 (a.arg = e),
                 (n.next = t),
-                r && ((n.method = "next"), (n.arg = void 0)),
+                r && ((n.method = 'next'), (n.arg = void 0)),
                 !!r
               );
             }
             for (var o = this.tryEntries.length - 1; o >= 0; --o) {
               var i = this.tryEntries[o],
                 a = i.completion;
-              if ("root" === i.tryLoc) return r("end");
+              if ('root' === i.tryLoc) return r('end');
               if (i.tryLoc <= this.prev) {
-                var l = t.call(i, "catchLoc"),
-                  c = t.call(i, "finallyLoc");
+                var l = t.call(i, 'catchLoc'),
+                  c = t.call(i, 'finallyLoc');
                 if (l && c) {
                   if (this.prev < i.catchLoc) return r(i.catchLoc, !0);
                   if (this.prev < i.finallyLoc) return r(i.finallyLoc);
@@ -349,7 +349,7 @@ export const modules = {
                   if (this.prev < i.catchLoc) return r(i.catchLoc, !0);
                 } else {
                   if (!c)
-                    throw new Error("try statement without catch or finally");
+                    throw new Error('try statement without catch or finally');
                   if (this.prev < i.finallyLoc) return r(i.finallyLoc);
                 }
               }
@@ -360,7 +360,7 @@ export const modules = {
               var o = this.tryEntries[r];
               if (
                 o.tryLoc <= this.prev &&
-                t.call(o, "finallyLoc") &&
+                t.call(o, 'finallyLoc') &&
                 this.prev < o.finallyLoc
               ) {
                 var i = o;
@@ -368,7 +368,7 @@ export const modules = {
               }
             }
             i &&
-              ("break" === e || "continue" === e) &&
+              ('break' === e || 'continue' === e) &&
               i.tryLoc <= n &&
               n <= i.finallyLoc &&
               (i = null);
@@ -377,20 +377,20 @@ export const modules = {
               (a.type = e),
               (a.arg = n),
               i
-                ? ((this.method = "next"), (this.next = i.finallyLoc), p)
+                ? ((this.method = 'next'), (this.next = i.finallyLoc), p)
                 : this.complete(a)
             );
           },
           complete: function (e, n) {
-            if ("throw" === e.type) throw e.arg;
+            if ('throw' === e.type) throw e.arg;
             return (
-              "break" === e.type || "continue" === e.type
+              'break' === e.type || 'continue' === e.type
                 ? (this.next = e.arg)
-                : "return" === e.type
+                : 'return' === e.type
                 ? ((this.rval = this.arg = e.arg),
-                  (this.method = "return"),
-                  (this.next = "end"))
-                : "normal" === e.type && n && (this.next = n),
+                  (this.method = 'return'),
+                  (this.next = 'end'))
+                : 'normal' === e.type && n && (this.next = n),
               p
             );
           },
@@ -406,19 +406,19 @@ export const modules = {
               var t = this.tryEntries[n];
               if (t.tryLoc === e) {
                 var r = t.completion;
-                if ("throw" === r.type) {
+                if ('throw' === r.type) {
                   var o = r.arg;
                   x(t);
                 }
                 return o;
               }
             }
-            throw new Error("illegal catch attempt");
+            throw new Error('illegal catch attempt');
           },
           delegateYield: function (e, n, t) {
             return (
               (this.delegate = { iterator: P(e), resultName: n, nextLoc: t }),
-              "next" === this.method && (this.arg = void 0),
+              'next' === this.method && (this.arg = void 0),
               p
             );
           },
@@ -447,7 +447,7 @@ export const modules = {
                     return (
                       (e.next = 2),
                       (0, r.gX)(
-                        "\nquery GET_REGIONS($countryCode: String!) {\n    country(id: $countryCode) {\n        id\n        available_regions {\n            id\n            code\n            name\n        }\n    }\n}",
+                        '\nquery GET_REGIONS($countryCode: String!) {\n    country(id: $countryCode) {\n        id\n        available_regions {\n            id\n            code\n            name\n        }\n    }\n}',
                         { variables: { countryCode: n } }
                       )
                     );
@@ -458,9 +458,9 @@ export const modules = {
                     }
                     throw new o.kp(l);
                   case 7:
-                    return e.abrupt("return", i.country.available_regions);
+                    return e.abrupt('return', i.country.available_regions);
                   case 8:
-                  case "end":
+                  case 'end':
                     return e.stop();
                 }
             }, e);
@@ -471,10 +471,10 @@ export const modules = {
             return new Promise(function (r, o) {
               var i = e.apply(n, t);
               function a(e) {
-                l(i, r, o, a, c, "next", e);
+                l(i, r, o, a, c, 'next', e);
               }
               function c(e) {
-                l(i, r, o, a, c, "throw", e);
+                l(i, r, o, a, c, 'throw', e);
               }
               a(void 0);
             });
@@ -502,7 +502,7 @@ export const modules = {
       v = {};
     (v.styleTagTransform = y()),
       (v.setAttributes = s()),
-      (v.insert = c().bind(null, "head")),
+      (v.insert = c().bind(null, 'head')),
       (v.domAPI = a()),
       (v.insertStyleElement = d()),
       o()(m.Z, v),
@@ -513,7 +513,7 @@ export const modules = {
           t = e.children,
           r = e.level,
           o = void 0 === r ? 2 : r,
-          i = o >= 1 && o <= 6 ? "h".concat(o) : "h2";
+          i = o >= 1 && o <= 6 ? 'h'.concat(o) : 'h2';
         return (0, h.jsx)(i, { className: n, children: t });
       };
   },
@@ -524,23 +524,23 @@ export const modules = {
     function i(e) {
       return (
         (i =
-          "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+          'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
             ? function (e) {
                 return typeof e;
               }
             : function (e) {
                 return e &&
-                  "function" == typeof Symbol &&
+                  'function' == typeof Symbol &&
                   e.constructor === Symbol &&
                   e !== Symbol.prototype
-                  ? "symbol"
+                  ? 'symbol'
                   : typeof e;
               }),
         i(e)
       );
     }
-    var a = ["isFull", "lines", "size", "variant"],
-      l = ["className", "children"];
+    var a = ['isFull', 'lines', 'size', 'variant'],
+      l = ['className', 'children'];
     function c(e, n) {
       var t = Object.keys(e);
       if (Object.getOwnPropertySymbols) {
@@ -576,18 +576,18 @@ export const modules = {
       return (
         (n = (function (e) {
           var n = (function (e, n) {
-            if ("object" !== i(e) || null === e) return e;
+            if ('object' !== i(e) || null === e) return e;
             var t = e[Symbol.toPrimitive];
             if (void 0 !== t) {
-              var r = t.call(e, "string");
-              if ("object" !== i(r)) return r;
+              var r = t.call(e, 'string');
+              if ('object' !== i(r)) return r;
               throw new TypeError(
-                "@@toPrimitive must return a primitive value."
+                '@@toPrimitive must return a primitive value.'
               );
             }
             return String(e);
           })(e);
-          return "symbol" === i(n) ? n : String(n);
+          return 'symbol' === i(n) ? n : String(n);
         })(n)) in e
           ? Object.defineProperty(e, n, {
               value: t,
@@ -629,43 +629,43 @@ export const modules = {
           i = e.lines,
           l = void 0 === i ? 1 : i,
           c = e.size,
-          s = void 0 === c ? "small" : c,
+          s = void 0 === c ? 'small' : c,
           d = e.variant,
-          p = void 0 === d ? "row" : d,
+          p = void 0 === d ? 'row' : d,
           y = f(e, a),
           m = [
-            ["checkout-skeleton-row__".concat(p), p],
-            ["checkout-skeleton-row__".concat(p, "-").concat(s), p && s],
+            ['checkout-skeleton-row__'.concat(p), p],
+            ['checkout-skeleton-row__'.concat(p, '-').concat(s), p && s],
           ];
         return !1 == l > 1
           ? (0, o.jsx)(
-              "div",
+              'div',
               u(
                 u({}, y),
                 {},
                 {
                   class: (0, r.S)(
                     [
-                      "checkout-skeleton-row",
-                      ["checkout-skeleton-row--full", t],
+                      'checkout-skeleton-row',
+                      ['checkout-skeleton-row--full', t],
                     ].concat(m)
                   ),
                 }
               )
             )
           : (0, o.jsx)(
-              "div",
+              'div',
               u(
                 u({}, y),
                 {},
                 {
                   class: (0, r.S)([
-                    "checkout-skeleton-row--multiline",
-                    ["checkout-skeleton-row--full", t],
+                    'checkout-skeleton-row--multiline',
+                    ['checkout-skeleton-row--full', t],
                   ]),
                   children: Array.from({ length: l }).map(function (e, n) {
                     return (0,
-                    o.jsx)("div", { class: (0, r.S)(["checkout-skeleton-row", ["checkout-skeleton-row--full", t]].concat(m)) }, n);
+                    o.jsx)('div', { class: (0, r.S)(['checkout-skeleton-row', ['checkout-skeleton-row--full', t]].concat(m)) }, n);
                   }),
                 }
               )
@@ -676,11 +676,11 @@ export const modules = {
           t = e.children,
           i = f(e, l);
         return (0, o.jsx)(
-          "div",
+          'div',
           u(
             u({}, i),
             {},
-            { className: (0, r.S)(["checkout-skeleton", n]), children: t }
+            { className: (0, r.S)(['checkout-skeleton', n]), children: t }
           )
         );
       };
@@ -693,19 +693,19 @@ export const modules = {
       a = function () {
         return (0, i.jsxs)(o.O, {
           children: [
-            (0, i.jsx)(o.d, { variant: "heading", size: "medium" }),
-            (0, i.jsx)(o.d, { variant: "empty", size: "medium" }),
-            (0, i.jsx)(o.d, { size: "large" }),
-            (0, i.jsx)(o.d, { size: "large" }),
-            (0, i.jsx)(o.d, { size: "large", isFull: !0 }),
-            (0, i.jsx)(o.d, { size: "large", isFull: !0, lines: 3 }),
-            (0, i.jsx)(o.d, { size: "large" }),
-            (0, i.jsx)(o.d, { size: "large" }),
-            (0, i.jsx)(o.d, { size: "large" }),
-            (0, i.jsx)(o.d, { size: "large" }),
-            (0, i.jsx)(o.d, { size: "large" }),
-            (0, i.jsx)(o.d, { size: "large" }),
-            (0, i.jsx)(o.d, { size: "large" }),
+            (0, i.jsx)(o.d, { variant: 'heading', size: 'medium' }),
+            (0, i.jsx)(o.d, { variant: 'empty', size: 'medium' }),
+            (0, i.jsx)(o.d, { size: 'large' }),
+            (0, i.jsx)(o.d, { size: 'large' }),
+            (0, i.jsx)(o.d, { size: 'large', isFull: !0 }),
+            (0, i.jsx)(o.d, { size: 'large', isFull: !0, lines: 3 }),
+            (0, i.jsx)(o.d, { size: 'large' }),
+            (0, i.jsx)(o.d, { size: 'large' }),
+            (0, i.jsx)(o.d, { size: 'large' }),
+            (0, i.jsx)(o.d, { size: 'large' }),
+            (0, i.jsx)(o.d, { size: 'large' }),
+            (0, i.jsx)(o.d, { size: 'large' }),
+            (0, i.jsx)(o.d, { size: 'large' }),
           ],
         });
       },
@@ -726,7 +726,7 @@ export const modules = {
       w = {};
     (w.styleTagTransform = g()),
       (w.setAttributes = m()),
-      (w.insert = p().bind(null, "head")),
+      (w.insert = p().bind(null, 'head')),
       (w.domAPI = f()),
       (w.insertStyleElement = h()),
       u()(_.Z, w),
@@ -738,7 +738,7 @@ export const modules = {
       x = {};
     (x.styleTagTransform = g()),
       (x.setAttributes = m()),
-      (x.insert = p().bind(null, "head")),
+      (x.insert = p().bind(null, 'head')),
       (x.domAPI = f()),
       (x.insertStyleElement = h()),
       u()(S.Z, x),
@@ -749,34 +749,34 @@ export const modules = {
     function F(e) {
       return (
         (F =
-          "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+          'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
             ? function (e) {
                 return typeof e;
               }
             : function (e) {
                 return e &&
-                  "function" == typeof Symbol &&
+                  'function' == typeof Symbol &&
                   e.constructor === Symbol &&
                   e !== Symbol.prototype
-                  ? "symbol"
+                  ? 'symbol'
                   : typeof e;
               }),
         F(e)
       );
     }
     var I = [
-      "name",
-      "value",
-      "options",
-      "variant",
-      "floatingLabel",
-      "size",
-      "handleSelect",
-      "disabled",
-      "error",
-      "placeholder",
-      "icon",
-      "className",
+      'name',
+      'value',
+      'options',
+      'variant',
+      'floatingLabel',
+      'size',
+      'handleSelect',
+      'disabled',
+      'error',
+      'placeholder',
+      'icon',
+      'className',
     ];
     function D(e, n) {
       var t = Object.keys(e);
@@ -813,18 +813,18 @@ export const modules = {
       return (
         (n = (function (e) {
           var n = (function (e, n) {
-            if ("object" !== F(e) || null === e) return e;
+            if ('object' !== F(e) || null === e) return e;
             var t = e[Symbol.toPrimitive];
             if (void 0 !== t) {
-              var r = t.call(e, "string");
-              if ("object" !== F(r)) return r;
+              var r = t.call(e, 'string');
+              if ('object' !== F(r)) return r;
               throw new TypeError(
-                "@@toPrimitive must return a primitive value."
+                '@@toPrimitive must return a primitive value.'
               );
             }
             return String(e);
           })(e);
-          return "symbol" === F(n) ? n : String(n);
+          return 'symbol' === F(n) ? n : String(n);
         })(n)) in e
           ? Object.defineProperty(e, n, {
               value: t,
@@ -838,13 +838,13 @@ export const modules = {
     }
     function N(e, n) {
       if (e) {
-        if ("string" == typeof e) return C(e, n);
+        if ('string' == typeof e) return C(e, n);
         var t = Object.prototype.toString.call(e).slice(8, -1);
         return (
-          "Object" === t && e.constructor && (t = e.constructor.name),
-          "Map" === t || "Set" === t
+          'Object' === t && e.constructor && (t = e.constructor.name),
+          'Map' === t || 'Set' === t
             ? Array.from(e)
-            : "Arguments" === t ||
+            : 'Arguments' === t ||
               /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t)
             ? C(e, n)
             : void 0
@@ -865,10 +865,10 @@ export const modules = {
         c = void 0 === a ? null : a,
         u = e.options,
         s = e.variant,
-        f = void 0 === s ? "primary" : s,
+        f = void 0 === s ? 'primary' : s,
         d = e.floatingLabel,
         p = e.size,
-        y = void 0 === p ? "medium" : p,
+        y = void 0 === p ? 'medium' : p,
         m = e.handleSelect,
         v = void 0 === m ? function () {} : m,
         h = e.disabled,
@@ -912,8 +912,8 @@ export const modules = {
               var t =
                 null == e
                   ? null
-                  : ("undefined" != typeof Symbol && e[Symbol.iterator]) ||
-                    e["@@iterator"];
+                  : ('undefined' != typeof Symbol && e[Symbol.iterator]) ||
+                    e['@@iterator'];
               if (null != t) {
                 var r,
                   o,
@@ -953,7 +953,7 @@ export const modules = {
             N(t, r) ||
             (function () {
               throw new TypeError(
-                "Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+                'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
               );
             })()),
         F = x[0],
@@ -979,20 +979,20 @@ export const modules = {
                   r = e.disabled,
                   o = n === F.value;
                 return (0,
-                i.jsx)("option", { value: n, selected: o, disabled: r, className: (0, l.S)(["elsie-picker__option"]), children: t }, n);
+                i.jsx)('option', { value: n, selected: o, disabled: r, className: (0, l.S)(['elsie-picker__option']), children: t }, n);
               }),
         C = (0, A.useRef)(null),
         z = !(null !== (n = C.current) && void 0 !== n && n.selected);
-      return (0, i.jsxs)("div", {
+      return (0, i.jsxs)('div', {
         className: (0, l.S)([
           j,
-          "elsie-picker",
-          "elsie-picker__".concat(y),
-          ["elsie-picker__floating", !!d],
-          ["elsie-picker__selected", z],
-          ["elsie-picker__error", _],
-          ["elsie-picker__disabled", b],
-          ["elsie-picker__icon", O],
+          'elsie-picker',
+          'elsie-picker__'.concat(y),
+          ['elsie-picker__floating', !!d],
+          ['elsie-picker__selected', z],
+          ['elsie-picker__error', _],
+          ['elsie-picker__disabled', b],
+          ['elsie-picker__icon', O],
         ]),
         children: [
           O &&
@@ -1001,22 +1001,22 @@ export const modules = {
               L(
                 L({}, O.props),
                 {},
-                { className: "elsie-picker__icon--placeholder" }
+                { className: 'elsie-picker__icon--placeholder' }
               )
             ),
           (0, i.jsxs)(
-            "select",
+            'select',
             L(
               L(
                 {
                   className: (0, l.S)([
-                    "elsie-picker__select",
-                    "elsie-picker__select--".concat(f),
-                    "elsie-picker__select--".concat(y),
-                    ["elsie-picker__select--floating", !!d],
+                    'elsie-picker__select',
+                    'elsie-picker__select--'.concat(f),
+                    'elsie-picker__select--'.concat(y),
+                    ['elsie-picker__select--floating', !!d],
                   ]),
                   name: o,
-                  "aria-label": o,
+                  'aria-label': o,
                   disabled: b,
                   onChange: function (e) {
                     var n,
@@ -1025,9 +1025,9 @@ export const modules = {
                       o = t.value,
                       i = (function (e, n) {
                         var t =
-                          ("undefined" != typeof Symbol &&
+                          ('undefined' != typeof Symbol &&
                             e[Symbol.iterator]) ||
-                          e["@@iterator"];
+                          e['@@iterator'];
                         if (!t) {
                           if (Array.isArray(e) || (t = N(e))) {
                             t && (e = t);
@@ -1047,7 +1047,7 @@ export const modules = {
                             };
                           }
                           throw new TypeError(
-                            "Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+                            'Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
                           );
                         }
                         var i,
@@ -1092,12 +1092,12 @@ export const modules = {
               {
                 children: [
                   (0, i.jsx)(
-                    "option",
+                    'option',
                     {
-                      value: "",
+                      value: '',
                       ref: C,
                       className: (0, l.S)([
-                        "elsie-picker__option elsie-picker__placeholder",
+                        'elsie-picker__option elsie-picker__placeholder',
                       ]),
                       children: d || w,
                     },
@@ -1110,15 +1110,15 @@ export const modules = {
           ),
           (0, i.jsx)(P.J, {
             source: E.Z,
-            size: "24",
-            stroke: "2",
-            className: "elsie-picker__chevronDown",
+            size: '24',
+            stroke: '2',
+            className: 'elsie-picker__chevronDown',
           }),
           d &&
             z &&
-            (0, i.jsx)("label", {
+            (0, i.jsx)('label', {
               htmlFor: o,
-              className: (0, l.S)(["elsie-picker__floatingLabel", !!d]),
+              className: (0, l.S)(['elsie-picker__floatingLabel', !!d]),
               children: d,
             }),
         ],
@@ -1127,16 +1127,16 @@ export const modules = {
     function M(e) {
       return (
         (M =
-          "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+          'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
             ? function (e) {
                 return typeof e;
               }
             : function (e) {
                 return e &&
-                  "function" == typeof Symbol &&
+                  'function' == typeof Symbol &&
                   e.constructor === Symbol &&
                   e !== Symbol.prototype
-                  ? "symbol"
+                  ? 'symbol'
                   : typeof e;
               }),
         M(e)
@@ -1177,18 +1177,18 @@ export const modules = {
       return (
         (n = (function (e) {
           var n = (function (e, n) {
-            if ("object" !== M(e) || null === e) return e;
+            if ('object' !== M(e) || null === e) return e;
             var t = e[Symbol.toPrimitive];
             if (void 0 !== t) {
-              var r = t.call(e, "string");
-              if ("object" !== M(r)) return r;
+              var r = t.call(e, 'string');
+              if ('object' !== M(r)) return r;
               throw new TypeError(
-                "@@toPrimitive must return a primitive value."
+                '@@toPrimitive must return a primitive value.'
               );
             }
             return String(e);
           })(e);
-          return "symbol" === M(n) ? n : String(n);
+          return 'symbol' === M(n) ? n : String(n);
         })(n)) in e
           ? Object.defineProperty(e, n, {
               value: t,
@@ -1203,31 +1203,31 @@ export const modules = {
     var U = function (e) {
         return e.reduce(function (e, n) {
           switch (n.name) {
-            case "DATE_RANGE_MAX":
+            case 'DATE_RANGE_MAX':
               return R(R({}, e), {}, { max: n.value });
-            case "DATE_RANGE_MIN":
+            case 'DATE_RANGE_MIN':
               return R(R({}, e), {}, { min: n.value });
-            case "FILE_EXTENSIONS":
+            case 'FILE_EXTENSIONS':
               return R(R({}, e), {}, { accept: n.value });
-            case "INPUT_VALIDATION":
+            case 'INPUT_VALIDATION':
               return R(R({}, e), {}, { pattern: H(n.value) });
-            case "MAX_FILE_SIZE":
-            case "MAX_IMAGE_HEIGHT":
-            case "MAX_IMAGE_WIDTH":
+            case 'MAX_FILE_SIZE':
+            case 'MAX_IMAGE_HEIGHT':
+            case 'MAX_IMAGE_WIDTH':
               return e;
-            case "MAX_TEXT_LENGTH":
+            case 'MAX_TEXT_LENGTH':
               return R(R({}, e), {}, { maxLength: n.value });
-            case "MIN_TEXT_LENGTH":
+            case 'MIN_TEXT_LENGTH':
               return R(R({}, e), {}, { minLength: n.value });
             default:
-              throw new Error("Unknown rule: ".concat(n.name));
+              throw new Error('Unknown rule: '.concat(n.name));
           }
         }, {});
       },
       X = {
         alpha: /^[a-zA-Z]+$/,
         alphanumeric: /^[a-zA-Z0-9]+$/,
-        "alphanumeric-w-space": /^[a-zA-Z0-9 ]+$/,
+        'alphanumeric-w-space': /^[a-zA-Z0-9 ]+$/,
         email:
           /^([a-z0-9,!#$%&'*+/=?^_`{|}~-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z0-9,!#$%&'*+/=?^_`{|}~-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*@([a-z0-9-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z0-9-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*\.(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]){2,})$/i,
         numeric: /^[0-9]+$/,
@@ -1235,51 +1235,51 @@ export const modules = {
       },
       H = function (e) {
         switch (e) {
-          case "alpha":
+          case 'alpha':
             return X.alpha.source;
-          case "alphanumeric":
+          case 'alphanumeric':
             return X.alphanumeric.source;
-          case "alphanumeric-w-space":
-            return X["alphanumeric-w-space"].source;
-          case "url":
+          case 'alphanumeric-w-space':
+            return X['alphanumeric-w-space'].source;
+          case 'url':
             return X.url.source;
-          case "numeric":
+          case 'numeric':
             return X.numeric.source;
-          case "email":
+          case 'email':
             return X.email.source;
           default:
-            throw new Error("Unknown validation type: ".concat(e));
+            throw new Error('Unknown validation type: '.concat(e));
         }
       };
     const $ = {
-      firstname: "given-name",
-      lastname: "family-name",
-      company: "organization",
-      country: "country",
-      region: "address-level1",
-      city: "address-level2",
-      postcode: "postal-code",
-      telephone: "tel",
-      vat_id: "vat-number",
-      street: "address-line1",
-      email: "email",
-      middlename: "additional-name",
-      prefix: "honorific-prefix",
-      suffix: "honorific-suffix",
+      firstname: 'given-name',
+      lastname: 'family-name',
+      company: 'organization',
+      country: 'country',
+      region: 'address-level1',
+      city: 'address-level2',
+      postcode: 'postal-code',
+      telephone: 'tel',
+      vat_id: 'vat-number',
+      street: 'address-line1',
+      email: 'email',
+      middlename: 'additional-name',
+      prefix: 'honorific-prefix',
+      suffix: 'honorific-suffix',
     };
     function q(e) {
       return (
         (q =
-          "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+          'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
             ? function (e) {
                 return typeof e;
               }
             : function (e) {
                 return e &&
-                  "function" == typeof Symbol &&
+                  'function' == typeof Symbol &&
                   e.constructor === Symbol &&
                   e !== Symbol.prototype
-                  ? "symbol"
+                  ? 'symbol'
                   : typeof e;
               }),
         q(e)
@@ -1320,18 +1320,18 @@ export const modules = {
       return (
         (n = (function (e) {
           var n = (function (e, n) {
-            if ("object" !== q(e) || null === e) return e;
+            if ('object' !== q(e) || null === e) return e;
             var t = e[Symbol.toPrimitive];
             if (void 0 !== t) {
-              var r = t.call(e, "string");
-              if ("object" !== q(r)) return r;
+              var r = t.call(e, 'string');
+              if ('object' !== q(r)) return r;
               throw new TypeError(
-                "@@toPrimitive must return a primitive value."
+                '@@toPrimitive must return a primitive value.'
               );
             }
             return String(e);
           })(e);
-          return "symbol" === q(n) ? n : String(n);
+          return 'symbol' === q(n) ? n : String(n);
         })(n)) in e
           ? Object.defineProperty(e, n, {
               value: t,
@@ -1354,13 +1354,13 @@ export const modules = {
             t = e.id,
             r = e.className;
           return (0, i.jsx)(
-            "input",
+            'input',
             {
               id: t,
               className: r,
               name: e.code,
-              type: "hidden",
-              value: null !== (n = e.default_value) && void 0 !== n ? n : "",
+              type: 'hidden',
+              value: null !== (n = e.default_value) && void 0 !== n ? n : '',
             },
             e.code
           );
@@ -1387,22 +1387,22 @@ export const modules = {
                 O.I,
                 B(
                   {
-                    id: "".concat(t, "-").concat(d),
+                    id: ''.concat(t, '-').concat(d),
                     className: (0, l.S)([
-                      "checkout-address-form__multiline",
+                      'checkout-address-form__multiline',
                       r,
                     ]),
-                    name: "".concat(e.code, "-").concat(d),
-                    floatingLabel: ""
-                      .concat(e.label, " ")
-                      .concat(0 != d ? d : "", " ")
-                      .concat(e.is_required && 0 === d ? "*" : ""),
-                    autocomplete: 0 === d ? $[e.code] : "off",
-                    "aria-label": e.label,
-                    placeholder: ""
-                      .concat(e.label, " ")
-                      .concat(0 != d ? d : ""),
-                    type: "text",
+                    name: ''.concat(e.code, '-').concat(d),
+                    floatingLabel: ''
+                      .concat(e.label, ' ')
+                      .concat(0 != d ? d : '', ' ')
+                      .concat(e.is_required && 0 === d ? '*' : ''),
+                    autocomplete: 0 === d ? $[e.code] : 'off',
+                    'aria-label': e.label,
+                    placeholder: ''
+                      .concat(e.label, ' ')
+                      .concat(0 != d ? d : ''),
+                    type: 'text',
                     required: e.is_required && 0 === d,
                     value: (null == o ? void 0 : o[d]) || void 0,
                     onChange: a,
@@ -1410,7 +1410,7 @@ export const modules = {
                   },
                   s
                 ),
-                "".concat(e.code, "-").concat(d)
+                ''.concat(e.code, '-').concat(d)
               )
             );
           return (0, i.jsx)(i.Fragment, { children: f });
@@ -1433,12 +1433,12 @@ export const modules = {
                 id: r,
                 className: o,
                 name: e.code,
-                floatingLabel: ""
-                  .concat(e.label, " ")
-                  .concat(e.is_required ? "*" : ""),
+                floatingLabel: ''
+                  .concat(e.label, ' ')
+                  .concat(e.is_required ? '*' : ''),
                 required: e.is_required,
                 placeholder: e.label,
-                "aria-label": e.label,
+                'aria-label': e.label,
                 options:
                   null !==
                     (n =
@@ -1450,7 +1450,7 @@ export const modules = {
                     ? n
                     : [],
                 value: a,
-                autocomplete: $[e.code] || "off",
+                autocomplete: $[e.code] || 'off',
                 onBlur: c,
               },
               u
@@ -1472,13 +1472,13 @@ export const modules = {
                 id: n,
                 className: t,
                 name: e.code,
-                floatingLabel: ""
-                  .concat(e.label, " ")
-                  .concat(e.is_required ? "*" : ""),
+                floatingLabel: ''
+                  .concat(e.label, ' ')
+                  .concat(e.is_required ? '*' : ''),
                 placeholder: e.label,
-                "aria-label": e.label,
-                type: "text",
-                autocomplete: $[e.code] || "off",
+                'aria-label': e.label,
+                type: 'text',
+                autocomplete: $[e.code] || 'off',
                 required: e.is_required || !1,
                 value: null != r ? r : void 0,
                 onChange: o,
@@ -1497,7 +1497,7 @@ export const modules = {
         var n = e.error,
           t = e.className,
           r = Y[e.frontend_input];
-        return "HIDDEN" === e.frontend_input
+        return 'HIDDEN' === e.frontend_input
           ? r && r(e)
           : r &&
               (0, i.jsx)(
@@ -1517,22 +1517,22 @@ export const modules = {
     function ee(e) {
       return (
         (ee =
-          "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+          'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
             ? function (e) {
                 return typeof e;
               }
             : function (e) {
                 return e &&
-                  "function" == typeof Symbol &&
+                  'function' == typeof Symbol &&
                   e.constructor === Symbol &&
                   e !== Symbol.prototype
-                  ? "symbol"
+                  ? 'symbol'
                   : typeof e;
               }),
         ee(e)
       );
     }
-    var ne = ["className", "headingId", "formRef", "fields"];
+    var ne = ['className', 'headingId', 'formRef', 'fields'];
     function te(e, n) {
       var t = Object.keys(e);
       if (Object.getOwnPropertySymbols) {
@@ -1568,18 +1568,18 @@ export const modules = {
       return (
         (n = (function (e) {
           var n = (function (e, n) {
-            if ("object" !== ee(e) || null === e) return e;
+            if ('object' !== ee(e) || null === e) return e;
             var t = e[Symbol.toPrimitive];
             if (void 0 !== t) {
-              var r = t.call(e, "string");
-              if ("object" !== ee(r)) return r;
+              var r = t.call(e, 'string');
+              if ('object' !== ee(r)) return r;
               throw new TypeError(
-                "@@toPrimitive must return a primitive value."
+                '@@toPrimitive must return a primitive value.'
               );
             }
             return String(e);
           })(e);
-          return "symbol" === ee(n) ? n : String(n);
+          return 'symbol' === ee(n) ? n : String(n);
         })(n)) in e
           ? Object.defineProperty(e, n, {
               value: t,
@@ -1620,22 +1620,22 @@ export const modules = {
             }
             return o;
           })(e, ne);
-        return (0, i.jsxs)("div", {
-          className: (0, l.S)(["checkout-address-form", n]),
+        return (0, i.jsxs)('div', {
+          className: (0, l.S)(['checkout-address-form', n]),
           children: [
             (0, i.jsx)(K.X, {
               level: 2,
               children: (0, i.jsx)(Q.xv, { id: t }),
-              className: "checkout-address-form__title",
+              className: 'checkout-address-form__title',
             }),
             (0, i.jsx)(
-              "form",
+              'form',
               re(
                 re({}, a),
                 {},
                 {
                   ref: r,
-                  className: (0, l.S)(["checkout-address-form__form", n]),
+                  className: (0, l.S)(['checkout-address-form__form', n]),
                   noValidate: !0,
                   children: o
                     .sort(function (e, n) {
@@ -1656,28 +1656,28 @@ export const modules = {
     function fe(e) {
       return (
         (fe =
-          "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+          'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
             ? function (e) {
                 return typeof e;
               }
             : function (e) {
                 return e &&
-                  "function" == typeof Symbol &&
+                  'function' == typeof Symbol &&
                   e.constructor === Symbol &&
                   e !== Symbol.prototype
-                  ? "symbol"
+                  ? 'symbol'
                   : typeof e;
               }),
         fe(e)
       );
     }
     var de = [
-      "name",
-      "addressType",
-      "headingId",
-      "fetchFieldsHandler",
-      "saveAddressHandler",
-      "children",
+      'name',
+      'addressType',
+      'headingId',
+      'fetchFieldsHandler',
+      'saveAddressHandler',
+      'children',
     ];
     function pe(e, n) {
       var t = Object.keys(e);
@@ -1714,18 +1714,18 @@ export const modules = {
       return (
         (n = (function (e) {
           var n = (function (e, n) {
-            if ("object" !== fe(e) || null === e) return e;
+            if ('object' !== fe(e) || null === e) return e;
             var t = e[Symbol.toPrimitive];
             if (void 0 !== t) {
-              var r = t.call(e, "string");
-              if ("object" !== fe(r)) return r;
+              var r = t.call(e, 'string');
+              if ('object' !== fe(r)) return r;
               throw new TypeError(
-                "@@toPrimitive must return a primitive value."
+                '@@toPrimitive must return a primitive value.'
               );
             }
             return String(e);
           })(e);
-          return "symbol" === fe(n) ? n : String(n);
+          return 'symbol' === fe(n) ? n : String(n);
         })(n)) in e
           ? Object.defineProperty(e, n, {
               value: t,
@@ -1746,8 +1746,8 @@ export const modules = {
           var t =
             null == e
               ? null
-              : ("undefined" != typeof Symbol && e[Symbol.iterator]) ||
-                e["@@iterator"];
+              : ('undefined' != typeof Symbol && e[Symbol.iterator]) ||
+                e['@@iterator'];
           if (null != t) {
             var r,
               o,
@@ -1786,13 +1786,13 @@ export const modules = {
         })(e, n) ||
         (function (e, n) {
           if (e) {
-            if ("string" == typeof e) return he(e, n);
+            if ('string' == typeof e) return he(e, n);
             var t = Object.prototype.toString.call(e).slice(8, -1);
             return (
-              "Object" === t && e.constructor && (t = e.constructor.name),
-              "Map" === t || "Set" === t
+              'Object' === t && e.constructor && (t = e.constructor.name),
+              'Map' === t || 'Set' === t
                 ? Array.from(e)
-                : "Arguments" === t ||
+                : 'Arguments' === t ||
                   /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t)
                 ? he(e, n)
                 : void 0
@@ -1801,7 +1801,7 @@ export const modules = {
         })(e, n) ||
         (function () {
           throw new TypeError(
-            "Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+            'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
           );
         })()
       );
@@ -1882,7 +1882,7 @@ export const modules = {
           return (
             (0, k.useEffect)(function () {
               se.events.on(
-                "checkout/initialized",
+                'checkout/initialized',
                 function (e) {
                   void 0 !== e && (i(e), t(!0));
                 },
@@ -1955,7 +1955,7 @@ export const modules = {
               var n = r.find(function (n) {
                 return n.code === e;
               });
-              return !!n && "MULTILINE" === n.frontend_input;
+              return !!n && 'MULTILINE' === n.frontend_input;
             },
             [r]
           );
@@ -1989,7 +1989,7 @@ export const modules = {
               e.street &&
                 e.street.length > 0 &&
                 e.street.forEach(function (e, t) {
-                  n["street".concat(ae.E).concat(t)] = e;
+                  n['street'.concat(ae.E).concat(t)] = e;
                 }),
                 (e.custom_attributes || [])
                   .filter(function (e) {
@@ -1998,7 +1998,7 @@ export const modules = {
                   .forEach(function (e) {
                     l(e.code)
                       ? e.value.split(ae.M).forEach(function (t, r) {
-                          n["".concat(e.code).concat(ae.E).concat(r)] = t;
+                          n[''.concat(e.code).concat(ae.E).concat(r)] = t;
                         })
                       : (n[e.code] = e.value);
                   }),
@@ -2022,17 +2022,17 @@ export const modules = {
                 r = b[e.code],
                 o = e.frontend_input,
                 i = e.options,
-                a = w[e.code] || "",
+                a = w[e.code] || '',
                 l = {};
               return (
-                "country_id" === e.code && (l = { handleSelect: _ }),
-                "region" === e.code &&
+                'country_id' === e.code && (l = { handleSelect: _ }),
+                'region' === e.code &&
                   ((t = m.countriesWithRequiredRegion.includes(
                     null == b ? void 0 : b.country_id
                   )),
                   (i = x),
-                  t || m.displayStateIfOptional || (o = "UNDEFINED"),
-                  "SELECT" == (o = i.length > 0 ? "SELECT" : "TEXT") &&
+                  t || m.displayStateIfOptional || (o = 'UNDEFINED'),
+                  'SELECT' == (o = i.length > 0 ? 'SELECT' : 'TEXT') &&
                     (l = { handleSelect: _ }),
                   (r =
                     i.length > 0
@@ -2041,22 +2041,22 @@ export const modules = {
                             return e.value === r;
                           })) || void 0 === n
                           ? void 0
-                          : n.value) || ""
+                          : n.value) || ''
                       : r)),
-                "postcode" === e.code &&
+                'postcode' === e.code &&
                   (t = !m.countriesWithOptionalZipCode.includes(
                     null == b ? void 0 : b.country_id
                   )),
-                "MULTILINE" === o &&
+                'MULTILINE' === o &&
                   ((r = (0, ue.S)(e.code, b)),
-                  (a = (0, ue.S)(e.code, w).join("\n"))),
+                  (a = (0, ue.S)(e.code, w).join('\n'))),
                 ye(
                   ye(ye({}, e), l),
                   {},
                   {
                     is_required: t,
                     frontend_input: o,
-                    className: "checkout-address-form__".concat(e.code),
+                    className: 'checkout-address-form__'.concat(e.code),
                     value: r,
                     options: i,
                     error: a,
@@ -2067,7 +2067,7 @@ export const modules = {
               );
             });
       return (0, i.jsxs)(
-        "div",
+        'div',
         ye(
           ye({}, u),
           {},
@@ -2089,8 +2089,8 @@ export const modules = {
   },
   212: (e, n, t) => {
     t.d(n, { E: () => r, M: () => o });
-    var r = "-",
-      o = "\n";
+    var r = '-',
+      o = '\n';
   },
   300: (e, n, t) => {
     t.d(n, { q: () => g });
@@ -2099,16 +2099,16 @@ export const modules = {
     function i(e) {
       return (
         (i =
-          "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+          'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
             ? function (e) {
                 return typeof e;
               }
             : function (e) {
                 return e &&
-                  "function" == typeof Symbol &&
+                  'function' == typeof Symbol &&
                   e.constructor === Symbol &&
                   e !== Symbol.prototype
-                  ? "symbol"
+                  ? 'symbol'
                   : typeof e;
               }),
         i(e)
@@ -2149,18 +2149,18 @@ export const modules = {
       return (
         (n = (function (e) {
           var n = (function (e, n) {
-            if ("object" !== i(e) || null === e) return e;
+            if ('object' !== i(e) || null === e) return e;
             var t = e[Symbol.toPrimitive];
             if (void 0 !== t) {
-              var r = t.call(e, "string");
-              if ("object" !== i(r)) return r;
+              var r = t.call(e, 'string');
+              if ('object' !== i(r)) return r;
               throw new TypeError(
-                "@@toPrimitive must return a primitive value."
+                '@@toPrimitive must return a primitive value.'
               );
             }
             return String(e);
           })(e);
-          return "symbol" === i(n) ? n : String(n);
+          return 'symbol' === i(n) ? n : String(n);
         })(n)) in e
           ? Object.defineProperty(e, n, {
               value: t,
@@ -2178,24 +2178,24 @@ export const modules = {
       return r;
     }
     var s = {
-        badInput: "name",
-        patternMismatch: "name",
-        rangeOverflow: "max",
-        rangeUnderflow: "min",
-        tooLong: "maxlength",
-        tooShort: "minlength",
-        typeMismatch: "name",
-        valueMissing: "name",
+        badInput: 'name',
+        patternMismatch: 'name',
+        rangeOverflow: 'max',
+        rangeUnderflow: 'min',
+        tooLong: 'maxlength',
+        tooShort: 'minlength',
+        typeMismatch: 'name',
+        valueMissing: 'name',
       },
       f = [
-        "badInput",
-        "patternMismatch",
-        "rangeOverflow",
-        "rangeUnderflow",
-        "tooLong",
-        "tooShort",
-        "typeMismatch",
-        "valueMissing",
+        'badInput',
+        'patternMismatch',
+        'rangeOverflow',
+        'rangeUnderflow',
+        'tooLong',
+        'tooShort',
+        'typeMismatch',
+        'valueMissing',
       ],
       d = function (e, n) {
         var t,
@@ -2210,8 +2210,8 @@ export const modules = {
                 var t =
                   null == e
                     ? null
-                    : ("undefined" != typeof Symbol && e[Symbol.iterator]) ||
-                      e["@@iterator"];
+                    : ('undefined' != typeof Symbol && e[Symbol.iterator]) ||
+                      e['@@iterator'];
                 if (null != t) {
                   var r,
                     o,
@@ -2250,13 +2250,13 @@ export const modules = {
               })(t, i) ||
               (function (e, n) {
                 if (e) {
-                  if ("string" == typeof e) return u(e, n);
+                  if ('string' == typeof e) return u(e, n);
                   var t = Object.prototype.toString.call(e).slice(8, -1);
                   return (
-                    "Object" === t && e.constructor && (t = e.constructor.name),
-                    "Map" === t || "Set" === t
+                    'Object' === t && e.constructor && (t = e.constructor.name),
+                    'Map' === t || 'Set' === t
                       ? Array.from(e)
-                      : "Arguments" === t ||
+                      : 'Arguments' === t ||
                         /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t)
                       ? u(e, n)
                       : void 0
@@ -2265,7 +2265,7 @@ export const modules = {
               })(t, i) ||
               (function () {
                 throw new TypeError(
-                  "Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+                  'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
                 );
               })()),
           d = a[0],
@@ -2276,13 +2276,13 @@ export const modules = {
             function (e) {
               var t = e.target,
                 r = t.validity,
-                o = r.valid ? "" : t.validationMessage;
+                o = r.valid ? '' : t.validationMessage;
               f.forEach(function (e) {
                 if (r[e]) {
                   var i = n[e];
                   if (i) {
                     var a = s[e];
-                    o = i.replace("{field}", t.getAttribute(a) || "");
+                    o = i.replace('{field}', t.getAttribute(a) || '');
                   }
                 }
               }),
@@ -2307,16 +2307,16 @@ export const modules = {
     function y(e) {
       return (
         (y =
-          "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+          'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
             ? function (e) {
                 return typeof e;
               }
             : function (e) {
                 return e &&
-                  "function" == typeof Symbol &&
+                  'function' == typeof Symbol &&
                   e.constructor === Symbol &&
                   e !== Symbol.prototype
-                  ? "symbol"
+                  ? 'symbol'
                   : typeof e;
               }),
         y(e)
@@ -2357,18 +2357,18 @@ export const modules = {
       return (
         (n = (function (e) {
           var n = (function (e, n) {
-            if ("object" !== y(e) || null === e) return e;
+            if ('object' !== y(e) || null === e) return e;
             var t = e[Symbol.toPrimitive];
             if (void 0 !== t) {
-              var r = t.call(e, "string");
-              if ("object" !== y(r)) return r;
+              var r = t.call(e, 'string');
+              if ('object' !== y(r)) return r;
               throw new TypeError(
-                "@@toPrimitive must return a primitive value."
+                '@@toPrimitive must return a primitive value.'
               );
             }
             return String(e);
           })(e);
-          return "symbol" === y(n) ? n : String(n);
+          return 'symbol' === y(n) ? n : String(n);
         })(n)) in e
           ? Object.defineProperty(e, n, {
               value: t,
@@ -2391,13 +2391,13 @@ export const modules = {
         o = e.formRef,
         i = e.saveAddressHandler,
         a = (0, p.XK)({
-          badInput: "Checkout.ShippingForm.Validity.badInput",
-          patternMismatch: "Checkout.ShippingForm.Validity.patternMismatch",
-          rangeUnderflow: "Checkout.ShippingForm.Validity.rangeUnderflow",
-          tooLong: "Checkout.ShippingForm.Validity.tooLong",
-          tooShort: "Checkout.ShippingForm.Validity.tooShort",
-          typeMismatch: "Checkout.ShippingForm.Validity.typeMismatch",
-          valueMissing: "Checkout.ShippingForm.Validity.valueMissing",
+          badInput: 'Checkout.ShippingForm.Validity.badInput',
+          patternMismatch: 'Checkout.ShippingForm.Validity.patternMismatch',
+          rangeUnderflow: 'Checkout.ShippingForm.Validity.rangeUnderflow',
+          tooLong: 'Checkout.ShippingForm.Validity.tooLong',
+          tooShort: 'Checkout.ShippingForm.Validity.tooShort',
+          typeMismatch: 'Checkout.ShippingForm.Validity.typeMismatch',
+          valueMissing: 'Checkout.ShippingForm.Validity.valueMissing',
         }),
         l = (0, r.useRef)(!1),
         c = !0 === l.current,
@@ -2411,8 +2411,8 @@ export const modules = {
               var t =
                 null == e
                   ? null
-                  : ("undefined" != typeof Symbol && e[Symbol.iterator]) ||
-                    e["@@iterator"];
+                  : ('undefined' != typeof Symbol && e[Symbol.iterator]) ||
+                    e['@@iterator'];
               if (null != t) {
                 var r,
                   o,
@@ -2451,13 +2451,13 @@ export const modules = {
             })(n, t) ||
             (function (e, n) {
               if (e) {
-                if ("string" == typeof e) return b(e, n);
+                if ('string' == typeof e) return b(e, n);
                 var t = Object.prototype.toString.call(e).slice(8, -1);
                 return (
-                  "Object" === t && e.constructor && (t = e.constructor.name),
-                  "Map" === t || "Set" === t
+                  'Object' === t && e.constructor && (t = e.constructor.name),
+                  'Map' === t || 'Set' === t
                     ? Array.from(e)
-                    : "Arguments" === t ||
+                    : 'Arguments' === t ||
                       /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t)
                     ? b(e, n)
                     : void 0
@@ -2466,7 +2466,7 @@ export const modules = {
             })(n, t) ||
             (function () {
               throw new TypeError(
-                "Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+                'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
               );
             })()),
         s = u[0],
@@ -2479,7 +2479,7 @@ export const modules = {
           function (e) {
             i(e)
               .catch(function (e) {
-                console.error("Saving shipping form failed:", e);
+                console.error('Saving shipping form failed:', e);
               })
               .finally(function () {
                 l.current = !1;
@@ -2519,7 +2519,7 @@ export const modules = {
           onSelection: function (e) {
             var n = e.target,
               t = n.name;
-            "country_id" === t && O("region", ""), O(t, n.value), g(e);
+            'country_id' === t && O('region', ''), O(t, n.value), g(e);
           },
           onBlur: function (e) {
             g(e);
@@ -2550,8 +2550,8 @@ export const modules = {
               var t =
                 null == e
                   ? null
-                  : ("undefined" != typeof Symbol && e[Symbol.iterator]) ||
-                    e["@@iterator"];
+                  : ('undefined' != typeof Symbol && e[Symbol.iterator]) ||
+                    e['@@iterator'];
               if (null != t) {
                 var r,
                   o,
@@ -2590,13 +2590,13 @@ export const modules = {
             })(e, n) ||
             (function (e, n) {
               if (e) {
-                if ("string" == typeof e) return i(e, n);
+                if ('string' == typeof e) return i(e, n);
                 var t = Object.prototype.toString.call(e).slice(8, -1);
                 return (
-                  "Object" === t && e.constructor && (t = e.constructor.name),
-                  "Map" === t || "Set" === t
+                  'Object' === t && e.constructor && (t = e.constructor.name),
+                  'Map' === t || 'Set' === t
                     ? Array.from(e)
-                    : "Arguments" === t ||
+                    : 'Arguments' === t ||
                       /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t)
                     ? i(e, n)
                     : void 0
@@ -2605,7 +2605,7 @@ export const modules = {
             })(e, n) ||
             (function () {
               throw new TypeError(
-                "Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+                'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
               );
             })()),
         a = t[0],
@@ -2613,7 +2613,7 @@ export const modules = {
       return (
         (0, o.useEffect)(function () {
           var e = r.events.on(
-            "checkout/data",
+            'checkout/data',
             function (e) {
               e && l(e);
             },
@@ -2637,8 +2637,8 @@ export const modules = {
           })
           .sort(function (n, t) {
             return (
-              parseInt(n.replace("".concat(e).concat(r.E), ""), 10) -
-              parseInt(t.replace("".concat(e).concat(r.E), ""), 10)
+              parseInt(n.replace(''.concat(e).concat(r.E), ''), 10) -
+              parseInt(t.replace(''.concat(e).concat(r.E), ''), 10)
             );
           })
           .map(function (e) {
@@ -2654,8 +2654,8 @@ export const modules = {
       a = t.n(i)()(o());
     a.push([
       e.id,
-      "/* https://cssguidelin.es/#bem-like-naming */\n\n/* TODO remove this style once https://jira.corp.adobe.com/browse/USF-350 is done */\n.elsie-input__label--floating {\n  color: var(--color-neutral-700);\n}\n\n.checkout-address-form .elsie-picker--medium .elsie-picker__label--floating {\n  font: var(--type-body-1-default-font);\n  letter-spacing: var(--type-body-1-default-letter-spacing);\n  color: var(--color-neutral-700);\n}\n\nbutton.elsie-picker__selected--floating:focus .elsie-picker__label--floating {\n  color: var(--color-neutral-800) !important;\n}\n\n.checkout-address-form .elsie-picker__options-container {\n  z-index: 2;\n}\n\n.elsie-input__label--floating, .elsie-picker__label--floating {\n  pointer-events: none;\n}\n\n.checkout-shipping-form .elsie-input--medium {\n  font: var(--type-body-2-default-font);\n  letter-spacing: var(--type-body-2-default-letter-spacing);\n}\n\n.checkout-shipping-form .elsie-input--large {\n  font: var(--type-body-1-default-font);\n  letter-spacing: var(--type-body-1-default-letter-spacing);\n}\n\n.elsie-input--medium ~ label {\n  font: var(--type-body-2-default-font);\n  letter-spacing: var(--type-body-2-default-letter-spacing);\n}\n\n.elsie-input--large ~ label {\n    font: var(--type-body-1-default-font);\n    letter-spacing: var(--type-body-1-default-letter-spacing);\n}\n\n/* ⬆️ fixes to be done on SDK*/\n\n/*********** Skeleton ***********/\n.checkout-shipping-address__skeleton {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: var(--spacing-medium);\n  flex-wrap: wrap;\n  min-width: 384px;\n}\n\n/*********** Container ***********/\n.checkout-address-form {}\n\n.checkout-address-form__title {\n  color: var(--color-neutral-800);\n  font: var(--type-headline-2-default-font);\n  letter-spacing: var(--type-headline-2-default-letter-spacing);\n  margin: 0 0 var(--spacing-medium) 0;\n  width: 100%;\n}\n\n.checkout-address-form__form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: var(--spacing-medium);\n}\n\n/*********** Fields ***********/\n.checkout-address-form__company {\n  /* fill both columns */\n  grid-column: 1 / -1;\n}\n\n.checkout-address-form__street {\n  /* fill both columns */\n  grid-column: 1 / -1;\n}\n\n.checkout-address-form__street .elsie-input-container {\n  margin-bottom: var(--spacing-medium);\n}\n\n.checkout-address-form__street .elsie-input-container:last-child {\n  margin-bottom: 0;\n}\n\n.checkout-address-form__street .elsie-field__content {\n  display: grid;\n  grid-auto-flow: row;\n  gap: var(--spacing-xxsmall);\n}\n\n.checkout-address-form__country_id .elsie-picker__options-container,\n.checkout-address-form__region .elsie-picker__options-container {\n  z-index: 100;\n}\n\n.checkout-address-form__save {\n  /* fill both columns */\n  grid-column: 1 / -1;\n  /* center the button */\n  justify-self: center;\n}\n\n/*********** Media queries ***********/\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (min-width:320px) and (max-width: 768px) {\n  .checkout-address-form__form {\n    grid-template-columns: 1fr;\n  }\n}\n\n/* Small devices (portrait tablets and large phones, 600px and up) */\n/* @media only screen and (min-width: 600px) { } */\n\n/* Medium devices (landscape tablets, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large devices (laptops/desktops, 992px and up) */\n/* @media only screen and (min-width: 992px) { } */\n\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n/* @media only screen and (min-width: 1200px) { } */\n",
-      "",
+      '/* https://cssguidelin.es/#bem-like-naming */\n\n/* TODO remove this style once https://jira.corp.adobe.com/browse/USF-350 is done */\n.elsie-input__label--floating {\n  color: var(--color-neutral-700);\n}\n\n.checkout-address-form .elsie-picker--medium .elsie-picker__label--floating {\n  font: var(--type-body-1-default-font);\n  letter-spacing: var(--type-body-1-default-letter-spacing);\n  color: var(--color-neutral-700);\n}\n\nbutton.elsie-picker__selected--floating:focus .elsie-picker__label--floating {\n  color: var(--color-neutral-800) !important;\n}\n\n.checkout-address-form .elsie-picker__options-container {\n  z-index: 2;\n}\n\n.elsie-input__label--floating, .elsie-picker__label--floating {\n  pointer-events: none;\n}\n\n.checkout-shipping-form .elsie-input--medium {\n  font: var(--type-body-2-default-font);\n  letter-spacing: var(--type-body-2-default-letter-spacing);\n}\n\n.checkout-shipping-form .elsie-input--large {\n  font: var(--type-body-1-default-font);\n  letter-spacing: var(--type-body-1-default-letter-spacing);\n}\n\n.elsie-input--medium ~ label {\n  font: var(--type-body-2-default-font);\n  letter-spacing: var(--type-body-2-default-letter-spacing);\n}\n\n.elsie-input--large ~ label {\n    font: var(--type-body-1-default-font);\n    letter-spacing: var(--type-body-1-default-letter-spacing);\n}\n\n/* ⬆️ fixes to be done on SDK*/\n\n/*********** Skeleton ***********/\n.checkout-shipping-address__skeleton {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: var(--spacing-medium);\n  flex-wrap: wrap;\n  min-width: 384px;\n}\n\n/*********** Container ***********/\n.checkout-address-form {}\n\n.checkout-address-form__title {\n  color: var(--color-neutral-800);\n  font: var(--type-headline-2-default-font);\n  letter-spacing: var(--type-headline-2-default-letter-spacing);\n  margin: 0 0 var(--spacing-medium) 0;\n  width: 100%;\n}\n\n.checkout-address-form__form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: var(--spacing-medium);\n}\n\n/*********** Fields ***********/\n.checkout-address-form__company {\n  /* fill both columns */\n  grid-column: 1 / -1;\n}\n\n.checkout-address-form__street {\n  /* fill both columns */\n  grid-column: 1 / -1;\n}\n\n.checkout-address-form__street .elsie-input-container {\n  margin-bottom: var(--spacing-medium);\n}\n\n.checkout-address-form__street .elsie-input-container:last-child {\n  margin-bottom: 0;\n}\n\n.checkout-address-form__street .elsie-field__content {\n  display: grid;\n  grid-auto-flow: row;\n  gap: var(--spacing-xxsmall);\n}\n\n.checkout-address-form__country_id .elsie-picker__options-container,\n.checkout-address-form__region .elsie-picker__options-container {\n  z-index: 100;\n}\n\n.checkout-address-form__save {\n  /* fill both columns */\n  grid-column: 1 / -1;\n  /* center the button */\n  justify-self: center;\n}\n\n/*********** Media queries ***********/\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (min-width:320px) and (max-width: 768px) {\n  .checkout-address-form__form {\n    grid-template-columns: 1fr;\n  }\n}\n\n/* Small devices (portrait tablets and large phones, 600px and up) */\n/* @media only screen and (min-width: 600px) { } */\n\n/* Medium devices (landscape tablets, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large devices (laptops/desktops, 992px and up) */\n/* @media only screen and (min-width: 992px) { } */\n\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n/* @media only screen and (min-width: 1200px) { } */\n',
+      '',
     ]);
     const l = a;
   },
@@ -2667,8 +2667,8 @@ export const modules = {
       a = t.n(i)()(o());
     a.push([
       e.id,
-      "/* https://cssguidelin.es/#bem-like-naming */\n\n/* .elsie-heading { } */\n\n/* Extra small devices (phones, 600px and down) */\n/* @media only screen and (max-width: 600px) { } */\n\n/* Small devices (portrait tablets and large phones, 600px and up) */\n/* @media only screen and (min-width: 600px) { } */\n\n/* Medium devices (landscape tablets, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large devices (laptops/desktops, 992px and up) */\n/* @media only screen and (min-width: 992px) { } */\n\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n/* @media only screen and (min-width: 1200px) { } */\n",
-      "",
+      '/* https://cssguidelin.es/#bem-like-naming */\n\n/* .elsie-heading { } */\n\n/* Extra small devices (phones, 600px and down) */\n/* @media only screen and (max-width: 600px) { } */\n\n/* Small devices (portrait tablets and large phones, 600px and up) */\n/* @media only screen and (min-width: 600px) { } */\n\n/* Medium devices (landscape tablets, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large devices (laptops/desktops, 992px and up) */\n/* @media only screen and (min-width: 992px) { } */\n\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n/* @media only screen and (min-width: 1200px) { } */\n',
+      '',
     ]);
     const l = a;
   },
@@ -2680,8 +2680,8 @@ export const modules = {
       a = t.n(i)()(o());
     a.push([
       e.id,
-      "/* https://cssguidelin.es/#bem-like-naming */\n.elsie-picker {\n    position: relative;\n    display: flex;\n    flex-direction: row;\n    background-color: var(--color-neutral-50);\n    justify-content: space-between;\n    align-items: center;\n    cursor: pointer;\n    gap: var(--spacing-small);\n}\n\n.elsie-picker select {\n    background-color: transparent;\n    border: var(--shape-border-width-1) solid var(--color-neutral-600);\n    border-radius: var(--shape-border-radius-1);\n    color: var(--color-neutral-700);\n    appearance: none;\n    box-shadow: none;\n    flex: 1;\n    cursor: pointer;\n}\n\n.elsie-picker__select:focus {\n    outline: none;\n    border: var(--shape-border-width-1) solid var(--color-neutral-800);\n}\n\n/* Resulting height of 40px for medium size, 48px for large size */\n.elsie-picker__medium .elsie-picker__select--primary,\n.elsie-picker__medium .elsie-picker__select--secondary {\n    padding: 9px var(--spacing-small);\n}\n\n.elsie-picker__large .elsie-picker__select--primary,\n.elsie-picker__large .elsie-picker__select--secondary {\n    padding: 11px var(--spacing-small);\n}\n\n.elsie-picker__select--medium {\n    font: var(--type-body-2-default-font);\n    letter-spacing: var(--type-body-2-default-letter-spacing);\n}\n\n.elsie-picker__select--large {\n    font: var(--type-body-1-default-font);\n    letter-spacing: var(--type-body-1-default-letter-spacing);\n}\n\n/* Chevron */\n.elsie-picker__chevronDown {\n    z-index: 1;\n    position: absolute;\n    color: var(--color-neutral-700);\n    right: var(--spacing-small);\n    display: block;\n    pointer-events: none;\n    padding: 0;\n    height: var(--icon-size);\n    width: var(--icon-size);\n}\n\n/* Floating label */\n.elsie-picker__floatingLabel {\n    position: absolute;\n    pointer-events: none;\n    left: var(--spacing-small);\n    color: var(--color-neutral-700);\n    touch-action: manipulation;\n    transform: translateY(-50%);\n    transition: top 20ms ease-in, font-size 50ms ease-in;\n}\n\n.elsie-picker__select--floating:focus ~ label {\n    transition: all 40ms;\n}\n\n/* Option selected */\n.elsie-picker__selected select {\n    color: var(--color-neutral-800);\n}\n\n/* Label position when option selected */\n.elsie-picker__selected label {\n    top: 30%;\n}\n\n/* Label font when option selected */\n.elsie-picker__medium.elsie-picker__floating.elsie-picker__selected label {\n    font: var(--type-details-caption-1-font);\n    letter-spacing: var(--type-details-caption-1-letter-spacing);\n}\n\n.elsie-picker__large.elsie-picker__floating.elsie-picker__selected label {\n    font: var(--type-details-caption-2-font);\n    letter-spacing: var(--type-details-caption-2-letter-spacing);\n}\n\n/* Resulting height of 56px no matter medium or large size */\n.elsie-picker__medium.elsie-picker__floating select {\n    padding: 17px var(--spacing-small);\n}\n\n.elsie-picker__large.elsie-picker__floating select {\n    padding: 15px var(--spacing-small);\n}\n\n/* Resulting height of 56px when option selected */\n.elsie-picker__large.elsie-picker__floating.elsie-picker__selected select {\n    padding: 25px var(--spacing-small) 5px var(--spacing-small);\n}\n\n.elsie-picker__medium.elsie-picker__floating.elsie-picker__selected select {\n    padding: 27px var(--spacing-small) 7px var(--spacing-small);\n}\n\n/* Remove IE arrow */\nselect::-ms-expand {\n    display: none;\n}\n\n/* Disabled */\n.elsie-picker__disabled select.elsie-picker__select {\n    background-color: var(--color-neutral-300);\n    border: var(--shape-border-width-1) solid var(--color-neutral-500);\n    color: var(--color-neutral-500);\n    cursor: not-allowed;\n}\n\n.elsie-picker__disabled svg.elsie-picker__chevronDown {\n    color: var(--color-neutral-500);\n}\n\n/* Error */\n.elsie-picker__error select {\n    border: var(--shape-border-width-2) solid var(--color-alert-500);\n    color: var(--color-alert-500);\n}\n\n.elsie-picker__error .elsie-picker__select:focus {\n    border: var(--shape-border-width-2) solid var(--color-alert-500);\n}\n\n.elsie-picker__error .elsie-picker__chevronDown {\n    color: var(--color-alert-500);\n}\n\n.elsie-picker__error label {\n    color: var(--color-alert-500);\n}\n\n/* Secondary variant */\n.elsie-picker select.elsie-picker__select--secondary {\n    border-top: var(--shape-border-width-1) solid transparent;\n    border-left: 0 none;\n    border-right: 0 none;\n}\n\n.elsie-picker__disabled select.elsie-picker__select--secondary {\n    border-bottom: var(--shape-border-width-1) solid var(--color-neutral-500);\n}\n.elsie-picker__error select.elsie-picker__select--secondary {\n    border-top: var(--shape-border-width-1) solid transparent;\n    border-left: 0 none;\n    border-right: 0 none;\n}\n\n/* Icon */\n.elsie-picker__icon--placeholder {\n    z-index: 1;\n    position: absolute;\n    color: var(--color-neutral-700);\n    left: var(--spacing-small);\n    display: block;\n    pointer-events: none;\n    padding: 0;\n    height: var(--icon-size);\n    width: var(--icon-size);\n}\n\n.elsie-picker__icon select.elsie-picker__select {\n    padding-left: var(--spacing-xxbig);\n}\n\n.elsie-picker__floating.elsie-picker__selected.elsie-picker__icon select {\n    padding-left: var(--spacing-xxbig);\n}\n\n.elsie-picker__floating.elsie-picker__selected.elsie-picker__icon label {\n    left: var(--spacing-xxbig);\n}\n\n/* Medium (portrait tablets and large phones, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large (landscape tablets, 1024px and up) */\n/* @media only screen and (min-width: 1024px) { } */\n\n/* XLarge (laptops/desktops, 1366px and up) */\n/* @media only screen and (min-width: 1366px) { } */\n\n/* XXlarge (large laptops and desktops, 1920px and up) */\n/* @media only screen and (min-width: 1920px) { } */\n",
-      "",
+      '/* https://cssguidelin.es/#bem-like-naming */\n.elsie-picker {\n    position: relative;\n    display: flex;\n    flex-direction: row;\n    background-color: var(--color-neutral-50);\n    justify-content: space-between;\n    align-items: center;\n    cursor: pointer;\n    gap: var(--spacing-small);\n}\n\n.elsie-picker select {\n    background-color: transparent;\n    border: var(--shape-border-width-1) solid var(--color-neutral-600);\n    border-radius: var(--shape-border-radius-1);\n    color: var(--color-neutral-700);\n    appearance: none;\n    box-shadow: none;\n    flex: 1;\n    cursor: pointer;\n}\n\n.elsie-picker__select:focus {\n    outline: none;\n    border: var(--shape-border-width-1) solid var(--color-neutral-800);\n}\n\n/* Resulting height of 40px for medium size, 48px for large size */\n.elsie-picker__medium .elsie-picker__select--primary,\n.elsie-picker__medium .elsie-picker__select--secondary {\n    padding: 9px var(--spacing-small);\n}\n\n.elsie-picker__large .elsie-picker__select--primary,\n.elsie-picker__large .elsie-picker__select--secondary {\n    padding: 11px var(--spacing-small);\n}\n\n.elsie-picker__select--medium {\n    font: var(--type-body-2-default-font);\n    letter-spacing: var(--type-body-2-default-letter-spacing);\n}\n\n.elsie-picker__select--large {\n    font: var(--type-body-1-default-font);\n    letter-spacing: var(--type-body-1-default-letter-spacing);\n}\n\n/* Chevron */\n.elsie-picker__chevronDown {\n    z-index: 1;\n    position: absolute;\n    color: var(--color-neutral-700);\n    right: var(--spacing-small);\n    display: block;\n    pointer-events: none;\n    padding: 0;\n    height: var(--icon-size);\n    width: var(--icon-size);\n}\n\n/* Floating label */\n.elsie-picker__floatingLabel {\n    position: absolute;\n    pointer-events: none;\n    left: var(--spacing-small);\n    color: var(--color-neutral-700);\n    touch-action: manipulation;\n    transform: translateY(-50%);\n    transition: top 20ms ease-in, font-size 50ms ease-in;\n}\n\n.elsie-picker__select--floating:focus ~ label {\n    transition: all 40ms;\n}\n\n/* Option selected */\n.elsie-picker__selected select {\n    color: var(--color-neutral-800);\n}\n\n/* Label position when option selected */\n.elsie-picker__selected label {\n    top: 30%;\n}\n\n/* Label font when option selected */\n.elsie-picker__medium.elsie-picker__floating.elsie-picker__selected label {\n    font: var(--type-details-caption-1-font);\n    letter-spacing: var(--type-details-caption-1-letter-spacing);\n}\n\n.elsie-picker__large.elsie-picker__floating.elsie-picker__selected label {\n    font: var(--type-details-caption-2-font);\n    letter-spacing: var(--type-details-caption-2-letter-spacing);\n}\n\n/* Resulting height of 56px no matter medium or large size */\n.elsie-picker__medium.elsie-picker__floating select {\n    padding: 17px var(--spacing-small);\n}\n\n.elsie-picker__large.elsie-picker__floating select {\n    padding: 15px var(--spacing-small);\n}\n\n/* Resulting height of 56px when option selected */\n.elsie-picker__large.elsie-picker__floating.elsie-picker__selected select {\n    padding: 25px var(--spacing-small) 5px var(--spacing-small);\n}\n\n.elsie-picker__medium.elsie-picker__floating.elsie-picker__selected select {\n    padding: 27px var(--spacing-small) 7px var(--spacing-small);\n}\n\n/* Remove IE arrow */\nselect::-ms-expand {\n    display: none;\n}\n\n/* Disabled */\n.elsie-picker__disabled select.elsie-picker__select {\n    background-color: var(--color-neutral-300);\n    border: var(--shape-border-width-1) solid var(--color-neutral-500);\n    color: var(--color-neutral-500);\n    cursor: not-allowed;\n}\n\n.elsie-picker__disabled svg.elsie-picker__chevronDown {\n    color: var(--color-neutral-500);\n}\n\n/* Error */\n.elsie-picker__error select {\n    border: var(--shape-border-width-2) solid var(--color-alert-500);\n    color: var(--color-alert-500);\n}\n\n.elsie-picker__error .elsie-picker__select:focus {\n    border: var(--shape-border-width-2) solid var(--color-alert-500);\n}\n\n.elsie-picker__error .elsie-picker__chevronDown {\n    color: var(--color-alert-500);\n}\n\n.elsie-picker__error label {\n    color: var(--color-alert-500);\n}\n\n/* Secondary variant */\n.elsie-picker select.elsie-picker__select--secondary {\n    border-top: var(--shape-border-width-1) solid transparent;\n    border-left: 0 none;\n    border-right: 0 none;\n}\n\n.elsie-picker__disabled select.elsie-picker__select--secondary {\n    border-bottom: var(--shape-border-width-1) solid var(--color-neutral-500);\n}\n.elsie-picker__error select.elsie-picker__select--secondary {\n    border-top: var(--shape-border-width-1) solid transparent;\n    border-left: 0 none;\n    border-right: 0 none;\n}\n\n/* Icon */\n.elsie-picker__icon--placeholder {\n    z-index: 1;\n    position: absolute;\n    color: var(--color-neutral-700);\n    left: var(--spacing-small);\n    display: block;\n    pointer-events: none;\n    padding: 0;\n    height: var(--icon-size);\n    width: var(--icon-size);\n}\n\n.elsie-picker__icon select.elsie-picker__select {\n    padding-left: var(--spacing-xxbig);\n}\n\n.elsie-picker__floating.elsie-picker__selected.elsie-picker__icon select {\n    padding-left: var(--spacing-xxbig);\n}\n\n.elsie-picker__floating.elsie-picker__selected.elsie-picker__icon label {\n    left: var(--spacing-xxbig);\n}\n\n/* Medium (portrait tablets and large phones, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large (landscape tablets, 1024px and up) */\n/* @media only screen and (min-width: 1024px) { } */\n\n/* XLarge (laptops/desktops, 1366px and up) */\n/* @media only screen and (min-width: 1366px) { } */\n\n/* XXlarge (large laptops and desktops, 1920px and up) */\n/* @media only screen and (min-width: 1920px) { } */\n',
+      '',
     ]);
     const l = a;
   },
@@ -2693,8 +2693,8 @@ export const modules = {
       a = t.n(i)()(o());
     a.push([
       e.id,
-      ".checkout-skeleton {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: var(--spacing-medium);\n}\n\n.checkout-skeleton-row {\n  background: var(--color-neutral-300)\n    linear-gradient(\n      to right,\n      var(--color-neutral-300) 0%,\n      var(--color-neutral-100) 20%,\n      var(--color-neutral-300) 40%,\n      var(--color-neutral-300) 100%\n    )\n    no-repeat;\n  animation: shimmer infinite 1.2s linear;\n  border-radius: var(--shape-border-radius-2);\n}\n\n.checkout-skeleton-row__empty {\n  background: none;\n}\n\n.checkout-skeleton-row--multiline {\n  display: grid;\n  grid-auto-rows: max-content;\n  gap: var(--spacing-small);\n}\n\n.checkout-skeleton-row--full {\n  grid-column: 1 / -1;\n}\n\n/* Heading variants */\n.checkout-skeleton-row__heading-small {\n  height: 24px;\n}\n\n.checkout-skeleton-row__heading-medium {\n  height: 32px;\n}\n\n.checkout-skeleton-row__heading-large {\n  height: 40px;\n}\n\n/* Row variants */\n.checkout-skeleton-row__row-small {\n  height: 40px;\n}\n\n.checkout-skeleton-row__row-medium {\n  height: 48px;\n}\n\n.checkout-skeleton-row__row-large {\n  height: 56px;\n}\n\n.checkout-skeleton-row__row-xlarge {\n  height: 72px;\n}\n\n@keyframes shimmer {\n  0% {\n    background-position: -600px 0;\n  }\n  100% {\n    background-position: 600px 0;\n  }\n}\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n  .checkout-skeleton {\n    grid-template-columns: 1fr;\n  }\n}\n",
-      "",
+      '.checkout-skeleton {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: var(--spacing-medium);\n}\n\n.checkout-skeleton-row {\n  background: var(--color-neutral-300)\n    linear-gradient(\n      to right,\n      var(--color-neutral-300) 0%,\n      var(--color-neutral-100) 20%,\n      var(--color-neutral-300) 40%,\n      var(--color-neutral-300) 100%\n    )\n    no-repeat;\n  animation: shimmer infinite 1.2s linear;\n  border-radius: var(--shape-border-radius-2);\n}\n\n.checkout-skeleton-row__empty {\n  background: none;\n}\n\n.checkout-skeleton-row--multiline {\n  display: grid;\n  grid-auto-rows: max-content;\n  gap: var(--spacing-small);\n}\n\n.checkout-skeleton-row--full {\n  grid-column: 1 / -1;\n}\n\n/* Heading variants */\n.checkout-skeleton-row__heading-small {\n  height: 24px;\n}\n\n.checkout-skeleton-row__heading-medium {\n  height: 32px;\n}\n\n.checkout-skeleton-row__heading-large {\n  height: 40px;\n}\n\n/* Row variants */\n.checkout-skeleton-row__row-small {\n  height: 40px;\n}\n\n.checkout-skeleton-row__row-medium {\n  height: 48px;\n}\n\n.checkout-skeleton-row__row-large {\n  height: 56px;\n}\n\n.checkout-skeleton-row__row-xlarge {\n  height: 72px;\n}\n\n@keyframes shimmer {\n  0% {\n    background-position: -600px 0;\n  }\n  100% {\n    background-position: 600px 0;\n  }\n}\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n  .checkout-skeleton {\n    grid-template-columns: 1fr;\n  }\n}\n',
+      '',
     ]);
     const l = a;
   },
@@ -2715,7 +2715,7 @@ export const modules = {
       v = {};
     (v.styleTagTransform = y()),
       (v.setAttributes = s()),
-      (v.insert = c().bind(null, "head")),
+      (v.insert = c().bind(null, 'head')),
       (v.domAPI = a()),
       (v.insertStyleElement = d()),
       o()(m.Z, v),

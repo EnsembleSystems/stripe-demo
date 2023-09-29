@@ -1,9 +1,9 @@
-import * as e from "@dropins/elsie/event-bus.js";
-import * as r from "@dropins/elsie/fetch-graphql.js";
-import * as n from "@dropins/elsie/preact-compat.js";
-import * as t from "@dropins/elsie/preact-hooks.js";
-import * as o from "@dropins/elsie/preact-jsx-runtime.js";
-import * as a from "@dropins/elsie/preact.js";
+import * as e from '@dropins/elsie/event-bus.js';
+import * as r from '@dropins/elsie/fetch-graphql.js';
+import * as n from '@dropins/elsie/preact-compat.js';
+import * as t from '@dropins/elsie/preact-hooks.js';
+import * as o from '@dropins/elsie/preact-jsx-runtime.js';
+import * as a from '@dropins/elsie/preact.js';
 export const id = 940;
 export const ids = [940];
 export const modules = {
@@ -30,9 +30,9 @@ export const modules = {
         return e.value
           ? null
           : (0, l.jsx)(o.k, {
-              name: "billing_address",
-              addressType: "billing_address",
-              headingId: "Checkout.BillingAddress.title",
+              name: 'billing_address',
+              addressType: 'billing_address',
+              headingId: 'Checkout.BillingAddress.title',
               fetchFieldsHandler: i.w,
               saveAddressHandler: r,
             });
@@ -66,7 +66,7 @@ export const modules = {
       _ = {};
     (_.styleTagTransform = w()),
       (_.setAttributes = j()),
-      (_.insert = b().bind(null, "head")),
+      (_.insert = b().bind(null, 'head')),
       (_.domAPI = f()),
       (_.insertStyleElement = k()),
       h()(S.Z, _),
@@ -77,31 +77,31 @@ export const modules = {
     function E(e) {
       return (
         (E =
-          "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+          'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
             ? function (e) {
                 return typeof e;
               }
             : function (e) {
                 return e &&
-                  "function" == typeof Symbol &&
+                  'function' == typeof Symbol &&
                   e.constructor === Symbol &&
                   e !== Symbol.prototype
-                  ? "symbol"
+                  ? 'symbol'
                   : typeof e;
               }),
         E(e)
       );
     }
     var N = [
-      "className",
-      "login",
-      "shippingAddress",
-      "billingAddress",
-      "billToShippingAddress",
-      "shippingMethods",
-      "paymentMethods",
-      "orderSummary",
-      "placeOrder",
+      'className',
+      'login',
+      'shippingAddress',
+      'billingAddress',
+      'billToShippingAddress',
+      'shippingMethods',
+      'paymentMethods',
+      'orderSummary',
+      'placeOrder',
     ];
     function M(e, r) {
       var n = Object.keys(e);
@@ -138,18 +138,18 @@ export const modules = {
       return (
         (r = (function (e) {
           var r = (function (e, r) {
-            if ("object" !== E(e) || null === e) return e;
+            if ('object' !== E(e) || null === e) return e;
             var n = e[Symbol.toPrimitive];
             if (void 0 !== n) {
-              var t = n.call(e, "string");
-              if ("object" !== E(t)) return t;
+              var t = n.call(e, 'string');
+              if ('object' !== E(t)) return t;
               throw new TypeError(
-                "@@toPrimitive must return a primitive value."
+                '@@toPrimitive must return a primitive value.'
               );
             }
             return String(e);
           })(e);
-          return "symbol" === E(r) ? r : String(r);
+          return 'symbol' === E(r) ? r : String(r);
         })(r)) in e
           ? Object.defineProperty(e, r, {
               value: n,
@@ -196,51 +196,51 @@ export const modules = {
           return o;
         })(e, N);
       return (0, A.jsxs)(
-        "div",
+        'div',
         T(
           T({}, u),
           {},
           {
-            className: (0, p.S)(["checkout-checkout", r]),
+            className: (0, p.S)(['checkout-checkout', r]),
             children: [
-              (0, A.jsx)("div", {
-                className: "checkout-header",
+              (0, A.jsx)('div', {
+                className: 'checkout-header',
                 children: (0, A.jsx)(P.X, {
                   level: 1,
-                  children: (0, A.jsx)(C.xv, { id: "Checkout.title" }),
-                  className: "checkout-header-title",
+                  children: (0, A.jsx)(C.xv, { id: 'Checkout.title' }),
+                  className: 'checkout-header-title',
                 }),
               }),
-              (0, A.jsx)("div", {
-                className: "checkout-orderSummary",
+              (0, A.jsx)('div', {
+                className: 'checkout-orderSummary',
                 children: c && (0, A.jsx)(c.type, T({ ref: c.ref }, c.props)),
               }),
-              (0, A.jsx)("div", {
-                className: "checkout-login",
+              (0, A.jsx)('div', {
+                className: 'checkout-login',
                 children: n && (0, A.jsx)(n.type, T({ ref: n.ref }, n.props)),
               }),
-              (0, A.jsx)("div", {
-                className: "checkout-shippingAddress",
+              (0, A.jsx)('div', {
+                className: 'checkout-shippingAddress',
                 children: t && (0, A.jsx)(t.type, T({ ref: t.ref }, t.props)),
               }),
-              (0, A.jsx)("div", {
-                className: "checkout-billToShippingAddress",
+              (0, A.jsx)('div', {
+                className: 'checkout-billToShippingAddress',
                 children: a && (0, A.jsx)(a.type, T({ ref: a.ref }, a.props)),
               }),
-              (0, A.jsx)("div", {
-                className: "checkout-billingAddress",
+              (0, A.jsx)('div', {
+                className: 'checkout-billingAddress',
                 children: o && (0, A.jsx)(o.type, T({ ref: o.ref }, o.props)),
               }),
-              (0, A.jsx)("div", {
-                className: "checkout-shippingMethods",
+              (0, A.jsx)('div', {
+                className: 'checkout-shippingMethods',
                 children: s && (0, A.jsx)(s.type, T({ ref: s.ref }, s.props)),
               }),
-              (0, A.jsx)("div", {
-                className: "checkout-paymentMethods",
+              (0, A.jsx)('div', {
+                className: 'checkout-paymentMethods',
                 children: i && (0, A.jsx)(i.type, T({ ref: i.ref }, i.props)),
               }),
-              (0, A.jsx)("div", {
-                className: "checkout-placeOrder",
+              (0, A.jsx)('div', {
+                className: 'checkout-placeOrder',
                 children: l && (0, A.jsx)(l.type, T({ ref: l.ref }, l.props)),
               }),
             ],
@@ -251,22 +251,22 @@ export const modules = {
     function Z(e) {
       return (
         (Z =
-          "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+          'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
             ? function (e) {
                 return typeof e;
               }
             : function (e) {
                 return e &&
-                  "function" == typeof Symbol &&
+                  'function' == typeof Symbol &&
                   e.constructor === Symbol &&
                   e !== Symbol.prototype
-                  ? "symbol"
+                  ? 'symbol'
                   : typeof e;
               }),
         Z(e)
       );
     }
-    var I = ["className", "slots"];
+    var I = ['className', 'slots'];
     function F(e, r) {
       var n = Object.keys(e);
       if (Object.getOwnPropertySymbols) {
@@ -283,18 +283,18 @@ export const modules = {
       return (
         (r = (function (e) {
           var r = (function (e, r) {
-            if ("object" !== Z(e) || null === e) return e;
+            if ('object' !== Z(e) || null === e) return e;
             var n = e[Symbol.toPrimitive];
             if (void 0 !== n) {
-              var t = n.call(e, "string");
-              if ("object" !== Z(t)) return t;
+              var t = n.call(e, 'string');
+              if ('object' !== Z(t)) return t;
               throw new TypeError(
-                "@@toPrimitive must return a primitive value."
+                '@@toPrimitive must return a primitive value.'
               );
             }
             return String(e);
           })(e);
-          return "symbol" === Z(r) ? r : String(r);
+          return 'symbol' === Z(r) ? r : String(r);
         })(r)) in e
           ? Object.defineProperty(e, r, {
               value: n,
@@ -343,7 +343,7 @@ export const modules = {
         y =
           ((r = (0, t.useState)(function () {
             return function () {
-              console.log("Default Place order");
+              console.log('Default Place order');
             };
           })),
           (n = 2),
@@ -354,8 +354,8 @@ export const modules = {
               var n =
                 null == e
                   ? null
-                  : ("undefined" != typeof Symbol && e[Symbol.iterator]) ||
-                    e["@@iterator"];
+                  : ('undefined' != typeof Symbol && e[Symbol.iterator]) ||
+                    e['@@iterator'];
               if (null != n) {
                 var t,
                   o,
@@ -394,13 +394,13 @@ export const modules = {
             })(r, n) ||
             (function (e, r) {
               if (e) {
-                if ("string" == typeof e) return H(e, r);
+                if ('string' == typeof e) return H(e, r);
                 var n = Object.prototype.toString.call(e).slice(8, -1);
                 return (
-                  "Object" === n && e.constructor && (n = e.constructor.name),
-                  "Map" === n || "Set" === n
+                  'Object' === n && e.constructor && (n = e.constructor.name),
+                  'Map' === n || 'Set' === n
                     ? Array.from(e)
-                    : "Arguments" === n ||
+                    : 'Arguments' === n ||
                       /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)
                     ? H(e, r)
                     : void 0
@@ -409,7 +409,7 @@ export const modules = {
             })(r, n) ||
             (function () {
               throw new TypeError(
-                "Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+                'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
               );
             })()),
         f = y[0],
@@ -441,7 +441,7 @@ export const modules = {
             shippingAddress: (0, A.jsx)(a.G, {}),
             billToShippingAddress: (0, A.jsx)(s.y, {}),
             billingAddress: (0, A.jsx)(i.U, {}),
-            shippingMethods: (0, A.jsx)(c.SG, {}, "shippingMethods"),
+            shippingMethods: (0, A.jsx)(c.SG, {}, 'shippingMethods'),
             paymentMethods: (0, A.jsx)(l.A, {
               onPlaceOrder: function (e) {
                 g(function () {
@@ -450,7 +450,7 @@ export const modules = {
               },
               paymentMethodsSlot: null == m ? void 0 : m.PaymentMethods,
             }),
-            orderSummary: (0, A.jsx)(u.H, {}, "orderSummary"),
+            orderSummary: (0, A.jsx)(u.H, {}, 'orderSummary'),
             placeOrder: (0, A.jsx)(d.L, { onClick: f }),
           },
           h
@@ -478,7 +478,7 @@ export const modules = {
       b = {};
     (b.styleTagTransform = f()),
       (b.setAttributes = p()),
-      (b.insert = u().bind(null, "head")),
+      (b.insert = u().bind(null, 'head')),
       (b.domAPI = c()),
       (b.insertStyleElement = h()),
       s()(g.Z, b),
@@ -491,29 +491,29 @@ export const modules = {
     function w(e) {
       return (
         (w =
-          "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+          'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
             ? function (e) {
                 return typeof e;
               }
             : function (e) {
                 return e &&
-                  "function" == typeof Symbol &&
+                  'function' == typeof Symbol &&
                   e.constructor === Symbol &&
                   e !== Symbol.prototype
-                  ? "symbol"
+                  ? 'symbol'
                   : typeof e;
               }),
         w(e)
       );
     }
     var S = [
-      "className",
-      "currency",
-      "subtotal",
-      "total",
-      "shipping",
-      "tax",
-      "isLoading",
+      'className',
+      'currency',
+      'subtotal',
+      'total',
+      'shipping',
+      'tax',
+      'isLoading',
     ];
     function _(e, r) {
       var n = Object.keys(e);
@@ -550,18 +550,18 @@ export const modules = {
       return (
         (r = (function (e) {
           var r = (function (e, r) {
-            if ("object" !== w(e) || null === e) return e;
+            if ('object' !== w(e) || null === e) return e;
             var n = e[Symbol.toPrimitive];
             if (void 0 !== n) {
-              var t = n.call(e, "string");
-              if ("object" !== w(t)) return t;
+              var t = n.call(e, 'string');
+              if ('object' !== w(t)) return t;
               throw new TypeError(
-                "@@toPrimitive must return a primitive value."
+                '@@toPrimitive must return a primitive value.'
               );
             }
             return String(e);
           })(e);
-          return "symbol" === w(r) ? r : String(r);
+          return 'symbol' === w(r) ? r : String(r);
         })(r)) in e
           ? Object.defineProperty(e, r, {
               value: n,
@@ -607,92 +607,92 @@ export const modules = {
             return o;
           })(e, S);
         return (0, O.jsxs)(
-          "div",
+          'div',
           P(
             P({}, u),
             {},
             {
-              className: (0, o.S)(["checkout-order-summary", r]),
+              className: (0, o.S)(['checkout-order-summary', r]),
               children: [
                 (0, O.jsx)(v.X, {
                   level: 2,
-                  className: "checkout-order-summary__title",
+                  className: 'checkout-order-summary__title',
                   children: (0, O.jsx)(x.xv, {
-                    id: "Checkout.OrderSummary.title",
+                    id: 'Checkout.OrderSummary.title',
                   }),
                 }),
                 l &&
                   (0, O.jsx)(j.a, {
-                    className: "checkout-order-summary__loader",
+                    className: 'checkout-order-summary__loader',
                   }),
-                (0, O.jsxs)("div", {
-                  className: (0, o.S)([["checkout-order-summary--loading", l]]),
+                (0, O.jsxs)('div', {
+                  className: (0, o.S)([['checkout-order-summary--loading', l]]),
                   children: [
-                    (0, O.jsxs)("div", {
-                      className: "checkout-order-summary__breakdown",
+                    (0, O.jsxs)('div', {
+                      className: 'checkout-order-summary__breakdown',
                       children: [
-                        (0, O.jsxs)("div", {
+                        (0, O.jsxs)('div', {
                           className:
-                            "checkout-order-summary__row checkout-order-summary__row-subtotal",
+                            'checkout-order-summary__row checkout-order-summary__row-subtotal',
                           children: [
-                            (0, O.jsx)("p", {
+                            (0, O.jsx)('p', {
                               children: (0, O.jsx)(x.xv, {
-                                id: "Checkout.OrderSummary.subtotal",
+                                id: 'Checkout.OrderSummary.subtotal',
                               }),
                             }),
                             (0, O.jsx)(k.t, {
                               amount: t,
                               currency: n,
                               className: (0, o.S)([
-                                "checkout-order-summary__row-price",
+                                'checkout-order-summary__row-price',
                                 r,
                               ]),
                             }),
                           ],
                         }),
                         null != s &&
-                          (0, O.jsxs)("div", {
+                          (0, O.jsxs)('div', {
                             className:
-                              "checkout-order-summary__row checkout-order-summary__row-shipping",
+                              'checkout-order-summary__row checkout-order-summary__row-shipping',
                             children: [
-                              (0, O.jsx)("p", {
+                              (0, O.jsx)('p', {
                                 children: (0, O.jsx)(x.xv, {
-                                  id: "Checkout.OrderSummary.shipping",
+                                  id: 'Checkout.OrderSummary.shipping',
                                 }),
                               }),
                               0 === s
-                                ? (0, O.jsx)("p", {
+                                ? (0, O.jsx)('p', {
                                     className:
-                                      "checkout-order-summary__row-price",
+                                      'checkout-order-summary__row-price',
                                     children: (0, O.jsx)(x.xv, {
-                                      id: "Checkout.OrderSummary.freeShipping",
+                                      id: 'Checkout.OrderSummary.freeShipping',
                                     }),
                                   })
                                 : (0, O.jsx)(k.t, {
                                     amount: s,
                                     currency: n,
                                     className: (0, o.S)([
-                                      "checkout-order-summary__row-price",
+                                      'checkout-order-summary__row-price',
                                       r,
                                     ]),
                                   }),
                             ],
                           }),
                         null != i &&
-                          (0, O.jsxs)("div", {
+                          (0, O.jsxs)('div', {
                             className:
-                              "checkout-order-summary__row checkout-order-summary__row-tax",
+                              'checkout-order-summary__row checkout-order-summary__row-tax',
                             children: [
-                              (0, O.jsx)("p", {
+                              (0, O.jsx)('p', {
                                 children: (0, O.jsx)(x.xv, {
-                                  id: "Checkout.OrderSummary.tax",
+                                  id: 'Checkout.OrderSummary.tax',
                                 }),
                               }),
                               (0, O.jsx)(k.t, {
                                 amount: i,
                                 currency: n,
                                 className: (0, o.S)([
-                                  "checkout-order-summary__row-price",
+                                  'checkout-order-summary__row-price',
                                   r,
                                 ]),
                               }),
@@ -700,22 +700,22 @@ export const modules = {
                           }),
                       ],
                     }),
-                    (0, O.jsx)("div", {
-                      className: "checkout-order-summary__total",
-                      children: (0, O.jsxs)("div", {
+                    (0, O.jsx)('div', {
+                      className: 'checkout-order-summary__total',
+                      children: (0, O.jsxs)('div', {
                         className:
-                          "checkout-order-summary__row checkout-order-summary__row-total",
+                          'checkout-order-summary__row checkout-order-summary__row-total',
                         children: [
-                          (0, O.jsx)("p", {
+                          (0, O.jsx)('p', {
                             children: (0, O.jsx)(x.xv, {
-                              id: "Checkout.OrderSummary.total",
+                              id: 'Checkout.OrderSummary.total',
                             }),
                           }),
                           (0, O.jsx)(k.t, {
                             amount: a,
                             currency: n,
                             className: (0, o.S)([
-                              "checkout-order-summary__row-price",
+                              'checkout-order-summary__row-price',
                               r,
                             ]),
                           }),
@@ -732,11 +732,11 @@ export const modules = {
       E = (n(1442), n(9799)),
       N = function () {
         return (0, O.jsxs)(E.O, {
-          className: "order-summary__skeleton",
+          className: 'order-summary__skeleton',
           children: [
-            (0, O.jsx)(E.d, { variant: "heading", size: "medium" }),
-            (0, O.jsx)(E.d, { variant: "empty", size: "medium" }),
-            (0, O.jsx)(E.d, { size: "large", isFull: !0, lines: 3 }),
+            (0, O.jsx)(E.d, { variant: 'heading', size: 'medium' }),
+            (0, O.jsx)(E.d, { variant: 'empty', size: 'medium' }),
+            (0, O.jsx)(E.d, { size: 'large', isFull: !0, lines: 3 }),
           ],
         });
       },
@@ -744,16 +744,16 @@ export const modules = {
     function T(e) {
       return (
         (T =
-          "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+          'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
             ? function (e) {
                 return typeof e;
               }
             : function (e) {
                 return e &&
-                  "function" == typeof Symbol &&
+                  'function' == typeof Symbol &&
                   e.constructor === Symbol &&
                   e !== Symbol.prototype
-                  ? "symbol"
+                  ? 'symbol'
                   : typeof e;
               }),
         T(e)
@@ -794,18 +794,18 @@ export const modules = {
       return (
         (r = (function (e) {
           var r = (function (e, r) {
-            if ("object" !== T(e) || null === e) return e;
+            if ('object' !== T(e) || null === e) return e;
             var n = e[Symbol.toPrimitive];
             if (void 0 !== n) {
-              var t = n.call(e, "string");
-              if ("object" !== T(t)) return t;
+              var t = n.call(e, 'string');
+              if ('object' !== T(t)) return t;
               throw new TypeError(
-                "@@toPrimitive must return a primitive value."
+                '@@toPrimitive must return a primitive value.'
               );
             }
             return String(e);
           })(e);
-          return "symbol" === T(r) ? r : String(r);
+          return 'symbol' === T(r) ? r : String(r);
         })(r)) in e
           ? Object.defineProperty(e, r, {
               value: n,
@@ -876,7 +876,7 @@ export const modules = {
       var r = I(
           {},
           ((function (e) {
-            if (null == e) throw new TypeError("Cannot destructure " + e);
+            if (null == e) throw new TypeError('Cannot destructure ' + e);
           })(e),
           e)
         ),
@@ -884,7 +884,7 @@ export const modules = {
         t = n.isLoading,
         o = n.summary;
       return (0, O.jsxs)(
-        "div",
+        'div',
         L(
           L({}, r),
           {},
@@ -925,7 +925,7 @@ export const modules = {
       g = {};
     (g.styleTagTransform = y()),
       (g.setAttributes = d()),
-      (g.insert = l().bind(null, "head")),
+      (g.insert = l().bind(null, 'head')),
       (g.domAPI = i()),
       (g.insertStyleElement = m()),
       a()(f.Z, g),
@@ -933,7 +933,7 @@ export const modules = {
     var b = n(9853),
       v = n(9724),
       j = n(7188),
-      x = ["className", "children"];
+      x = ['className', 'children'];
     var k = function (e) {
         var r = e.className,
           n =
@@ -962,19 +962,19 @@ export const modules = {
               }
               return o;
             })(e, x).onClick);
-        return (0, j.jsx)("div", {
-          className: (0, t.S)(["checkout-place-order", r]),
+        return (0, j.jsx)('div', {
+          className: (0, t.S)(['checkout-place-order', r]),
           children: (0, j.jsx)(
             b.z,
             {
-              className: (0, t.S)(["checkout-place-order__button", r]),
-              size: "medium",
-              variant: "primary",
-              type: "submit",
+              className: (0, t.S)(['checkout-place-order__button', r]),
+              size: 'medium',
+              variant: 'primary',
+              type: 'submit',
               onClick: n,
-              children: (0, j.jsx)(v.xv, { id: "Checkout.PlaceOrder.button" }),
+              children: (0, j.jsx)(v.xv, { id: 'Checkout.PlaceOrder.button' }),
             },
-            "placeOrder"
+            'placeOrder'
           ),
         });
       },
@@ -995,9 +995,9 @@ export const modules = {
           return (0, a.nc)({ address: (0, a.vY)(e) });
         }, []);
         return (0, i.jsx)(o.k, {
-          name: "shipping_address",
-          addressType: "shipping_addresses",
-          headingId: "Checkout.ShippingAddress.title",
+          name: 'shipping_address',
+          addressType: 'shipping_addresses',
+          headingId: 'Checkout.ShippingAddress.title',
           fetchFieldsHandler: s.w,
           saveAddressHandler: e,
         });
@@ -1011,8 +1011,8 @@ export const modules = {
       s = n.n(a)()(o());
     s.push([
       e.id,
-      "/* https://cssguidelin.es/#bem-like-naming */\n\n.checkout-checkout {\n    grid-template-columns: repeat(var(--grid-4-columns), 1fr);\n    grid-column-gap: var(--grid-4-gutters);\n    grid-row-gap: var(--spacing-xbig);\n    margin: 0 auto;\n    display: grid;\n    align-items: start;\n    justify-content: center;\n    width: 100%;\n    max-width: 1920px;\n}\n\n.checkout-header {\n    text-align: left;\n    width: 100%;\n}\n\n.checkout-header-title {\n    color: var(--color-neutral-800);\n    font: var(--type-headline-1-font);\n    letter-spacing: var(--type-headline-1-letter-spacing);\n    border-bottom: var(--shape-border-width-3) solid var(--color-neutral-400);\n    padding-bottom: var(--spacing-xsmall);\n    padding-top: var(--spacing-small);\n    margin: 0;\n}\n\n/* Grid */\n.checkout-header,\n.checkout-login,\n.checkout-shippingAddress,\n.checkout-billToShippingAddress,\n.checkout-billingAddress,\n.checkout-shippingMethods,\n.checkout-paymentMethods,\n.checkout-placeOrder {\n    grid-column: 3 / span 4;\n}\n\n.checkout-orderSummary {\n    grid-column: 8 / span 3;\n    grid-row: 1 / 6;\n}\n\n@media screen and (min-width:768px) and (max-width:1366px) {\n    .checkout-checkout {\n        grid-template-columns: repeat(var(--grid-3-columns), 1fr);\n        grid-column-gap: var(--grid-3-gutters);\n    }\n\n    .checkout-header,\n    .checkout-login,\n    .checkout-shippingAddress,\n    .checkout-billToShippingAddress,\n    .checkout-billingAddress,\n    .checkout-shippingMethods,\n    .checkout-paymentMethods,\n    .checkout-placeOrder {\n        grid-column: 1 / span 7;\n    }\n\n    .checkout-orderSummary {\n        grid-column: 9 / span 4;\n        grid-row: 1 / 6;\n    }\n}\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (min-width:320px) and (max-width: 768px) {\n    .checkout-checkout {\n        grid-template-columns: repeat(var(--grid-1-columns), 1fr);\n        grid-column-gap: var(--grid-1-gutters);\n    }\n\n    .checkout-header-title,\n    .checkout-login,\n    .checkout-shippingAddress,\n    .checkout-billToShippingAddress,\n    .checkout-billingAddress,\n    .checkout-shippingMethods,\n    .checkout-paymentMethods,\n    .checkout-placeOrder{\n        padding-left: var(--spacing-small);\n        padding-right: var(--spacing-small);\n    }\n\n    .checkout-header,\n    .checkout-orderSummary,\n    .checkout-login,\n    .checkout-shippingAddress,\n    .checkout-billToShippingAddress,\n    .checkout-billingAddress,\n    .checkout-shippingMethods,\n    .checkout-paymentMethods,\n    .checkout-placeOrder {\n        grid-column: 1 / span 4;\n    }\n\n    .checkout-orderSummary {\n        grid-row: 6 / 6;\n    }\n}\n\n/* Extra small devices (phones, 600px and down) */\n/* @media only screen and (max-width: 600px) { } */\n\n/* Small devices (portrait tablets and large phones, 600px and up) */\n/* @media only screen and (min-width: 600px) { } */\n\n/* Medium devices (landscape tablets, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large devices (laptops/desktops, 992px and up) */\n/* @media only screen and (min-width: 992px) { } */\n\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n/* @media only screen and (min-width: 1200px) { } */\n",
-      "",
+      '/* https://cssguidelin.es/#bem-like-naming */\n\n.checkout-checkout {\n    grid-template-columns: repeat(var(--grid-4-columns), 1fr);\n    grid-column-gap: var(--grid-4-gutters);\n    grid-row-gap: var(--spacing-xbig);\n    margin: 0 auto;\n    display: grid;\n    align-items: start;\n    justify-content: center;\n    width: 100%;\n    max-width: 1920px;\n}\n\n.checkout-header {\n    text-align: left;\n    width: 100%;\n}\n\n.checkout-header-title {\n    color: var(--color-neutral-800);\n    font: var(--type-headline-1-font);\n    letter-spacing: var(--type-headline-1-letter-spacing);\n    border-bottom: var(--shape-border-width-3) solid var(--color-neutral-400);\n    padding-bottom: var(--spacing-xsmall);\n    padding-top: var(--spacing-small);\n    margin: 0;\n}\n\n/* Grid */\n.checkout-header,\n.checkout-login,\n.checkout-shippingAddress,\n.checkout-billToShippingAddress,\n.checkout-billingAddress,\n.checkout-shippingMethods,\n.checkout-paymentMethods,\n.checkout-placeOrder {\n    grid-column: 3 / span 4;\n}\n\n.checkout-orderSummary {\n    grid-column: 8 / span 3;\n    grid-row: 1 / 6;\n}\n\n@media screen and (min-width:768px) and (max-width:1366px) {\n    .checkout-checkout {\n        grid-template-columns: repeat(var(--grid-3-columns), 1fr);\n        grid-column-gap: var(--grid-3-gutters);\n    }\n\n    .checkout-header,\n    .checkout-login,\n    .checkout-shippingAddress,\n    .checkout-billToShippingAddress,\n    .checkout-billingAddress,\n    .checkout-shippingMethods,\n    .checkout-paymentMethods,\n    .checkout-placeOrder {\n        grid-column: 1 / span 7;\n    }\n\n    .checkout-orderSummary {\n        grid-column: 9 / span 4;\n        grid-row: 1 / 6;\n    }\n}\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (min-width:320px) and (max-width: 768px) {\n    .checkout-checkout {\n        grid-template-columns: repeat(var(--grid-1-columns), 1fr);\n        grid-column-gap: var(--grid-1-gutters);\n    }\n\n    .checkout-header-title,\n    .checkout-login,\n    .checkout-shippingAddress,\n    .checkout-billToShippingAddress,\n    .checkout-billingAddress,\n    .checkout-shippingMethods,\n    .checkout-paymentMethods,\n    .checkout-placeOrder{\n        padding-left: var(--spacing-small);\n        padding-right: var(--spacing-small);\n    }\n\n    .checkout-header,\n    .checkout-orderSummary,\n    .checkout-login,\n    .checkout-shippingAddress,\n    .checkout-billToShippingAddress,\n    .checkout-billingAddress,\n    .checkout-shippingMethods,\n    .checkout-paymentMethods,\n    .checkout-placeOrder {\n        grid-column: 1 / span 4;\n    }\n\n    .checkout-orderSummary {\n        grid-row: 6 / 6;\n    }\n}\n\n/* Extra small devices (phones, 600px and down) */\n/* @media only screen and (max-width: 600px) { } */\n\n/* Small devices (portrait tablets and large phones, 600px and up) */\n/* @media only screen and (min-width: 600px) { } */\n\n/* Medium devices (landscape tablets, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large devices (laptops/desktops, 992px and up) */\n/* @media only screen and (min-width: 992px) { } */\n\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n/* @media only screen and (min-width: 1200px) { } */\n',
+      '',
     ]);
     const i = s;
   },
@@ -1024,8 +1024,8 @@ export const modules = {
       s = n.n(a)()(o());
     s.push([
       e.id,
-      ".checkout-order-summary {\n    border-radius: var(--shape-border-radius-2);\n    background: var(--color-neutral-200);\n    position: relative;\n    display: grid;\n    padding: var(--spacing-medium);\n}\n\n.checkout-order-summary__title {\n    color: var(--color-neutral-800);\n    font: var(--type-headline-2-default-font);\n    letter-spacing: var(--type-headline-2-default-letter-spacing);\n    margin: 0;\n    padding-bottom: var(--spacing-xsmall);\n    border-bottom: var(--shape-border-width-2) solid var(--color-neutral-400);\n}\n\n.checkout-order-summary__row {\n    color: var(--color-neutral-800);\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: var(--spacing-medium);\n}\n\n.checkout-order-summary__row > * {\n    margin: 0;\n}\n\n.checkout-order-summary__row .checkout-order-summary__row-price {\n    justify-self: end;\n}\n\n.checkout-order-summary__breakdown {\n    display: grid;\n    gap: var(--spacing-xsmall);\n    margin: var(--spacing-xbig) 0;\n}\n\n.checkout-order-summary__breakdown .checkout-order-summary__row > * {\n    font: var(--type-body-1-default-font);\n    letter-spacing: var(--type-body-1-default-letter-spacing);\n}\n\n.checkout-order-summary__total .checkout-order-summary__row > * {\n    font: var(--type-body-1-emphasized-font);\n    letter-spacing: var(--type-body-1-emphasized-letter-spacing);\n}\n\n/* Loading */\n.checkout-order-summary--loading {\n    opacity: 0.3;\n    pointer-events: none;\n}\n\n.checkout-order-summary__loader {\n    margin: 0 auto;\n    position: absolute;\n    z-index: 999;\n    left: 0;\n    right: 0;\n    top: 50%;\n    bottom: 0;\n}\n\n.order-summary__skeleton {\n    margin-top: var(--spacing-medium);\n}\n\n@media only screen and (min-width:320px) and (max-width: 768px) {\n    .checkout-order-summary {\n        border-top: var(--shape-border-width-2) solid var(--color-neutral-400);\n        border-bottom: var(--shape-border-width-2) solid var(--color-neutral-400);\n        border-radius: 0;\n    }\n\n    .checkout-order-summary__title {\n        display: none;\n    }\n\n    .checkout-order-summary__breakdown {\n        margin-top: 0;\n    }\n}\n/* Medium (portrait tablets and large phones, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large (landscape tablets, 1024px and up) */\n/* @media only screen and (min-width: 1024px) { } */\n\n/* XLarge (laptops/desktops, 1366px and up) */\n/* @media only screen and (min-width: 1366px) { } */\n\n/* XXlarge (large laptops and desktops, 1920px and up) */\n/* @media only screen and (min-width: 1920px) { } */\n",
-      "",
+      '.checkout-order-summary {\n    border-radius: var(--shape-border-radius-2);\n    background: var(--color-neutral-200);\n    position: relative;\n    display: grid;\n    padding: var(--spacing-medium);\n}\n\n.checkout-order-summary__title {\n    color: var(--color-neutral-800);\n    font: var(--type-headline-2-default-font);\n    letter-spacing: var(--type-headline-2-default-letter-spacing);\n    margin: 0;\n    padding-bottom: var(--spacing-xsmall);\n    border-bottom: var(--shape-border-width-2) solid var(--color-neutral-400);\n}\n\n.checkout-order-summary__row {\n    color: var(--color-neutral-800);\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: var(--spacing-medium);\n}\n\n.checkout-order-summary__row > * {\n    margin: 0;\n}\n\n.checkout-order-summary__row .checkout-order-summary__row-price {\n    justify-self: end;\n}\n\n.checkout-order-summary__breakdown {\n    display: grid;\n    gap: var(--spacing-xsmall);\n    margin: var(--spacing-xbig) 0;\n}\n\n.checkout-order-summary__breakdown .checkout-order-summary__row > * {\n    font: var(--type-body-1-default-font);\n    letter-spacing: var(--type-body-1-default-letter-spacing);\n}\n\n.checkout-order-summary__total .checkout-order-summary__row > * {\n    font: var(--type-body-1-emphasized-font);\n    letter-spacing: var(--type-body-1-emphasized-letter-spacing);\n}\n\n/* Loading */\n.checkout-order-summary--loading {\n    opacity: 0.3;\n    pointer-events: none;\n}\n\n.checkout-order-summary__loader {\n    margin: 0 auto;\n    position: absolute;\n    z-index: 999;\n    left: 0;\n    right: 0;\n    top: 50%;\n    bottom: 0;\n}\n\n.order-summary__skeleton {\n    margin-top: var(--spacing-medium);\n}\n\n@media only screen and (min-width:320px) and (max-width: 768px) {\n    .checkout-order-summary {\n        border-top: var(--shape-border-width-2) solid var(--color-neutral-400);\n        border-bottom: var(--shape-border-width-2) solid var(--color-neutral-400);\n        border-radius: 0;\n    }\n\n    .checkout-order-summary__title {\n        display: none;\n    }\n\n    .checkout-order-summary__breakdown {\n        margin-top: 0;\n    }\n}\n/* Medium (portrait tablets and large phones, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large (landscape tablets, 1024px and up) */\n/* @media only screen and (min-width: 1024px) { } */\n\n/* XLarge (laptops/desktops, 1366px and up) */\n/* @media only screen and (min-width: 1366px) { } */\n\n/* XXlarge (large laptops and desktops, 1920px and up) */\n/* @media only screen and (min-width: 1920px) { } */\n',
+      '',
     ]);
     const i = s;
   },
@@ -1037,8 +1037,8 @@ export const modules = {
       s = n.n(a)()(o());
     s.push([
       e.id,
-      "/* https://cssguidelin.es/#bem-like-naming */\n\n.checkout-place-order {\n    display: grid;\n}\n\n.checkout-place-order__button {\n    align-self: flex-end;\n    justify-self: flex-end;\n}\n\n@media only screen and (min-width:320px) and (max-width: 768px) {\n    .checkout-place-order__button {\n        align-self: center;\n        justify-self: stretch;\n    }\n}\n\n/* Medium (portrait tablets and large phones, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large (landscape tablets, 1024px and up) */\n/* @media only screen and (min-width: 1024px) { } */\n\n/* XLarge (laptops/desktops, 1366px and up) */\n/* @media only screen and (min-width: 1366px) { } */\n\n/* XXlarge (large laptops and desktops, 1920px and up) */\n/* @media only screen and (min-width: 1920px) { } */\n",
-      "",
+      '/* https://cssguidelin.es/#bem-like-naming */\n\n.checkout-place-order {\n    display: grid;\n}\n\n.checkout-place-order__button {\n    align-self: flex-end;\n    justify-self: flex-end;\n}\n\n@media only screen and (min-width:320px) and (max-width: 768px) {\n    .checkout-place-order__button {\n        align-self: center;\n        justify-self: stretch;\n    }\n}\n\n/* Medium (portrait tablets and large phones, 768px and up) */\n/* @media only screen and (min-width: 768px) { } */\n\n/* Large (landscape tablets, 1024px and up) */\n/* @media only screen and (min-width: 1024px) { } */\n\n/* XLarge (laptops/desktops, 1366px and up) */\n/* @media only screen and (min-width: 1366px) { } */\n\n/* XXlarge (large laptops and desktops, 1920px and up) */\n/* @media only screen and (min-width: 1920px) { } */\n',
+      '',
     ]);
     const i = s;
   },
@@ -1120,32 +1120,32 @@ export const modules = {
       o);
   },
 };
-import s from "../runtime.js";
-import * as i from "../757.js";
+import s from '../runtime.js';
+import * as i from '../757.js';
 s.C(i);
-import * as c from "../212.js";
+import * as c from '../212.js';
 s.C(c);
-import * as l from "../627.js";
+import * as l from '../627.js';
 s.C(l);
-import * as u from "../181.js";
+import * as u from '../181.js';
 s.C(u);
-import * as d from "../261.js";
+import * as d from '../261.js';
 s.C(d);
-import * as p from "../60.js";
+import * as p from '../60.js';
 s.C(p);
-import * as m from "../325.js";
+import * as m from '../325.js';
 s.C(m);
-import * as h from "../549.js";
+import * as h from '../549.js';
 s.C(h);
-import * as y from "../494.js";
+import * as y from '../494.js';
 s.C(y);
-import * as f from "../299.js";
+import * as f from '../299.js';
 s.C(f);
-import * as g from "../805.js";
+import * as g from '../805.js';
 s.C(g);
-import * as b from "../350.js";
+import * as b from '../350.js';
 s.C(b);
-import * as v from "./Checkout.js";
+import * as v from './Checkout.js';
 s.C(v);
 var j = (5553, s((s.s = 5553))),
   x = j.h,

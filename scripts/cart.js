@@ -1,5 +1,5 @@
-import { fetchGraphQl } from "@dropins/elsie/fetch-graphql.js";
-import { events } from "@dropins/elsie/event-bus.js";
+import { fetchGraphQl } from '@dropins/elsie/fetch-graphql.js';
+import { events } from '@dropins/elsie/event-bus.js';
 import {
   ADD_TO_CART,
   CREATE_EMPTY_CART,
@@ -9,16 +9,16 @@ import {
   SET_GUEST_EMAIL_ON_CART,
   SET_PAYMENT_METHOD_ON_CART,
   UPDATE_CART_ITEMS,
-} from "./graphql.js";
+} from './graphql.js';
 
-const CART_KEY = "FURNI_CART_ID";
+const CART_KEY = 'FURNI_CART_ID';
 
 /**
  * @param {number} total Total products
  * To refresh the number products in the cart
  */
 function refreshCartTotal(total = getCart().total) {
-  var cartQuantity = document.querySelector(".cart-quantity");
+  var cartQuantity = document.querySelector('.cart-quantity');
   cartQuantity.innerHTML = total;
 }
 
@@ -39,7 +39,7 @@ const createEmptyCart = async () => {
   if (errors) console.error(errors);
   window.localStorage.setItem(CART_KEY, data.createEmptyCart);
 
-  await setGuestEmailOnCart(data.createEmptyCart, "test@gmail.com");
+  await setGuestEmailOnCart(data.createEmptyCart, 'test@gmail.com');
   return data.createEmptyCart;
 };
 
@@ -57,7 +57,7 @@ export async function getCart() {
     if (errors) console.error(errors);
     return data.cart;
   } else {
-    console.log("Missing cart id");
+    console.log('Missing cart id');
   }
 }
 
@@ -92,7 +92,7 @@ export async function updateCartItems(cart_item_id, quantity = 1) {
     if (errors) console.error(errors);
     refreshCartTotal(data.updateCartItems.cart.total_quantity);
   } else {
-    console.error("Missing cart id");
+    console.error('Missing cart id');
   }
 }
 
@@ -112,7 +112,7 @@ export async function removeFromCart(cart_item_id) {
     refreshCartTotal(totalQuantity);
     return totalQuantity;
   } else {
-    console.error("Missing cart id");
+    console.error('Missing cart id');
   }
 }
 
@@ -133,7 +133,7 @@ export async function setPaymentMethodOnCart(
     if (errors) console.error(errors);
     return data.setPaymentMethodOnCart.cart.selected_payment_method;
   } else {
-    console.error("Missing cart id");
+    console.error('Missing cart id');
   }
 }
 
@@ -150,7 +150,7 @@ export async function placeOrder(cartId = getCartId()) {
     if (errors) console.error(errors);
     return data.placeOrder.order;
   } else {
-    console.error("Missing cart id");
+    console.error('Missing cart id');
   }
 }
 
@@ -165,6 +165,6 @@ export async function setGuestEmailOnCart(cartId = getCartId(), email) {
     if (errors) console.error(errors);
     return data.setGuestEmailOnCart.cart.email;
   } else {
-    console.error("Missing cart id");
+    console.error('Missing cart id');
   }
 }
