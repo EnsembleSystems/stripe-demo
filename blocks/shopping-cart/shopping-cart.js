@@ -64,7 +64,7 @@ async function createOrderLine(item) {
     className: "product-image",
   });
   const img = createOptimizedPicture({
-    src: product.image,
+    src: product.small_image.url,
     alt: product.name,
     eager: true,
     useSrc: true,
