@@ -242,6 +242,7 @@ export const GET_CATEGORIES_BY_URL_KEYS = `query GET_CATEGORIES_BY_URL_KEYS($url
     items {
       id
       name
+      uid
       path
       url_path
       url_key

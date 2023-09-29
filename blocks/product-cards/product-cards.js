@@ -41,11 +41,12 @@ function createProductCards(data) {
 
 export default async function decorate(block) {
   const { searchParams } = new URL(window.location.href);
-  let categoryId = searchParams.get("category_id");
-  if (!categoryId) {
-    const uriKeys = getBlockColumnValues(block, 0);
-    const categories = await getCategoriesByUrlKeys(uriKeys);
-    categoryId = categories.map((category) => category.id);
+  let uriKeys = searchParams.get("category");
+  if (!uriKeys) {
+    uriKeys = getBlockColumnValues(block, 0);
   }
+  const categories = await getCategoriesByUrlKeys(uriKeys);
+
+  const categoryId = categories.map((category) => category.id);
   block.replaceWith(createProductCards(await getProducts(categoryId)));
 }
