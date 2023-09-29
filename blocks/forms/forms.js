@@ -1,25 +1,25 @@
-import { readBlockConfig } from "../../scripts/lib-franklin.js";
-import { addInViewAnimationToSingleElement } from "../../utils/helpers.js";
-import createTag from "../../utils/tag.js";
+import { readBlockConfig } from '../../scripts/lib-franklin.js';
+import { addInViewAnimationToSingleElement } from '../../utils/helpers.js';
+import createTag from '../../utils/tag.js';
 
 function createSelect(fd) {
-  const select = document.createElement("select");
+  const select = document.createElement('select');
   select.id = fd.Field;
   if (fd.Placeholder) {
-    const ph = document.createElement("option");
+    const ph = document.createElement('option');
     ph.textContent = fd.Placeholder;
-    ph.setAttribute("selected", "");
-    ph.setAttribute("disabled", "");
+    ph.setAttribute('selected', '');
+    ph.setAttribute('disabled', '');
     select.append(ph);
   }
-  fd.Options.split(",").forEach((o) => {
-    const option = document.createElement("option");
+  fd.Options.split(',').forEach((o) => {
+    const option = document.createElement('option');
     option.textContent = o.trim();
     option.value = o.trim();
     select.append(option);
   });
-  if (fd.Mandatory === "x") {
-    select.setAttribute("required", "required");
+  if (fd.Mandatory === 'x') {
+    select.setAttribute('required', 'required');
   }
   return select;
 }
@@ -27,7 +27,7 @@ function createSelect(fd) {
 function constructPayload(form) {
   const payload = {};
   [...form.elements].forEach((fe) => {
-    if (fe.type === "checkbox") {
+    if (fe.type === 'checkbox') {
       if (fe.checked) payload[fe.id] = fe.value;
     } else if (fe.id) {
       payload[fe.id] = fe.value;
@@ -40,8 +40,8 @@ function createInfo(form) {
   const svg =
     '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
   const div = createTag(
-    "div",
-    { className: "form-info" },
+    'div',
+    { className: 'form-info' },
     `<div>${svg}<span>${form.Label}</span></div>`
   );
 
@@ -52,10 +52,10 @@ async function submitForm(form) {
   const payload = constructPayload(form);
   payload.timestamp = new Date().toJSON();
   const resp = await fetch(form.dataset.action, {
-    method: "POST",
-    cache: "no-cache",
+    method: 'POST',
+    cache: 'no-cache',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ data: payload }),
   });
@@ -64,16 +64,16 @@ async function submitForm(form) {
 }
 
 function createButton(fd) {
-  const button = document.createElement("button");
+  const button = document.createElement('button');
   button.textContent = fd.Label;
-  button.classList.add("button");
-  if (fd.Type === "submit") {
-    button.addEventListener("click", async (event) => {
-      const form = button.closest("form");
+  button.classList.add('button');
+  if (fd.Type === 'submit') {
+    button.addEventListener('click', async (event) => {
+      const form = button.closest('form');
       if (fd.Placeholder) form.dataset.action = fd.Placeholder;
       if (form.checkValidity()) {
         event.preventDefault();
-        button.setAttribute("disabled", "");
+        button.setAttribute('disabled', '');
         await submitForm(form);
         const redirectTo = fd.Extra;
         window.location.href = redirectTo;
@@ -89,32 +89,32 @@ function createHeading(fd, el) {
 }
 
 function createInput(fd) {
-  const input = createTag("input", {
+  const input = createTag('input', {
     type: fd.Type,
     id: fd.Field,
     placeholder: fd.Placeholder,
   });
-  if (fd.Mandatory === "x") {
-    input.setAttribute("required", "required");
+  if (fd.Mandatory === 'x') {
+    input.setAttribute('required', 'required');
   }
   return input;
 }
 
 function createTextArea(fd) {
-  const input = createTag("textarea", {
+  const input = createTag('textarea', {
     id: fd.Field,
     placeholder: fd.Placeholder,
   });
-  if (fd.Mandatory === "x") {
-    input.setAttribute("required", "required");
+  if (fd.Mandatory === 'x') {
+    input.setAttribute('required', 'required');
   }
   return input;
 }
 
 function createLabel(fd) {
-  const label = createTag("label", { for: fd.Field, textContent: fd.Label });
-  if (fd.Mandatory === "x") {
-    label.classList.add("required");
+  const label = createTag('label', { for: fd.Field, textContent: fd.Label });
+  if (fd.Mandatory === 'x') {
+    label.classList.add('required');
   }
   return label;
 }
@@ -126,12 +126,12 @@ function applyRules(form, rules) {
       type,
       condition: { key, operator, value },
     } = field.rule;
-    if (type === "visible") {
-      if (operator === "eq") {
+    if (type === 'visible') {
+      if (operator === 'eq') {
         if (payload[key] === value) {
-          form.querySelector(`.${field.fieldId}`).classList.remove("hidden");
+          form.querySelector(`.${field.fieldId}`).classList.remove('hidden');
         } else {
-          form.querySelector(`.${field.fieldId}`).classList.add("hidden");
+          form.querySelector(`.${field.fieldId}`).classList.add('hidden');
         }
       }
     }
@@ -140,11 +140,11 @@ function applyRules(form, rules) {
 
 function fill(form) {
   const { action } = form.dataset;
-  if (action === "/tools/bot/register-form") {
+  if (action === '/tools/bot/register-form') {
     const loc = new URL(window.location.href);
-    form.querySelector("#owner").value = loc.searchParams.get("owner") || "";
-    form.querySelector("#installationId").value =
-      loc.searchParams.get("id") || "";
+    form.querySelector('#owner').value = loc.searchParams.get('owner') || '';
+    form.querySelector('#installationId').value =
+      loc.searchParams.get('id') || '';
   }
 }
 
@@ -152,49 +152,49 @@ async function createForm(formURL) {
   const { pathname, search } = new URL(formURL);
   const resp = await fetch(pathname + search);
   const json = await resp.json();
-  const form = document.createElement("form");
+  const form = document.createElement('form');
   const rules = [];
   // eslint-disable-next-line prefer-destructuring
-  form.dataset.action = pathname.split(".json")[0];
+  form.dataset.action = pathname.split('.json')[0];
   json.data.forEach((fd) => {
-    fd.Type = fd.Type || "text";
-    const style = fd.Style ? ` form-${fd.Style}` : "";
+    fd.Type = fd.Type || 'text';
+    const style = fd.Style ? ` form-${fd.Style}` : '';
     const fieldId = `form-${fd.Type}-wrapper${style}`;
-    const fieldWrapper = createTag("div", {
+    const fieldWrapper = createTag('div', {
       className: `${fieldId} field-wrapper`,
     });
     switch (fd.Type) {
-      case "select":
+      case 'select':
         fieldWrapper.append(createLabel(fd));
         fieldWrapper.append(createSelect(fd));
-        fieldWrapper.classList.add("input-form");
+        fieldWrapper.classList.add('input-form');
         break;
-      case "heading":
-        fieldWrapper.append(createHeading(fd, "h3"));
+      case 'heading':
+        fieldWrapper.append(createHeading(fd, 'h3'));
         break;
-      case "legal":
-        fieldWrapper.append(createHeading(fd, "p"));
+      case 'legal':
+        fieldWrapper.append(createHeading(fd, 'p'));
         break;
-      case "checkbox":
+      case 'checkbox':
         fieldWrapper.append(createInput(fd));
         fieldWrapper.append(createLabel(fd));
-        fieldWrapper.classList.add("input-form");
+        fieldWrapper.classList.add('input-form');
         break;
-      case "text-area":
+      case 'text-area':
         fieldWrapper.append(createLabel(fd));
         fieldWrapper.append(createTextArea(fd));
-        fieldWrapper.classList.add("input-form");
+        fieldWrapper.classList.add('input-form');
         break;
-      case "submit":
+      case 'submit':
         fieldWrapper.append(createButton(fd));
         break;
-      case "info":
+      case 'info':
         fieldWrapper.append(createInfo(fd));
         break;
       default:
         fieldWrapper.append(createLabel(fd));
         fieldWrapper.append(createInput(fd));
-        fieldWrapper.classList.add("input-form");
+        fieldWrapper.classList.add('input-form');
     }
 
     if (fd.Rules) {
@@ -208,7 +208,7 @@ async function createForm(formURL) {
     form.append(fieldWrapper);
   });
 
-  form.addEventListener("change", () => applyRules(form, rules));
+  form.addEventListener('change', () => applyRules(form, rules));
   applyRules(form, rules);
   fill(form);
   return form;
@@ -216,8 +216,8 @@ async function createForm(formURL) {
 
 export default async function decorate(block) {
   readBlockConfig(block);
-  const form = block.querySelector("a");
-  addInViewAnimationToSingleElement(block, "fade-up");
+  const form = block.querySelector('a');
+  addInViewAnimationToSingleElement(block, 'fade-up');
   if (form) {
     form.replaceWith(await createForm(form.href));
   }

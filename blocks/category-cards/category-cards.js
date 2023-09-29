@@ -1,16 +1,16 @@
-import createTag from "../../utils/tag.js";
+import createTag from '../../utils/tag.js';
 
 export default async function decorate(block) {
-  const div = createTag("div", { className: "category-cards" });
+  const div = createTag('div', { className: 'category-cards' });
   [...block.children].forEach((row) => {
     const [slug, categoryName, image] = [...row.children];
-    const categoryWrapper = createTag("a", {
+    const categoryWrapper = createTag('a', {
       href: `/products?category=${slug.textContent}`,
-      className: "category",
+      className: 'category',
     });
 
-    const name = createTag("p", {
-      className: "category-name",
+    const name = createTag('p', {
+      className: 'category-name',
       textContent: categoryName.textContent,
     });
 

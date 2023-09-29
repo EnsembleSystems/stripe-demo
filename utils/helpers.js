@@ -54,7 +54,11 @@ export function combineChildrenToSingleDiv(element) {
 export function changeTag(element, targetTag, className) {
   const newElClass = className || '';
   const innerContent = element.innerHTML;
-  const newTagElement = createTag(targetTag, { className: newElClass }, innerContent);
+  const newTagElement = createTag(
+    targetTag,
+    { className: newElClass },
+    innerContent
+  );
 
   return newTagElement;
 }
@@ -70,7 +74,9 @@ export function returnLinkTarget(url) {
 
   // take in pathname that should be opened in new tab, in redirects excel
   const redirectExternalPaths = ['/history', '/chat'];
-  const redirectToExternalPath = redirectExternalPaths.includes(urlObject.pathname);
+  const redirectToExternalPath = redirectExternalPaths.includes(
+    urlObject.pathname
+  );
 
   if (!isSameHost || redirectToExternalPath) {
     return '_blank';
@@ -97,7 +103,7 @@ export function addAnimatedClassToElement(
   targetSelector,
   animatedClass,
   delayTime,
-  targetSelectorWrapper,
+  targetSelectorWrapper
 ) {
   const target = targetSelectorWrapper.querySelector(targetSelector);
   if (target) {
@@ -115,14 +121,15 @@ export function addAnimatedClassToMultipleElements(
   animatedClass,
   delayTime,
   targetSelectorWrapper,
-  staggerTime,
+  staggerTime
 ) {
   const targets = targetSelectorWrapper.querySelectorAll(targetSelector);
   if (targets) {
     targets.forEach((target, i) => {
       target.classList.add(animatedClass);
       if (delayTime) target.style.transitionDelay = `${delayTime * (i + 1)}s`;
-      if (staggerTime) target.style.transitionDelay = `${delayTime + staggerTime * (i + 1)}s`;
+      if (staggerTime)
+        target.style.transitionDelay = `${delayTime + staggerTime * (i + 1)}s`;
       if (requireRevealWrapper.indexOf(animatedClass) !== -1) {
         addRevealWrapperToAnimationTarget(target);
       }
@@ -150,7 +157,7 @@ export function addInViewAnimationToSingleElement(
   targetElement,
   animatedClass,
   triggerElement,
-  delayTime,
+  delayTime
 ) {
   // if it's HTML element
   if (targetElement.nodeType === 1) {
@@ -161,18 +168,32 @@ export function addInViewAnimationToSingleElement(
   }
   // if it's string only, which should be a selector
   if (targetElement.nodeType === 3) {
-    addAnimatedClassToElement(targetElement, animatedClass, triggerElement, delayTime);
+    addAnimatedClassToElement(
+      targetElement,
+      animatedClass,
+      triggerElement,
+      delayTime
+    );
   }
   const trigger = triggerElement || targetElement;
   addInviewObserverToTriggerElement(trigger);
 }
 
-export function addInViewAnimationToMultipleElements(animatedItems, triggerElement, staggerTime) {
+export function addInViewAnimationToMultipleElements(
+  animatedItems,
+  triggerElement,
+  staggerTime
+) {
   // set up animation class
   animatedItems.forEach((el, i) => {
     const delayTime = staggerTime ? i * staggerTime : null;
     if (Object.prototype.hasOwnProperty.call(el, 'selector')) {
-      addAnimatedClassToElement(el.selector, el.animatedClass, delayTime, triggerElement);
+      addAnimatedClassToElement(
+        el.selector,
+        el.animatedClass,
+        delayTime,
+        triggerElement
+      );
     }
     if (Object.prototype.hasOwnProperty.call(el, 'selectors')) {
       // eslint-disable-next-line max-len
@@ -180,7 +201,7 @@ export function addInViewAnimationToMultipleElements(animatedItems, triggerEleme
         el.selectors,
         el.animatedClass,
         el.staggerTime,
-        triggerElement,
+        triggerElement
       );
     }
   });
@@ -190,7 +211,9 @@ export function addInViewAnimationToMultipleElements(animatedItems, triggerEleme
 }
 
 export function getBlockColumnValues(block, column, content = 'innerHTML') {
-  return [...block.children].map((uri) => [...uri.children]?.[column]?.[content]);
+  return [...block.children].map(
+    (uri) => [...uri.children]?.[column]?.[content]
+  );
 }
 
 /**

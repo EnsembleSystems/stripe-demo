@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 // eslint-disable-next-line import/no-unresolved
-import { fetchGraphQl } from "@dropins/elsie/fetch-graphql.js";
-import { GET_CATEGORIES_BY_URL_KEYS } from "./graphql.js";
+import { fetchGraphQl } from '@dropins/elsie/fetch-graphql.js';
+import { GET_CATEGORIES_BY_URL_KEYS } from './graphql.js';
 /**
  * Return list of categories
  */

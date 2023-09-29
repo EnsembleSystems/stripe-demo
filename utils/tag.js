@@ -11,7 +11,7 @@ export default function createTag(tag, attributes, html) {
     if (html instanceof HTMLElement) {
       el.append(html);
     } else {
-      el.insertAdjacentHTML("beforeend", html);
+      el.insertAdjacentHTML('beforeend', html);
     }
   }
   if (attributes) {

@@ -11,11 +11,11 @@ import {
   loadBlocks,
   loadCSS,
   loadScript,
-} from "./lib-franklin.js";
+} from './lib-franklin.js';
 
-import { events } from "@dropins/elsie/event-bus.js";
-import { initializers } from "@dropins/elsie/initializer.js";
-import { setEndpoint } from "@dropins/elsie/fetch-graphql.js";
+import { events } from '@dropins/elsie/event-bus.js';
+import { initializers } from '@dropins/elsie/initializer.js';
+import { setEndpoint } from '@dropins/elsie/fetch-graphql.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -25,8 +25,8 @@ const LCP_BLOCKS = []; // add your LCP blocks to the list
 async function loadFonts() {
   await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
   try {
-    if (!window.location.hostname.includes("localhost"))
-      sessionStorage.setItem("fonts-loaded", "true");
+    if (!window.location.hostname.includes('localhost'))
+      sessionStorage.setItem('fonts-loaded', 'true');
   } catch (e) {
     // do nothing
   }
@@ -51,18 +51,18 @@ export function decorateMain(main) {
  */
 async function loadEager(doc) {
   loadDropins();
-  document.documentElement.lang = "en";
+  document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
-  const main = doc.querySelector("main");
+  const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
-    document.body.classList.add("appear");
+    document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS);
   }
 
   try {
     /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
-    if (window.innerWidth >= 900 || sessionStorage.getItem("fonts-loaded")) {
+    if (window.innerWidth >= 900 || sessionStorage.getItem('fonts-loaded')) {
       loadFonts();
     }
   } catch (e) {
@@ -76,37 +76,37 @@ async function loadEager(doc) {
  */
 async function loadLazy(doc) {
   const { pathname } = new URL(window.location.href);
-  if (pathname === "/checkout") {
-    loadScript("https://js.stripe.com/v3/");
+  if (pathname === '/checkout') {
+    loadScript('https://js.stripe.com/v3/');
   }
-  const main = doc.querySelector("main");
+  const main = doc.querySelector('main');
   await loadBlocks(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector("header"));
-  loadFooter(doc.querySelector("footer"));
+  loadHeader(doc.querySelector('header'));
+  loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 
-  sampleRUM("lazy");
-  sampleRUM.observe(main.querySelectorAll("div[data-block-name]"));
-  sampleRUM.observe(main.querySelectorAll("picture > img"));
+  sampleRUM('lazy');
+  sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
+  sampleRUM.observe(main.querySelectorAll('picture > img'));
 }
 
 /**
  * Load/run general storefront @dropins logic
  */
 function loadDropins() {
-  setEndpoint("http://localhost/graphql");
-  if (document.readyState === "complete") {
-    console.log("document already loaded");
+  setEndpoint('http://localhost/graphql');
+  if (document.readyState === 'complete') {
+    console.log('document already loaded');
     initializers.mount();
   } else {
-    window.addEventListener("load", initializers.mount);
+    window.addEventListener('load', initializers.mount);
   }
   events.enableLogger(true);
   window.events = events;
@@ -118,7 +118,7 @@ function loadDropins() {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import("./delayed.js"), 3000);
+  window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
 }
 
