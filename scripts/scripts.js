@@ -77,7 +77,7 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   const { pathname } = new URL(window.location.href);
   if (pathname === '/checkout') {
-    loadScript('https://js.stripe.com/v3/');
+    await loadScript('https://js.stripe.com/v3/');
   }
   const main = doc.querySelector('main');
   await loadBlocks(main);
