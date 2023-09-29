@@ -88,9 +88,12 @@ function createProductDetailsCard(currentProduct) {
   const productImgWrapper = createTag('div', {
     className: 'product-image-wrapper',
   });
-  const img = createTag('img', {
+
+  const img = createOptimizedPicture({
     src: currentProduct.image.url,
     alt: currentProduct.image.label,
+    useSrc: true,
+    eager: true,
   });
 
   productImgWrapper.appendChild(img);

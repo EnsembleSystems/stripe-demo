@@ -17,6 +17,7 @@ function createProductCards(data) {
       src: product.small_image.url,
       alt: product.small_image.label,
       useSrc: true,
+      eager: true,
     });
 
     const name = createTag('p', {

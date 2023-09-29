@@ -84,10 +84,10 @@ async function createOrderLine(item) {
       (q) => `<option value=${q}>${q}</option>`
     )}
     </select>
-    <button class='close-button'><img class='close-icon' src='../../icons/close.svg' alt='Remove'/></button></div>
+    <button class='close-button'><img class='close-icon' src='../../icons/close.svg' alt='Remove' width='20' height='20'/></button></div>
     ${
       product.stock_status === 'IN_STOCK'
-        ? `<div class='stock-info'><img src='../../icons/check.svg' alt='In Stock'/>
+        ? `<div class='stock-info'><img src='../../icons/check.svg' alt='In Stock' width='20' height='20'/>
     <span>In Stock</span></div>`
         : `<div class='stock-info'>
     <span>Out of Stock</span></div>`
