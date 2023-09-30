@@ -12,9 +12,16 @@
   }
 }
 
-.product-cards-wrapper .product-wrapper img {
+.product-cards-wrapper .product-image-wrapper {
   aspect-ratio: 1;
+  overflow: hidden;
   border-radius: 0.5rem;
+}
+
+.product-cards-wrapper .product-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .product-cards-wrapper .product-wrapper .product-name {

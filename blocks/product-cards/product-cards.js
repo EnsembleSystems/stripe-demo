@@ -13,12 +13,20 @@ function createProductCards(data) {
       className: 'product-wrapper',
     });
 
-    const img = createOptimizedPicture({
+    const pictureWrapper = createTag('div', {
+      className: 'product-image-wrapper',
+    });
+
+    const picture = createOptimizedPicture({
       src: product.small_image.url,
       alt: product.small_image.label,
       useSrc: true,
       eager: true,
+      width: 800,
+      height: 1200,
     });
+
+    pictureWrapper.append(picture);
 
     const name = createTag('p', {
       className: 'product-name',
@@ -33,7 +41,7 @@ function createProductCards(data) {
         2
       )}`,
     });
-    productWrapper.append(img, name, price);
+    productWrapper.append(pictureWrapper, name, price);
     div.appendChild(productWrapper);
   });
 

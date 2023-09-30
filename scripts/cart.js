@@ -1,5 +1,4 @@
 import { fetchGraphQl } from '@dropins/elsie/fetch-graphql.js';
-import { events } from '@dropins/elsie/event-bus.js';
 import {
   ADD_TO_CART,
   CREATE_EMPTY_CART,

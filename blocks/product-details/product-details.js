@@ -94,6 +94,8 @@ function createProductDetailsCard(currentProduct) {
     alt: currentProduct.image.label,
     useSrc: true,
     eager: true,
+    width: 800,
+    height: 1200,
   });
 
   productImgWrapper.appendChild(img);
