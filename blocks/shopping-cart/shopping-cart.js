@@ -68,6 +68,8 @@ async function createOrderLine(item) {
     alt: product.name,
     eager: true,
     useSrc: true,
+    width: 192,
+    height: 192,
   });
 
   productImgWrapper.appendChild(img);

@@ -575,6 +575,8 @@ export function createOptimizedPicture({
     { width: '750' },
   ],
   useSrc = false,
+  width = 750,
+  height = 750,
 }) {
   const url = new URL(src, window.location.href);
   const picture = document.createElement('picture');
@@ -618,6 +620,8 @@ export function createOptimizedPicture({
           br.width
         }&format=${ext}&optimize=medium`
       );
+      img.width = width;
+      img.height = height;
     }
   });
 
