@@ -11,9 +11,7 @@ import {
   setPaymentMethodOnCart,
 } from '../../scripts/cart.js';
 import { loadLoading } from '../../scripts/lib-franklin.js';
-const stripe = Stripe(
-  'pk_test_51Nrs0ML1DV9f5cSo8SGP5fqOt9ypRLqBSKBv4rfbRPOGezL5t5sUMV7mHGlRdd9455BXOwoBngtEWo35EEgc7UHD00Ajy9FWgK'
-);
+import { StripePlugin } from '../../scripts/stripe.js';
 
 export default async function decorate(block) {
   const cartId = getCartId();
@@ -37,46 +35,30 @@ export default async function decorate(block) {
         context.addPaymentMethodHandler('stripe_payments', {
           render: async (element, context) => {
             if (element) {
-              const appearance = {
-                /* appearance */
-              };
-              const options = {};
-              const clientSecret =
-                'pi_3NsZkUL1DV9f5cSo0t4biUBY_secret_hbaemymPGMHsuf8oxqMYthy2p';
-              const elements = stripe.elements({
-                clientSecret,
-                appearance,
-                paymentMethodCreation: 'manual',
-              });
-              const paymentElement = elements.create('payment', options);
-              paymentElement.mount(element);
-
-              context.onPlaceOrder(() => {
-                elements.submit().then(async function () {
+              const stripe = new StripePlugin(
+                'pk_test_51Nrs0ML1DV9f5cSo8SGP5fqOt9ypRLqBSKBv4rfbRPOGezL5t5sUMV7mHGlRdd9455BXOwoBngtEWo35EEgc7UHD00Ajy9FWgK',
+                'pi_3NsZkUL1DV9f5cSo0t4biUBY_secret_hbaemymPGMHsuf8oxqMYthy2p'
+              );
+              stripe.render(element);
+              context.onPlaceOrder(async () => {
+                const result = await stripe.proceedPayment();
+                if (result && result.paymentMethod) {
                   const loading = await loadLoading();
-                  stripe
-                    .createPaymentMethod({
-                      elements: elements,
-                    })
-                    .then(async function (result) {
-                      if (result && result.paymentMethod) {
-                        await setPaymentMethodOnCart(
-                          result.paymentMethod.id,
-                          context.cartId
-                        );
-                        const order = await placeOrder(context.cartId);
-                        loading.remove();
-                        clearCartId();
-                        block.replaceWith(
-                          createTag(
-                            'div',
-                            { className: 'checkout-complete' },
-                            `<p class='thank-you'>Thank you for shopping!</p><p class='order-number'>Your order <b>#${order.order_number}</b> has been placed.</p><a href='/' class='primary button'>Continue Shopping</a>`
-                          )
-                        );
-                      }
-                    });
-                });
+                  await setPaymentMethodOnCart(
+                    result.paymentMethod.id,
+                    context.cartId
+                  );
+                  const order = await placeOrder(context.cartId);
+                  loading.remove();
+                  clearCartId();
+                  block.replaceWith(
+                    createTag(
+                      'div',
+                      { className: 'checkout-complete' },
+                      `<p class='thank-you'>Thank you for shopping!</p><p class='order-number'>Your order <b>#${order.order_number}</b> has been placed.</p><a href='/' class='primary button'>Continue Shopping</a>`
+                    )
+                  );
+                }
               });
             }
           },
