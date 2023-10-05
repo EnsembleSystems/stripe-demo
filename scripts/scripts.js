@@ -16,6 +16,7 @@ import {
 import { events } from '@dropins/elsie/event-bus.js';
 import { initializers } from '@dropins/elsie/initializer.js';
 import { setEndpoint } from '@dropins/elsie/fetch-graphql.js';
+import { getConfigValue } from './config.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -101,7 +102,7 @@ async function loadLazy(doc) {
  * Load/run general storefront @dropins logic
  */
 function loadDropins() {
-  setEndpoint('http://localhost/graphql');
+  setEndpoint(getConfigValue('graphql_endpoint'));
   if (document.readyState === 'complete') {
     console.log('document already loaded');
     initializers.mount();
