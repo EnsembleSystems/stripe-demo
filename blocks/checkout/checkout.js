@@ -11,7 +11,7 @@ import {
   setPaymentMethodOnCart,
 } from '../../scripts/cart.js';
 import { loadLoading } from '../../scripts/lib-franklin.js';
-import { StripePlugin } from '../../scripts/stripe.js';
+import { renderStripeComponent } from '../../scripts/stripe.js';
 
 export default async function decorate(block) {
   const cartId = getCartId();
@@ -50,14 +50,14 @@ export default async function decorate(block) {
 
         context.addPaymentMethodHandler('stripe_payments', {
           render: async (element, context) => {
-            const stripe = new StripePlugin({
+            renderStripeComponent({
               key: 'pk_test_51Nrs0ML1DV9f5cSo8SGP5fqOt9ypRLqBSKBv4rfbRPOGezL5t5sUMV7mHGlRdd9455BXOwoBngtEWo35EEgc7UHD00Ajy9FWgK',
               clientSecret:
                 'pi_3NsZkUL1DV9f5cSo0t4biUBY_secret_hbaemymPGMHsuf8oxqMYthy2p',
+              element,
+              context,
+              callback: (paymentMethod) => proceedPlaceOrder(paymentMethod),
             });
-            stripe.init(element, context, (paymentMethod) =>
-              proceedPlaceOrder(paymentMethod)
-            );
           },
         });
       },
