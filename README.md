@@ -24,4 +24,4 @@ npm run lint
 3. Install the [Helix CLI](https://github.com/adobe/helix-cli): `npm install -g @adobe/helix-cli`
 4. Start Franklin Proxy: `hlx up` (opens your browser at `http://localhost:3000`)
 5. Open the `{repo}` directory in your favorite IDE and start coding :)
-6. Replace Adobe Magento Graphql Endpoint, Stripe Public Key, Stripe Client Secret to run the project locally.  
+6. Replace Adobe Magento Graphql Endpoint, Stripe Public Key, Stripe Client Secret in scripts/config.js to run the project locally.  
