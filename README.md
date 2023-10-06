@@ -1,5 +1,5 @@
-# Your Project's Title...
-Your project's description...
+# Adobe Commerce Stripe Demo: FURNI 
+Adobe Commerce Stripe Demo: FURNI 
 
 ## Environments
 - Preview: https://main--stripe-demo--ensemblesystems.hlx.page/
