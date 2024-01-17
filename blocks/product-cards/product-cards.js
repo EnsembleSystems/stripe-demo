@@ -1,5 +1,4 @@
 import { getCategoriesByUrlKeys } from '../../scripts/category.js';
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { getProducts } from '../../scripts/product.js';
 import { getBlockColumnValues } from '../../utils/helpers.js';
 import createTag from '../../utils/tag.js';
@@ -17,16 +16,7 @@ function createProductCards(data) {
       className: 'product-image-wrapper',
     });
 
-    const picture = createOptimizedPicture({
-      src: product.small_image.url,
-      alt: product.small_image.label,
-      useSrc: true,
-      eager: true,
-      width: 800,
-      height: 1200,
-    });
-
-    pictureWrapper.append(picture);
+    pictureWrapper.innerHTML = `<img src='${product.small_image.url}' alt='${product.small_image.label}' />`;
 
     const name = createTag('p', {
       className: 'product-name',
@@ -38,7 +28,7 @@ function createProductCards(data) {
       textContent: `${
         product.price_range.minimum_price.regular_price.currency
       } ${Number(product.price_range.minimum_price.regular_price.value).toFixed(
-        2
+        2,
       )}`,
     });
     productWrapper.append(pictureWrapper, name, price);

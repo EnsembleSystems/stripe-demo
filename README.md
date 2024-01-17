@@ -1,9 +1,9 @@
-# Adobe Commerce Stripe Demo: FURNI 
-Adobe Commerce Stripe Demo: FURNI 
+# Your Project's Title...
+Your project's description...
 
 ## Environments
-- Preview: https://main--stripe-demo--ensemblesystems.hlx.page/
-- Live: https://main--stripe-demo--ensemblesystems.hlx.live/
+- Preview: https://main--{repo}--{owner}.hlx.page/
+- Live: https://main--{repo}--{owner}.hlx.live/
 
 ## Installation
 
@@ -19,10 +19,8 @@ npm run lint
 
 ## Local development
 
-1. Create a new repository based on the `helix-project-boilerplate` template and add a mountpoint in the `fstab.yaml`
-2. Add the [helix-bot](https://github.com/apps/helix-bot) to the repository
-3. Install the [Helix CLI](https://github.com/adobe/helix-cli): `npm install -g @adobe/helix-cli`
-4. Start Franklin Proxy: `hlx up` (opens your browser at `http://localhost:3000`)
-5. Open the `{repo}` directory in your favorite IDE and start coding :)
-6. Follow https://stripe.com/docs/connectors/adobe-commerce to set up stripe connector for Adobe Commerce
-7. Replace Adobe Commerce Graphql Endpoint, Stripe Public Key, Stripe Client Secret in scripts/config.js to run the project locally.  
+1. Create a new repository based on the `aem-boilerplate` template and add a mountpoint in the `fstab.yaml`
+1. Add the [AEM Code Sync GitHub App](https://github.com/apps/aem-code-sync) to the repository
+1. Install the [AEM CLI](https://github.com/adobe/aem-cli): `npm install -g @adobe/aem-cli`
+1. Start AEM Proxy: `aem up` (opens your browser at `http://localhost:3000`)
+1. Open the `{repo}` directory in your favorite IDE and start coding :)

@@ -6,9 +6,6 @@ main .forms {
   border: solid 1px var(--bg-color-grey);
   width: 448px;
   padding-top: 20px;
-  @media (max-width: 600px) {
-    width: 100%;
-  }
 }
 
 main .forms h2 {
@@ -48,11 +45,7 @@ main .forms select:hover {
 }
 
 main .forms label {
-  display: block;
-  padding-bottom: var(--spacing-xxs);
-  box-sizing: border-box;
-  font-size: var(--type-body-s-size);
-  line-height: var(--type-body-s-lh);
+  display: none;
 }
 
 main .forms label.required::after {
@@ -124,10 +117,6 @@ main .forms button {
   width: 100%;
 }
 
-main .forms label {
-  display: none;
-}
-
 main .forms .form-info-wrapper {
   color: var(--faded-text-color);
   background: var(--overlay-background-color);
@@ -183,4 +172,10 @@ main .forms form>div.form-last-child {
   border-end-start-radius: 5px;
   border-end-end-radius: 5px;
   border-bottom: 1px solid var(--divider-color);
+}
+
+@media (max-width: 600px) {
+  main .forms {
+    width: 100%;
+  }
 }

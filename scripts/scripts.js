@@ -1,3 +1,6 @@
+import { events } from '@dropins/elsie/event-bus.js';
+import { initializers } from '@dropins/elsie/initializer.js';
+import { setEndpoint } from '@dropins/elsie/fetch-graphql.js';
 import {
   sampleRUM,
   loadHeader,
@@ -11,11 +14,7 @@ import {
   loadBlocks,
   loadCSS,
   loadScript,
-} from './lib-franklin.js';
-
-import { events } from '@dropins/elsie/event-bus.js';
-import { initializers } from '@dropins/elsie/initializer.js';
-import { setEndpoint } from '@dropins/elsie/fetch-graphql.js';
+} from './aem.js';
 import { getConfigValue } from './config.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -26,12 +25,39 @@ const LCP_BLOCKS = []; // add your LCP blocks to the list
 async function loadFonts() {
   await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
   try {
-    if (!window.location.hostname.includes('localhost'))
-      sessionStorage.setItem('fonts-loaded', 'true');
+    if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
   } catch (e) {
     // do nothing
   }
 }
+
+/**
+ * Load/run general storefront @dropins logic
+ */
+function loadDropins() {
+  setEndpoint(getConfigValue('graphql_endpoint'));
+  if (document.readyState === 'complete') {
+    console.log('document already loaded');
+    initializers.mount();
+  } else {
+    window.addEventListener('load', initializers.mount);
+  }
+  events.enableLogger(true);
+  window.events = events;
+}
+
+/**
+ * Builds all synthetic blocks in a container element.
+ * @param {Element} main The container element
+ */
+// function buildAutoBlocks(main) {
+//   try {
+//     buildHeroBlock(main);
+//   } catch (error) {
+//     // eslint-disable-next-line no-console
+//     console.error('Auto Blocking failed', error);
+//   }
+// }
 
 /**
  * Decorates the main element.
@@ -42,6 +68,7 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
+  // buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
 }
@@ -96,21 +123,6 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
-}
-
-/**
- * Load/run general storefront @dropins logic
- */
-function loadDropins() {
-  setEndpoint(getConfigValue('graphql_endpoint'));
-  if (document.readyState === 'complete') {
-    console.log('document already loaded');
-    initializers.mount();
-  } else {
-    window.addEventListener('load', initializers.mount);
-  }
-  events.enableLogger(true);
-  window.events = events;
 }
 
 /**

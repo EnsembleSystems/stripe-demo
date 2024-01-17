@@ -1,4 +1,4 @@
-import { readBlockConfig } from '../../scripts/lib-franklin.js';
+import { readBlockConfig } from '../../scripts/aem.js';
 import { addInViewAnimationToSingleElement } from '../../utils/helpers.js';
 import createTag from '../../utils/tag.js';
 
@@ -37,12 +37,11 @@ function constructPayload(form) {
 }
 
 function createInfo(form) {
-  const svg =
-    '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+  const svg = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
   const div = createTag(
     'div',
     { className: 'form-info' },
-    `<div>${svg}<span>${form.Label}</span></div>`
+    `<div>${svg}<span>${form.Label}</span></div>`,
   );
 
   return div;
@@ -143,8 +142,7 @@ function fill(form) {
   if (action === '/tools/bot/register-form') {
     const loc = new URL(window.location.href);
     form.querySelector('#owner').value = loc.searchParams.get('owner') || '';
-    form.querySelector('#installationId').value =
-      loc.searchParams.get('id') || '';
+    form.querySelector('#installationId').value = loc.searchParams.get('id') || '';
   }
 }
 
