@@ -206,13 +206,13 @@ mutation ADD_TO_CART($cartId: String!, $productQuantity: Float!, $sku: String!) 
 }
 `;
 
-export const UPDATE_CART_ITEMS = `mutation UPDATE_CART_ITEMS($cartId: String!, $cart_item_id: Int!, $quantity: Float!) {
+export const UPDATE_CART_ITEMS = `mutation UPDATE_CART_ITEMS($cartId: String!, $cartItemId: Int!, $quantity: Float!) {
   updateCartItems(
     input: {
       cart_id: $cartId,
       cart_items: [
         {
-          cart_item_id: $cart_item_id
+          cart_item_id: $cartItemId
           quantity: $quantity
         }
       ]
@@ -224,11 +224,11 @@ export const UPDATE_CART_ITEMS = `mutation UPDATE_CART_ITEMS($cartId: String!, $
   }
 }`;
 
-export const REMOVE_FROM_CART = `mutation REMOVE_FROM_CART($cartId: String!, $cart_item_id: Int!) {
+export const REMOVE_FROM_CART = `mutation REMOVE_FROM_CART($cartId: String!, $cartItemId: Int!) {
   removeItemFromCart(
     input: {
       cart_id: $cartId,
-      cart_item_id: $cart_item_id
+      cart_item_id: $cartItemId
     }
   ) {
     cart {
@@ -252,14 +252,14 @@ export const GET_CATEGORIES_BY_URL_KEYS = `query GET_CATEGORIES_BY_URL_KEYS($url
   }
 }`;
 
-export const SET_PAYMENT_METHOD_ON_CART = `mutation SET_PAYMENT_METHOD_ON_CART ($cartId: String!, $payment_method_id: String!){
+export const SET_PAYMENT_METHOD_ON_CART = `mutation SET_PAYMENT_METHOD_ON_CART ($cartId: String!, $paymentMethodId: String!){
   setPaymentMethodOnCart(input: {
       cart_id: $cartId
       payment_method: {
         code: "stripe_payments"
         stripe_payments: {
           payment_element: true
-          payment_method: $payment_method_id
+          payment_method: $paymentMethodId
           save_payment_method: true
         }
       }

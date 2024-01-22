@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/prefer-default-export
 export const renderStripeComponent = ({
   key,
   clientSecret,
@@ -7,11 +8,13 @@ export const renderStripeComponent = ({
   context,
   callback,
 }) => {
+  // eslint-disable-next-line no-undef
   const stripe = Stripe(key);
   if (element && context) {
+    console.log(context);
     const elements = stripe.elements({
-      clientSecret: clientSecret,
-      appearance: appearance,
+      clientSecret,
+      appearance,
       paymentMethodCreation: 'manual',
     });
     const paymentElement = elements.create('payment', options);

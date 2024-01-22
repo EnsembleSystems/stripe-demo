@@ -1,3 +1,4 @@
+import { buildBlock, decorateBlock, loadBlock } from '../scripts/aem.js';
 import createTag from './tag.js';
 
 /**
@@ -57,7 +58,7 @@ export function changeTag(element, targetTag, className) {
   const newTagElement = createTag(
     targetTag,
     { className: newElClass },
-    innerContent
+    innerContent,
   );
 
   return newTagElement;
@@ -75,7 +76,7 @@ export function returnLinkTarget(url) {
   // take in pathname that should be opened in new tab, in redirects excel
   const redirectExternalPaths = ['/history', '/chat'];
   const redirectToExternalPath = redirectExternalPaths.includes(
-    urlObject.pathname
+    urlObject.pathname,
   );
 
   if (!isSameHost || redirectToExternalPath) {
@@ -103,7 +104,7 @@ export function addAnimatedClassToElement(
   targetSelector,
   animatedClass,
   delayTime,
-  targetSelectorWrapper
+  targetSelectorWrapper,
 ) {
   const target = targetSelectorWrapper.querySelector(targetSelector);
   if (target) {
@@ -121,15 +122,14 @@ export function addAnimatedClassToMultipleElements(
   animatedClass,
   delayTime,
   targetSelectorWrapper,
-  staggerTime
+  staggerTime,
 ) {
   const targets = targetSelectorWrapper.querySelectorAll(targetSelector);
   if (targets) {
     targets.forEach((target, i) => {
       target.classList.add(animatedClass);
       if (delayTime) target.style.transitionDelay = `${delayTime * (i + 1)}s`;
-      if (staggerTime)
-        target.style.transitionDelay = `${delayTime + staggerTime * (i + 1)}s`;
+      if (staggerTime) { target.style.transitionDelay = `${delayTime + staggerTime * (i + 1)}s`; }
       if (requireRevealWrapper.indexOf(animatedClass) !== -1) {
         addRevealWrapperToAnimationTarget(target);
       }
@@ -157,7 +157,7 @@ export function addInViewAnimationToSingleElement(
   targetElement,
   animatedClass,
   triggerElement,
-  delayTime
+  delayTime,
 ) {
   // if it's HTML element
   if (targetElement.nodeType === 1) {
@@ -172,7 +172,7 @@ export function addInViewAnimationToSingleElement(
       targetElement,
       animatedClass,
       triggerElement,
-      delayTime
+      delayTime,
     );
   }
   const trigger = triggerElement || targetElement;
@@ -182,7 +182,7 @@ export function addInViewAnimationToSingleElement(
 export function addInViewAnimationToMultipleElements(
   animatedItems,
   triggerElement,
-  staggerTime
+  staggerTime,
 ) {
   // set up animation class
   animatedItems.forEach((el, i) => {
@@ -192,7 +192,7 @@ export function addInViewAnimationToMultipleElements(
         el.selector,
         el.animatedClass,
         delayTime,
-        triggerElement
+        triggerElement,
       );
     }
     if (Object.prototype.hasOwnProperty.call(el, 'selectors')) {
@@ -201,7 +201,7 @@ export function addInViewAnimationToMultipleElements(
         el.selectors,
         el.animatedClass,
         el.staggerTime,
-        triggerElement
+        triggerElement,
       );
     }
   });
@@ -212,7 +212,7 @@ export function addInViewAnimationToMultipleElements(
 
 export function getBlockColumnValues(block, column, content = 'innerHTML') {
   return [...block.children].map(
-    (uri) => [...uri.children]?.[column]?.[content]
+    (uri) => [...uri.children]?.[column]?.[content],
   );
 }
 
@@ -234,6 +234,36 @@ export function mapKeysProperties(uriKeys, properties) {
   });
 
   return titlesMap;
+}
+
+export async function loadLoading() {
+  const loadingBlock = buildBlock('loading', '');
+  const body = document.querySelector('body');
+  body.appendChild(loadingBlock);
+  decorateBlock(loadingBlock);
+  body.classList.add('no-scroll');
+  await loadBlock(loadingBlock);
+  return loadingBlock;
+}
+
+/**
+ * To fetch svg
+ * @param {String} iconName svg file name
+ * @param {String} path svg file path
+ */
+export async function fetchSvg(iconName, path) {
+  try {
+    const iconPath = path ? `${path}/${iconName}` : `/icons/${iconName}`;
+    const response = await fetch(`${window.hlx.codeBasePath}${iconPath}.svg`);
+    if (response.ok) {
+      const svg = await response.text();
+      return svg;
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+  }
+  return null;
 }
 
 export default {

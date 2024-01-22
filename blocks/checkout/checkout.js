@@ -10,9 +10,9 @@ import {
   placeOrder,
   setPaymentMethodOnCart,
 } from '../../scripts/cart.js';
-import { loadLoading } from '../../scripts/lib-franklin.js';
 import { renderStripeComponent } from '../../scripts/stripe.js';
 import { getConfigValue } from '../../scripts/config.js';
+import { loadLoading } from '../../utils/helpers.js';
 
 export default async function decorate(block) {
   const cartId = getCartId();
@@ -23,6 +23,7 @@ export default async function decorate(block) {
   initializers.register(checkoutApi.initialize);
 
   async function proceedPlaceOrder(paymentMethod) {
+    console.log(paymentMethod);
     const loading = await loadLoading();
     await setPaymentMethodOnCart(paymentMethod.id, cartId);
     const order = await placeOrder(cartId);
@@ -32,8 +33,8 @@ export default async function decorate(block) {
       createTag(
         'div',
         { className: 'checkout-complete' },
-        `<p class='thank-you'>Thank you for shopping!</p><p class='order-number'>Your order <b>#${order.order_number}</b> has been placed.</p><a href='/' class='primary button'>Continue Shopping</a>`
-      )
+        `<p class='thank-you'>Thank you for shopping!</p><p class='order-number'>Your order <b>#${order.order_number}</b> has been placed.</p><a href='/' class='primary button'>Continue Shopping</a>`,
+      ),
     );
   }
 
@@ -44,7 +45,7 @@ export default async function decorate(block) {
           render: (element, context) => {
             console.log('handler context', context);
             if (element) {
-              element.innerHTML = `<div>Custom Check / Money order handler</div>`;
+              element.innerHTML = '<div>Custom Check / Money order handler</div>';
             }
           },
         });

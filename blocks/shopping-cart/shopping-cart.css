@@ -102,7 +102,6 @@
 }
 
 .shopping-cart .order-line-wrapper .product-info select {
-  border: 1px solid var(--highlight-background-color);
   border-radius: 5px;
   width: 64px;
   height: 32px;

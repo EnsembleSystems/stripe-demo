@@ -1,4 +1,4 @@
-import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
+import { readBlockConfig, decorateIcons } from '../../scripts/aem.js';
 
 /**
  * loads and decorates the footer
@@ -12,7 +12,7 @@ export default async function decorate(block) {
   const footerPath = cfg.footer || '/footer';
   const resp = await fetch(
     `${footerPath}.plain.html`,
-    window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {}
+    window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {},
   );
 
   if (resp.ok) {
