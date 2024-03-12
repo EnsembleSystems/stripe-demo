@@ -54,3 +54,6 @@ bin/restart
 - Edit /Users/h/Documents/GitHub/stripe-demo/scripts/config.js (STRIPE_PK, GRAPHQL_ENDPOINT, CLIENT_SECRET)
 - Install the [AEM CLI](https://github.com/adobe/aem-cli): `npm install -g @adobe/aem-cli`
 - Start AEM Proxy: `aem up` (opens your browser at `http://localhost:3000`)
+
+## Commerce DropIn References
+https://github.com/magento/commerce-dropin-references
