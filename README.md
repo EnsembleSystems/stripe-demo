@@ -6,6 +6,7 @@ Adobe Commerce Stripe Demo: FURNI
 - Live: https://main--stripe-demo--ensemblesystems.hlx.live/
 
 ## Installation 
+
 These are the steps to install magento locally using Docker https://github.com/markshust/docker-magento?tab=readme-ov-file
 - Install Magento using Docker https://github.com/markshust/docker-magento?tab=readme-ov-file
 ```sh
@@ -46,27 +47,10 @@ bin/magento setup:upgrade
 ```sh
 bin/restart
 ```
-- Add some categories and products using examples from https://stripe-demo-furni.onrender.com/ 
-## Deploy FURNI Site 
+- Add some categories and products using examples from https://stripe-demo-furni.onrender.com/
+
+## Deploy FURNI Site locally 
 - Clone the project from https://github.com/EnsembleSystems/stripe-demo
 - Edit /Users/h/Documents/GitHub/stripe-demo/scripts/config.js (STRIPE_PK, GRAPHQL_ENDPOINT, CLIENT_SECRET)
 - Install the [AEM CLI](https://github.com/adobe/aem-cli): `npm install -g @adobe/aem-cli`
 - Start AEM Proxy: `aem up` (opens your browser at `http://localhost:3000`)
-
-
-## Linting
-```sh
-npm i
-npm run lint
-```
-
-## Local development
-
-1. Create a new repository based on the `helix-project-boilerplate` template and add a mountpoint in the `fstab.yaml`
-2. Add the [helix-bot](https://github.com/apps/helix-bot) to the repository
-3. Install the [Helix CLI](https://github.com/adobe/helix-cli): `npm install -g @adobe/helix-cli`
-4. Start Franklin Proxy: `hlx up` (opens your browser at `http://localhost:3000`)
-5. Open the `{repo}` directory in your favorite IDE and start coding :)
-6. Follow https://stripe.com/docs/connectors/adobe-commerce to set up stripe connector for Adobe Commerce
-7. Replace Adobe Commerce Graphql Endpoint, Stripe Public Key, Stripe Client Secret in scripts/config.js to run the project locally.
-8. Start AEM Proxy: `aem up` (opens your browser at `http://localhost:3000`)
