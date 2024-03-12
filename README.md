@@ -47,7 +47,8 @@ bin/magento setup:upgrade
 bin/restart
 ```
 - Add some categories and products using examples from https://stripe-demo-furni.onrender.com/ 
-## Deploy FURNI Site https://github.com/EnsembleSystems/stripe-demo
+## Deploy FURNI Site 
+- Clone the project from https://github.com/EnsembleSystems/stripe-demo
 - Edit /Users/h/Documents/GitHub/stripe-demo/scripts/config.js (STRIPE_PK, GRAPHQL_ENDPOINT, CLIENT_SECRET)
 - Install the [AEM CLI](https://github.com/adobe/aem-cli): `npm install -g @adobe/aem-cli`
 - Start AEM Proxy: `aem up` (opens your browser at `http://localhost:3000`)
