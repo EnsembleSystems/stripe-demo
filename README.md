@@ -29,10 +29,10 @@ bin/magento setup:upgrade
 bin/magento config:set twofactorauth/general/enable 0
 ```
 - Add Stripe API keys to Magento>Stores>Configuration>Sales>Payment Methods https://dashboard.stripe.com/test/apikeys
-- Get Stripe Client_Secret
+- Get Stripe Client_Secret (replace secret key from command below)
 ```sh
 curl https://api.stripe.com/v1/payment_intents \
--u "sk_test_51OsCTCDbocggOSnayfia5LIW6kRUbV5w2RWPOPxnLxgEnKimZlaTeDTRC9w0I6rJQCGlblixNvBo7Sjh60nnnXv000JTv9ahnw:" \
+-u "SK_KEY" \
 -d amount=2000 \
 -d currency=usd \
 -d "automatic_payment_methods[enabled]"=true
