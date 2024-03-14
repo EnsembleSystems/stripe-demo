@@ -29,14 +29,6 @@ bin/magento setup:upgrade
 bin/magento config:set twofactorauth/general/enable 0
 ```
 - Add Stripe API keys to Magento>Stores>Configuration>Sales>Payment Methods https://dashboard.stripe.com/test/apikeys
-- Get Stripe Client_Secret (replace secret key from command below)
-```sh
-curl https://api.stripe.com/v1/payment_intents \
--u "SK_KEY" \
--d amount=2000 \
--d currency=usd \
--d "automatic_payment_methods[enabled]"=true
-```
 - Download [ExtraGraphql.zip](https://github.com/EnsembleSystems/stripe-demo/files/14576502/ExtraGraphql.zip)
 - Unzip ExtraGraphql.zip and add it to [Magento folder]/magento/src/app/code/magento/
 ```sh
@@ -51,7 +43,12 @@ bin/restart
 
 ## Run FURNI app locally 
 - Clone the project from https://github.com/EnsembleSystems/stripe-demo
-- Edit /Users/h/Documents/GitHub/stripe-demo/scripts/config.js (STRIPE_PK, GRAPHQL_ENDPOINT, CLIENT_SECRET)
+- Create a file named env.js in root level and add these values in:
+  ```
+  export const STRIPE_PK = '';
+  export const GRAPHQL_ENDPOINT = '';
+  export const STRIPE_SK = '';
+  ```
 - Install the [AEM CLI](https://github.com/adobe/aem-cli): `npm install -g @adobe/aem-cli`
 - Start AEM Proxy: `aem up` (opens your browser at `http://localhost:3000`)
 
