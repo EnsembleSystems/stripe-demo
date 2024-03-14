@@ -14,7 +14,6 @@ curl -s https://raw.githubusercontent.com/markshust/docker-magento/master/lib/on
 ```
 - Register for a Stripe Account https://stripe.com/en-ca
 - Install Stripe Connector for Adobe Commerce https://docs.stripe.com/connectors/adobe-commerce/install
-- Install Magento using Docker https://github.com/markshust/docker-magento?tab=readme-ov-file
 ```sh
 bin/composer require stripe/stripe-payments
 bin/magento setup:upgrade
