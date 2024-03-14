@@ -10,8 +10,7 @@ import {
   placeOrder,
   setPaymentMethodOnCart,
 } from '../../scripts/cart.js';
-import { renderStripeComponent } from '../../scripts/stripe.js';
-import { getConfigValue } from '../../scripts/config.js';
+import renderStripeComponent from '../../scripts/stripe.js';
 import { loadLoading } from '../../utils/helpers.js';
 
 export default async function decorate(block) {
@@ -23,7 +22,6 @@ export default async function decorate(block) {
   initializers.register(checkoutApi.initialize);
 
   async function proceedPlaceOrder(paymentMethod) {
-    console.log(paymentMethod);
     const loading = await loadLoading();
     await setPaymentMethodOnCart(paymentMethod.id, cartId);
     const order = await placeOrder(cartId);
@@ -52,9 +50,7 @@ export default async function decorate(block) {
 
         context.addPaymentMethodHandler('stripe_payments', {
           render: async (element, context) => {
-            renderStripeComponent({
-              key: getConfigValue('stripe_pk'),
-              clientSecret: getConfigValue('client_secret'),
+            await renderStripeComponent({
               element,
               context,
               callback: (paymentMethod) => proceedPlaceOrder(paymentMethod),

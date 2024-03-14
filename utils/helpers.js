@@ -266,6 +266,23 @@ export async function fetchSvg(iconName, path) {
   return null;
 }
 
+export function formatFormData(data) {
+  let formBody = [];
+  Object.entries(data).forEach(([key, value]) => {
+    const encodedKey = encodeURIComponent(key);
+    const encodedValue = encodeURIComponent(value);
+    formBody.push(`${encodedKey}=${encodedValue}`);
+  });
+  formBody = formBody.join('&');
+  return formBody;
+}
+
+export async function fetchRates(base = 'USD') {
+  const res = await fetch(`https://open.er-api.com/v6/latest/${base}`);
+  const { rates } = await res.json();
+  return rates;
+}
+
 export default {
   removeOuterElementLayer,
   changeTag,
