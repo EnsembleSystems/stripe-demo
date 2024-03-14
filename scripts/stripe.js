@@ -7,12 +7,18 @@ const stripe = Stripe(getConfigValue('stripe_pk'));
 const getTotalAmount = async () => {
   const cart = await getCart();
   const rates = await fetchRates();
-  // hardcode currency
+  // hardcode currency CAD
   const details = {
     amount: Math.floor(cart.prices.grand_total.value * rates.CAD * 100),
     currency: 'CAD',
   };
+  // for USD
+  // const detailsUSD = {
+  //   amount: Math.floor(cart.prices.grand_total.value * 100),
+  //   currency: 'USD',
+  // };
   return details;
+  // return detailsUSD;
 };
 
 const createPaymentIntent = async () => {
