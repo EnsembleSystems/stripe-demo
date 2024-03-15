@@ -28,7 +28,8 @@ bin/magento setup:upgrade
 bin/magento config:set twofactorauth/general/enable 0
 ```
 - Add Stripe API keys to Magento>Stores>Configuration>Sales>Payment Methods https://dashboard.stripe.com/test/apikeys
-- Download [ExtraGraphql.zip](https://github.com/EnsembleSystems/stripe-demo/files/14576502/ExtraGraphql.zip)
+- Download [ExtraGraphQL.zip](https://github.com/EnsembleSystems/stripe-demo/files/14609423/ExtraGraphQL.zip)
+
 - Unzip ExtraGraphql.zip and add it to [Magento folder]/magento/src/app/code/magento/
 ```sh
 bin/magento setup:install
