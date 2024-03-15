@@ -16,7 +16,7 @@ function updateOrderSummary(orderSummaryDetails, cart) {
 
   orderSummaryDetails.innerHTML = `<h6 class='order-summary-title'>Order summary</h6>
       <div class='price-line'><p class='price-title'>Subtotal</p><p>$${subtotal}</p></div>
-      ${cart.shipping_addresses.length && `<div class='price-line'><p class='price-title'>Shipping</p><p>$${shipping}</p></div>`}
+      ${cart.shipping_addresses.length ? `<div class='price-line'><p class='price-title'>Shipping</p><p>$${shipping}</p></div>` : ''}
       <hr class='divider'/>
       <div class='price-line'><p class='total-price'>Total</p><p class='total-price'>$${subtotal + shipping}</p></div>`;
 }
