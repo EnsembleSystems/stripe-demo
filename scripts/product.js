@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import { fetchGraphQl } from '@dropins/elsie/fetch-graphql.js';
+import { fetchGraphQl } from '@dropins/tools/fetch-graphql.js';
 import { GET_PRODUCTS, GET_PRODUCT_DETAILS } from './graphql.js';
 /**
  * Return list of products

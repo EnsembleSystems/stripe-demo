@@ -1,4 +1,4 @@
-import { fetchGraphQl } from '@dropins/elsie/fetch-graphql.js';
+import { fetchGraphQl } from '@dropins/tools/fetch-graphql.js';
 import {
   ADD_TO_CART,
   CREATE_EMPTY_CART,
@@ -71,8 +71,6 @@ const createEmptyCart = async () => {
   const { data, errors } = await fetchGraphQl(CREATE_EMPTY_CART);
   if (errors) console.error(errors);
   window.localStorage.setItem(CART_KEY, data.createEmptyCart);
-
-  await setGuestEmailOnCart('test@gmail.com', data.createEmptyCart);
   return data.createEmptyCart;
 };
 

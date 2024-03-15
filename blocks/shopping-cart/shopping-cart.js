@@ -1,8 +1,3 @@
-import { OrderSummary } from '@dropins/storefront-checkout/containers/OrderSummary.js';
-import { render as checkoutRenderer } from '@dropins/storefront-checkout/render.js';
-import { initializers } from '@dropins/elsie/initializer.js';
-import * as checkoutApi from '@dropins/storefront-checkout/api.js';
-import { events } from '@dropins/elsie/event-bus.js';
 import createTag from '../../utils/tag.js';
 import {
   getCart,
@@ -14,7 +9,19 @@ import {
 const DEFAULT_QTY = 8;
 const EMPTY_HTML = '<p>Your cart is empty. Add some products to begin checkout.</p>';
 
-async function createOrderLine(item) {
+function updateOrderSummary(orderSummaryDetails, cart) {
+  const subtotal = cart.prices.grand_total.value;
+  const shipping = cart.shipping_addresses.length
+    ? cart.shipping_addresses[0].selected_shipping_method.amount.value : 0;
+
+  orderSummaryDetails.innerHTML = `<h6 class='order-summary-title'>Order summary</h6>
+      <div class='price-line'><p class='price-title'>Subtotal</p><p>$${subtotal}</p></div>
+      ${cart.shipping_addresses.length && `<div class='price-line'><p class='price-title'>Shipping</p><p>$${shipping}</p></div>`}
+      <hr class='divider'/>
+      <div class='price-line'><p class='total-price'>Total</p><p class='total-price'>$${subtotal + shipping}</p></div>`;
+}
+
+async function createOrderLine(block, item) {
   const { id, product, quantity } = item;
   const div = createTag('div', { className: 'order-line-wrapper' });
   div.id = `cart_item_${id}`;
@@ -55,6 +62,7 @@ async function createOrderLine(item) {
   );
 
   const removeButton = productInfoWrapper.querySelector('.close-button');
+  const orderSummaryDetails = block.querySelector('.order-summary-details-wrapper');
   removeButton.addEventListener('click', async () => {
     const totalQuantity = await removeFromCart(id);
     div.remove();
@@ -66,7 +74,8 @@ async function createOrderLine(item) {
       checkoutButton.classList.add('disabled');
       continueButton.textContent = 'Start Shopping';
     }
-    initializers.register(checkoutApi.initialize);
+    // reinitialize for order summary
+    updateOrderSummary(orderSummaryDetails, await getCart());
   });
 
   const select = productInfoWrapper.querySelector('select');
@@ -75,7 +84,7 @@ async function createOrderLine(item) {
     const newValue = select.value;
     await updateCartItems(id, newValue);
     // reinitialize for order summary
-    initializers.register(checkoutApi.initialize);
+    updateOrderSummary(orderSummaryDetails, await getCart());
   };
 
   div.append(productImgWrapper, productInfoWrapper);
@@ -83,26 +92,21 @@ async function createOrderLine(item) {
 }
 
 export default async function decorate(block) {
+  block.innerHTML = '';
   const orderList = createTag('div', {
     className: 'order-list-wrapper',
   });
   const cartId = getCartId();
 
   const cart = cartId ? await getCart() : undefined;
+
   const isCartEmpty = !cartId || cart.items.length === 0;
-  if (isCartEmpty) {
-    orderList.innerHTML = EMPTY_HTML;
-  } else {
-    cart.items.forEach(async (item) => {
-      orderList.appendChild(await createOrderLine(item));
-    });
-  }
 
   const orderSummary = createTag('div', { className: 'order-summary-wrapper' });
+  const orderSummaryDetails = createTag('div', { className: 'order-summary-details-wrapper' });
+  orderSummary.appendChild(orderSummaryDetails);
   if (cartId) {
-    initializers.register(checkoutApi.initialize);
-    checkoutRenderer.render(OrderSummary)(orderSummary);
-    events.emit('cart/data', { id: cartId });
+    updateOrderSummary(orderSummaryDetails, cart);
   }
   const checkoutButton = createTag('a', {
     textContent: 'Checkout',
@@ -119,5 +123,15 @@ export default async function decorate(block) {
     href: '/products',
   });
   orderSummary.append(checkoutButton, continueButton);
-  block.replaceChildren(orderList, orderSummary);
+  block.append(orderSummary);
+
+  if (isCartEmpty) {
+    orderList.innerHTML = EMPTY_HTML;
+  } else {
+    cart.items.forEach(async (item) => {
+      orderList.appendChild(await createOrderLine(block, item));
+    });
+  }
+
+  block.prepend(orderList);
 }

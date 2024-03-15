@@ -142,6 +142,29 @@
   background-color: transparent;
 }
 
+.shopping-cart .order-summary-wrapper .divider {
+  border-color: var(--divider-color);
+  margin: 0
+}
+
+.shopping-cart .order-summary-wrapper .price-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shopping-cart .order-summary-wrapper .order-summary-title {
+  font-weight: 500;
+  font-size: var(--body-font-size-l)
+}
+
+.shopping-cart .order-summary-wrapper .price-line p:not(.total-price) {
+  font-size: var(--body-font-size-s);
+}
+
+.shopping-cart .order-summary-wrapper .price-line .price-title {
+  color: var(--gray-text-color)
+}
+
 a.disabled {
   pointer-events: none;
   opacity: 0.6;
