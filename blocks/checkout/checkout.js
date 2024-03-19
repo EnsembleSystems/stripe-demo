@@ -1,64 +1,71 @@
-import { events } from '@dropins/elsie/event-bus.js';
-import { initializers } from '@dropins/elsie/initializer.js';
-import * as checkoutApi from '@dropins/storefront-checkout/api.js';
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-extraneous-dependencies */
+
+// Drop-in Tools
+import { initializers } from '@dropins/tools/initializer.js';
+
+// Drop-in APIs
+import * as checkout from '@dropins/storefront-checkout/api.js';
+
+// Drop-in Providers
+import { render as provider } from '@dropins/storefront-checkout/render.js';
+
+// Drop-in Containers
 import Checkout from '@dropins/storefront-checkout/containers/Checkout.js';
-import { render as checkoutRenderer } from '@dropins/storefront-checkout/render.js';
-import createTag from '../../utils/tag.js';
 import {
-  clearCartId,
-  getCartId,
-  placeOrder,
-  setPaymentMethodOnCart,
+  clearCartId, getCartId, placeOrder, setPaymentMethodOnCart,
 } from '../../scripts/cart.js';
-import renderStripeComponent from '../../scripts/stripe.js';
+import createTag from '../../utils/tag.js';
 import { loadLoading } from '../../utils/helpers.js';
+import renderStripeComponent from '../../scripts/stripe.js';
 
+async function proceedPlaceOrder(block, cartId, paymentMethod) {
+  const loading = await loadLoading();
+  await setPaymentMethodOnCart(paymentMethod.id, cartId);
+  const order = await placeOrder(cartId);
+  loading.remove();
+  clearCartId();
+  block.replaceWith(
+    createTag(
+      'div',
+      { className: 'checkout-complete' },
+      `<p class='thank-you'>Thank you for shopping!</p><p class='order-number'>Your order <b>#${order.order_number}</b> has been placed.</p><a href='/' class='primary button'>Continue Shopping</a>`,
+    ),
+  );
+}
 export default async function decorate(block) {
+  // If cartId is cached in session storage, use
+  // otherwise, checkout drop-in will look for one in the event-bus
   const cartId = getCartId();
-  if (!cartId) {
-    window.location.href = '/cart';
-    return;
-  }
-  initializers.register(checkoutApi.initialize);
 
-  async function proceedPlaceOrder(paymentMethod) {
-    const loading = await loadLoading();
-    await setPaymentMethodOnCart(paymentMethod.id, cartId);
-    const order = await placeOrder(cartId);
-    loading.remove();
-    clearCartId();
-    block.replaceWith(
-      createTag(
-        'div',
-        { className: 'checkout-complete' },
-        `<p class='thank-you'>Thank you for shopping!</p><p class='order-number'>Your order <b>#${order.order_number}</b> has been placed.</p><a href='/' class='primary button'>Continue Shopping</a>`,
-      ),
-    );
-  }
+  // Initialize Drop-ins
+  initializers.register(checkout.initialize, {});
 
-  checkoutRenderer.render(Checkout, {
+  return provider.render(Checkout, {
+    cartId,
+    routeHome: () => '/',
+    routeCart: () => '/cart',
     slots: {
-      PaymentMethods: (_, context) => {
+      PaymentMethods: async (context) => {
         context.addPaymentMethodHandler('checkmo', {
-          render: (element, context) => {
-            console.log('handler context', context);
+          render: (ctx, element) => {
             if (element) {
-              element.innerHTML = '<div>Custom Check / Money order handler</div>';
+              // clear the element first
+              element.innerHTML = '';
             }
           },
         });
 
         context.addPaymentMethodHandler('stripe_payments', {
-          render: async (element, context) => {
+          render: async (ctx, element) => {
             await renderStripeComponent({
               element,
-              context,
-              callback: (paymentMethod) => proceedPlaceOrder(paymentMethod),
+              context: ctx,
+              callback: (paymentMethod) => proceedPlaceOrder(block, cartId, paymentMethod),
             });
           },
         });
       },
     },
   })(block);
-  events.emit('cart/data', { id: cartId });
 }

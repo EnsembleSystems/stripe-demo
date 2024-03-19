@@ -1,6 +1,6 @@
-import { events } from '@dropins/elsie/event-bus.js';
-import { initializers } from '@dropins/elsie/initializer.js';
-import { setEndpoint } from '@dropins/elsie/fetch-graphql.js';
+import { events } from '@dropins/tools/event-bus.js';
+import { initializers } from '@dropins/tools/initializer.js';
+import { setEndpoint } from '@dropins/tools/fetch-graphql.js';
 import {
   sampleRUM,
   loadHeader,
