@@ -1,0 +1,32 @@
+.checkout-container .checkout-wrapper {
+  max-width: 100% !important;
+}
+
+.checkout-container .checkout-complete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5rem;
+}
+
+.checkout-container .thank-you {
+  font-size: var(--body-font-size-xxl);
+  font-weight: 600;
+  color: var(--banner-color);
+}
+
+button.dropin-button {
+  width: 100%;
+  border-radius: 0.375rem !important;
+  background-color: var(--link-color) !important;
+  border: 2px solid transparent !important;
+  padding: 10px 30px !important;
+  font-weight: 500;
+  min-height: 50px;
+}
+
+button.dropin-button:disabled {
+  pointer-events: none;
+  opacity: 0.6;
+  color: white
+}

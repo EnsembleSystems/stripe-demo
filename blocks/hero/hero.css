@@ -1,0 +1,61 @@
+/* block specific CSS goes here */
+
+main .hero-container > div {
+  max-width: unset;
+  color: var(--text-light-color);
+}
+  
+main .hero-container {
+  padding: 0;
+}
+  
+main .hero {
+  position: relative;
+  padding: 32px;
+  min-height: 650px;
+  text-align: center; 
+  background-color: rgba(17, 24, 39,0.5);
+
+  @media (max-width: 768px){
+    min-height: 500px;
+  }
+}
+
+main .hero>div>div {
+  padding: 120px;
+
+  @media (max-width: 768px){
+    padding: 20px;
+  }
+}
+
+main .hero h1 {
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  font-size: var(--heading-font-size-xxl);
+}
+
+main .hero picture {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  object-fit: cover;
+  box-sizing: border-box;
+}
+
+main .hero img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+main .hero p {
+  font-size: var(--body-font-size-xl);
+  max-width: 800px;
+  margin: auto;
+}

@@ -1,0 +1,31 @@
+{
+  "_from": "@dropins/elsie",
+  "_id": "@dropins/elsie@0.6.0-beta45",
+  "_inBundle": false,
+  "_integrity": "sha512-2LVjIlpgdaHZ7YaBg2gIPESc5FSuiygxIKwgwdZuHwLqHVViGDOsycKM7l7WKLMyPhY1JgmZjwsp3C1u7aBiTA==",
+  "_location": "/@dropins/elsie",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@dropins/elsie",
+    "name": "@dropins/elsie",
+    "escapedName": "@dropins%2felsie",
+    "scope": "@dropins",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@dropins/elsie/-/elsie-0.6.0-beta45.tgz",
+  "_shasum": "6f99be877932945645d41827897d7bae69df30a1",
+  "_spec": "@dropins/elsie",
+  "_where": "/Users/amyn/Documents/aem-project/aem-franklin",
+  "bundleDependencies": false,
+  "deprecated": false,
+  "name": "@dropins/elsie",
+  "version": "0.6.0-beta45"
+}

@@ -1,0 +1,206 @@
+.product-details-container .product-details-card {
+  display: grid;
+  column-gap: 2rem;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-rows: min-content;
+
+
+}
+
+.product-image-wrapper {
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .product-details-container .product-wrapper {
+    padding: 0 1.5rem;
+    max-width: 42rem;
+    margin: auto;
+  }
+
+  .product-details-container .product-details-card {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .product-details-card .product-header-wrapper {
+    grid-column: span 5 / span 5;
+    grid-column-start: 8;
+  }
+
+  .product-details-card .product-image-wrapper {
+    grid-row: span 3 / span 3;
+    grid-row-start: 1;
+    grid-column: span 7 / span 7;
+    grid-column-start: 1;
+    margin-top: 0;
+
+  }
+
+  .product-details-card .product-body-wrapper {
+    grid-column: span 5 / span 5;
+  }
+}
+
+
+.product-details-card .product-header-wrapper .product-name-price-wrapper {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--body-font-size-xl);
+  font-weight: 600;
+}
+
+/* .product-details-card .product-image-wrapper img {
+  border-radius: 0.5rem;
+} */
+
+.product-details-card .product-image-wrapper {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.product-details-card .product-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.product-details-card .product-body-wrapper .description-header {
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+}
+
+.product-details-card .product-body-wrapper .product-details-description {
+  color: var(--faded-text-color)
+}
+
+.product-details-card .product-body-wrapper button {
+  width: 100%;
+}
+
+.product-details-card .product-info-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 20px;
+}
+
+
+.product-details-wrapper .product-review-wrapper p {
+  margin: 0;
+  font-size: var(--body-font-size-s);
+}
+
+.product-details-card .product-info-wrapper .product-support-info {
+  background: var(--light-background-color);
+  width: 50%;
+  border-radius: 10px;
+  text-align: center;
+  padding: 20px 0;
+  border: 1px solid var(--divider-color)
+}
+
+.product-details-card .product-info-wrapper .product-support-info p.info-content {
+  color: var(--faded-text-color);
+}
+
+.product-details-card .product-info-wrapper .product-support-info p.info-heading {
+  font-weight: 500;
+}
+
+.product-details-card .product-info-wrapper .product-support-info p {
+  margin: 0;
+  font-size: var(--body-font-size-s);
+}
+
+.product-details-card .product-info-wrapper svg {
+  width: 1.5rem;
+}
+
+.product-details-wrapper .product-review-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.product-details-wrapper .star-review-container {
+  display: flex;
+  gap: 5px;
+  font-size: var(--body-font-size-s);
+}
+
+.star-review-container i.grey {
+  color: var(--divider-color);
+}
+
+.star-review-container i.yellow {
+  color: var(--review-star-color);
+  display: block;
+  overflow: hidden;
+  top: 4px;
+  position: absolute;
+}
+
+.star-review-container .star-container {
+  position: relative;
+}
+
+.product-recent-reviews {
+  margin-top: 3rem;
+}
+
+.review-details {
+  padding: 2rem 0;
+  border-top: 1px solid var(--divider-color);
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: space-between;
+  font-size: var(--body-font-size-s);
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+}
+
+.review-author-wrapper {
+  width: fit-content;
+  min-width: 300px;
+
+  @media screen and (max-width: 900px) {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.review-header {
+  font-size: var(--body-font-size-l);
+  font-weight: 500;
+}
+
+.review-author,
+.review-info-header {
+  font-weight: 500;
+}
+
+.review-date,
+.review-text {
+  color: var(--faded-text-color)
+}
+
+.review-date {
+  white-space: nowrap;
+}
+
+.review-author {
+  @media screen and (max-width: 900px) {
+    border-right: 1px solid var(--divider-color);
+    padding-right: 1rem;
+  }
+}
